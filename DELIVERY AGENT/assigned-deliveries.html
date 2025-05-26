@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assigned Deliveries</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ecdc4',
+                        secondary: '#ff6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <h1 class="text-xl font-semibold text-gray-800">Assigned Deliveries</h1>
+            <div class="flex items-center space-x-4">
+                <a href="profile.html" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-user text-xl"></i>
+                </a>
+                <button onclick="logout()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-sign-out-alt text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-20 pb-8">
+        <!-- Status Overview -->
+        <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="bg-white rounded-lg p-4 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600">Active Deliveries</p>
+                        <p class="text-2xl font-semibold text-gray-800">3</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                        <i class="fas fa-motorcycle text-primary"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg p-4 shadow-sm">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600">Completed Today</p>
+                        <p class="text-2xl font-semibold text-gray-800">12</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-check text-green-600"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Delivery List -->
+        <div class="space-y-4">
+            <!-- Delivery Card 1 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Spice Garden</h3>
+                            <p class="text-sm text-gray-600">Order #ORD123456</p>
+                        </div>
+                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Pickup</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
+                        <span>2.5 km away</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-gray-900">₹150</span>
+                            <span class="text-xs text-gray-500">• 2 items</span>
+                        </div>
+                        <a href="delivery-detail.html?id=ORD123456" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Card 2 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Pizza Hut</h3>
+                            <p class="text-sm text-gray-600">Order #ORD123457</p>
+                        </div>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">In Transit</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
+                        <span>1.8 km away</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-gray-900">₹200</span>
+                            <span class="text-xs text-gray-500">• 3 items</span>
+                        </div>
+                        <a href="delivery-detail.html?id=ORD123457" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Delivery Card 3 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="font-semibold text-gray-800">Burger King</h3>
+                            <p class="text-sm text-gray-600">Order #ORD123458</p>
+                        </div>
+                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Ready</span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                        <i class="fas fa-map-marker-alt text-primary"></i>
+                        <span>3.2 km away</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-gray-900">₹180</span>
+                            <span class="text-xs text-gray-500">• 4 items</span>
+                        </div>
+                        <a href="delivery-detail.html?id=ORD123458" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
+                            View Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function logout() {
+            // Simulate logout
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html> 

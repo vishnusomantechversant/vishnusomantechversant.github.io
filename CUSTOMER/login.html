@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login - Food Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ecdc4',
+                        secondary: '#ff6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-secondary to-primary flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md">
+        <div class="text-center mb-8">
+            <div class="flex items-center justify-between mb-6">
+                <h1 class="text-2xl font-bold text-gray-800">Login</h1>
+                <a href="register.html" class="text-primary hover:text-primary-dark">Create Account</a>
+            </div>
+            <p class="text-gray-600">Login with your phone number</p>
+        </div>
+
+        <!-- Phone Input Form -->
+        <form id="phoneForm" class="space-y-6" onsubmit="handlePhoneSubmit(event)">
+            <div class="space-y-2">
+                <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                <div class="flex">
+                    <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                        +91
+                    </span>
+                    <input type="tel" id="phone"  
+                        class="flex-1 px-4 py-3 rounded-r-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200"
+                        placeholder="98765 43210"
+                        pattern="[0-9]{10}"
+                        maxlength="10">
+                </div>
+            </div>
+            <button type="submit" 
+                class="w-full bg-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                Send OTP
+            </button>
+        </form>
+
+        <!-- OTP Verification Form (Hidden by default) -->
+        <form id="otpForm" class="space-y-6 hidden" onsubmit="handleOTPSubmit(event)">
+            <div class="text-center mb-4">
+                <p class="text-gray-600">Enter the 6-digit code sent to</p>
+                <p class="font-medium text-gray-800" id="displayPhone"></p>
+            </div>
+            <div class="space-y-2">
+                <label for="otp" class="block text-sm font-medium text-gray-700">OTP Code</label>
+                <div class="flex space-x-2">
+                    <input type="text" maxlength="1" pattern="[0-9]" class="w-12 h-12 text-center text-xl font-bold rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <input type="text" maxlength="1" pattern="[0-9]" class="w-12 h-12 text-center text-xl font-bold rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <input type="text" maxlength="1" pattern="[0-9]" class="w-12 h-12 text-center text-xl font-bold rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <input type="text" maxlength="1" pattern="[0-9]" class="w-12 h-12 text-center text-xl font-bold rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <input type="text" maxlength="1" pattern="[0-9]" class="w-12 h-12 text-center text-xl font-bold rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <input type="text" maxlength="1" pattern="[0-9]" class="w-12 h-12 text-center text-xl font-bold rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+            </div>
+            <div class="flex justify-between items-center">
+                <button type="button" onclick="resendOTP()" class="text-sm text-primary hover:text-primary-dark">
+                    Resend OTP
+                </button>
+                <span id="timer" class="text-sm text-gray-500">02:00</span>
+            </div>
+            <button type="submit" 
+                class="w-full bg-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                Verify & Login
+            </button>
+        </form>
+
+        <p class="text-center text-sm text-gray-600 mt-6">
+            Don't have an account? 
+            <a href="register.html" class="text-primary hover:text-primary-dark font-medium">Sign up</a>
+        </p>
+    </div>
+
+    <script>
+        // Format phone number as user types
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,5})/);
+            e.target.value = !x[2] ? x[1] : x[1] + ' ' + x[2];
+        });
+
+        // Handle OTP input
+        const otpInputs = document.querySelectorAll('#otpForm input[type="text"]');
+        otpInputs.forEach((input, index) => {
+            input.addEventListener('input', function(e) {
+                if (e.target.value.length === 1) {
+                    if (index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                }
+            });
+
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                    otpInputs[index - 1].focus();
+                }
+            });
+        });
+
+        function handlePhoneSubmit(event) {
+            event.preventDefault();
+            const phone = phoneInput.value.replace(/\D/g, '');
+            
+            // Here you would typically make an API call to send OTP
+            console.log(`Sending OTP to: ${phone}`);
+            
+            // Show OTP form and hide phone form
+            document.getElementById('phoneForm').classList.add('hidden');
+            document.getElementById('otpForm').classList.remove('hidden');
+            document.getElementById('displayPhone').textContent = formatPhone(phone);
+            
+            // Start timer
+            startTimer();
+        }
+
+        function handleOTPSubmit(event) {
+            event.preventDefault();
+            const otp = Array.from(otpInputs).map(input => input.value).join('');
+            
+            // Here you would typically verify the OTP with your backend
+            console.log(`Verifying OTP: ${otp}`);
+            
+            // Redirect to home page after successful verification
+            window.location.href = 'home.html';
+        }
+
+        function resendOTP() {
+            // Here you would typically make an API call to resend OTP
+            console.log('Resending OTP...');
+            startTimer();
+        }
+
+        function startTimer() {
+            let timeLeft = 120; // 2 minutes
+            const timerDisplay = document.getElementById('timer');
+            
+            const timer = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    timerDisplay.textContent = '00:00';
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function formatPhone(phone) {
+            return `+91 ${phone.slice(0,5)} ${phone.slice(5)}`;
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            // Simulate login success
+            window.location.href = 'home.html';
+        }
+    </script>
+</body>
+</html> 

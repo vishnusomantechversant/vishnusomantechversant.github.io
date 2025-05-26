@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ecdc4',
+                        secondary: '#ff6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="assigned-deliveries.html" class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+            <h1 class="text-xl font-semibold text-gray-800">Delivery Details</h1>
+            <div class="w-8"></div> <!-- Spacer for alignment -->
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-20 pb-8">
+        <!-- Order Status -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h2 class="font-semibold text-gray-800">Order #ORD123456</h2>
+                    <p class="text-sm text-gray-600">Spice Garden</p>
+                </div>
+                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Pickup</span>
+            </div>
+            <div class="flex items-center justify-between text-sm text-gray-600">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-clock text-primary"></i>
+                    <span>Estimated delivery: 25 mins</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-rupee-sign text-primary"></i>
+                    <span>Delivery fee: ₹50</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <h3 class="font-semibold text-gray-800 mb-3">Order Items</h3>
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-utensils text-gray-400"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-800">Butter Chicken</p>
+                            <p class="text-xs text-gray-500">1 x ₹180</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-medium text-gray-800">₹180</span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-utensils text-gray-400"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm font-medium text-gray-800">Naan</p>
+                            <p class="text-xs text-gray-500">2 x ₹30</p>
+                        </div>
+                    </div>
+                    <span class="text-sm font-medium text-gray-800">₹60</span>
+                </div>
+                <div class="border-t pt-3 mt-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-800">Total</span>
+                        <span class="text-sm font-medium text-gray-800">₹240</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <h3 class="font-semibold text-gray-800 mb-3">Delivery Location</h3>
+            <div id="map" class="h-64 rounded-lg"></div>
+        </div>
+
+        <!-- Customer Details -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+            <h3 class="font-semibold text-gray-800 mb-3">Customer Details</h3>
+            <div class="space-y-3">
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-user text-primary"></i>
+                    <div>
+                        <p class="text-sm font-medium text-gray-800">John Doe</p>
+                        <p class="text-xs text-gray-500">+91 98765 43210</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <i class="fas fa-map-marker-alt text-primary"></i>
+                    <p class="text-sm text-gray-600">123, MG Road, Kochi, Kerala - 682001</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Update -->
+        <div class="bg-white rounded-lg shadow-sm p-4">
+            <h3 class="font-semibold text-gray-800 mb-3">Update Status</h3>
+            <div class="space-y-3">
+                <button onclick="updateStatus('picked')" class="w-full bg-primary text-white px-4 py-3 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
+                    Mark as Picked Up
+                </button>
+                <button onclick="updateStatus('delivered')" class="w-full bg-green-600 text-white px-4 py-3 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
+                    Mark as Delivered
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([9.9312, 76.2673], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add markers
+        const restaurantMarker = L.marker([9.9312, 76.2673]).addTo(map);
+        restaurantMarker.bindPopup('Spice Garden').openPopup();
+
+        const customerMarker = L.marker([9.9315, 76.2675]).addTo(map);
+        customerMarker.bindPopup('Customer Location').openPopup();
+
+        // Draw route
+        const route = L.polyline([
+            [9.9312, 76.2673],
+            [9.9313, 76.2674],
+            [9.9314, 76.2674],
+            [9.9315, 76.2675]
+        ], {
+            color: '#4ecdc4',
+            weight: 3,
+            opacity: 0.7,
+            dashArray: '10, 10'
+        }).addTo(map);
+
+        function updateStatus(status) {
+            // Simulate status update
+            if (status === 'picked') {
+                alert('Order marked as picked up!');
+                window.location.href = 'assigned-deliveries.html';
+            } else if (status === 'delivered') {
+                alert('Order marked as delivered!');
+                window.location.href = 'assigned-deliveries.html';
+            }
+        }
+    </script>
+</body>
+</html> 

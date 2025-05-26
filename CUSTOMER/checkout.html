@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Food Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ecdc4',
+                        secondary: '#ff6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <a href="cart.html" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-xl font-semibold text-gray-800">Checkout</h1>
+            </div>
+            <a href="home.html" class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-home text-xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-20 pb-32">
+        <!-- Delivery Address -->
+        <div class="bg-white rounded-lg p-4 mb-4">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Delivery Address</h2>
+            <form id="addressForm" class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                        <input type="text" id="firstName" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <input type="text" id="lastName" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                            +91
+                        </span>
+                        <input type="tel" id="phone" required
+                            class="flex-1 px-3 py-2 rounded-r-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="98765 43210"
+                            pattern="[0-9]{10}"
+                            maxlength="10">
+                    </div>
+                </div>
+                <div>
+                    <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Street Address</label>
+                    <input type="text" id="address" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="House/Flat number, Building name">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="landmark" class="block text-sm font-medium text-gray-700 mb-1">Landmark</label>
+                        <input type="text" id="landmark"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            placeholder="Near by">
+                    </div>
+                    <div>
+                        <label for="pincode" class="block text-sm font-medium text-gray-700 mb-1">Pincode</label>
+                        <input type="text" id="pincode" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            pattern="[0-9]{6}"
+                            maxlength="6"
+                            placeholder="6-digit pincode">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                        <input type="text" id="city" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="state" class="block text-sm font-medium text-gray-700 mb-1">State</label>
+                        <input type="text" id="state" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Payment Options -->
+        <div class="bg-white rounded-lg p-4 mb-4">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Payment Method</h2>
+            <div class="space-y-3">
+                <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input type="radio" name="payment" value="upi" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
+                    <div class="ml-3">
+                        <span class="block text-sm font-medium text-gray-700">UPI</span>
+                        <span class="block text-xs text-gray-500">Pay using any UPI app</span>
+                    </div>
+                </label>
+                <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input type="radio" name="payment" value="card" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
+                    <div class="ml-3">
+                        <span class="block text-sm font-medium text-gray-700">Credit/Debit Card</span>
+                        <span class="block text-xs text-gray-500">Pay using card</span>
+                    </div>
+                </label>
+                <label class="flex items-center p-3 border rounded-lg cursor-pointer hover:bg-gray-50">
+                    <input type="radio" name="payment" value="cod" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
+                    <div class="ml-3">
+                        <span class="block text-sm font-medium text-gray-700">Cash on Delivery</span>
+                        <span class="block text-xs text-gray-500">Pay when you receive</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="bg-white rounded-lg p-4">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Order Summary</h2>
+            <div class="space-y-2">
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Subtotal</span>
+                    <span class="text-gray-800">₹1,207</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Delivery Fee</span>
+                    <span class="text-gray-800">₹40</span>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="text-gray-600">Taxes</span>
+                    <span class="text-gray-800">₹124</span>
+                </div>
+                <div class="border-t pt-2 flex justify-between font-medium">
+                    <span class="text-gray-800">Total</span>
+                    <span class="text-gray-800">₹1,371</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Place Order Button -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t p-4">
+        <button onclick="placeOrder()" class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors">
+            Place Order
+        </button>
+    </div>
+
+    <script>
+        // Format phone number as user types
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,5})/);
+            e.target.value = !x[2] ? x[1] : x[1] + ' ' + x[2];
+        });
+
+        // Format pincode as user types
+        const pincodeInput = document.getElementById('pincode');
+        pincodeInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+        });
+
+        function placeOrder() {
+            // Simulate order placement
+            window.location.href = 'order-tracking.html';
+        }
+    </script>
+</body>
+</html> 

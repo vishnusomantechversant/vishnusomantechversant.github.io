@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - Food Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ecdc4',
+                        secondary: '#ff6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <a href="home.html" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-xl font-semibold text-gray-800">Your Orders</h1>
+            </div>
+            <a href="home.html" class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-home text-xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-20 pb-8">
+        <!-- Order Tabs -->
+        <div class="flex space-x-4 mb-6">
+            <button class="px-4 py-2 text-sm font-medium text-primary border-b-2 border-primary">
+                Current Orders
+            </button>
+            <button class="px-4 py-2 text-sm font-medium text-gray-500 hover:text-gray-700">
+                Past Orders
+            </button>
+        </div>
+
+        <!-- Current Orders -->
+        <div class="space-y-4">
+            <!-- Current Order -->
+            <div class="bg-white rounded-lg p-4 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                    <div>
+                        <h3 class="font-semibold text-gray-800">Spice Garden</h3>
+                        <p class="text-sm text-gray-600">Order #ORD123456</p>
+                    </div>
+                    <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Out for Delivery</span>
+                </div>
+                <div class="flex justify-between items-center text-sm text-gray-600 mb-3">
+                    <span>2 items • ₹450</span>
+                    <span>Estimated: 3:15 PM</span>
+                </div>
+                <a href="order-tracking.html" class="block w-full text-center bg-primary text-white py-2 rounded-lg hover:bg-primary-dark transition-colors">
+                    Track Order
+                </a>
+            </div>
+            <!-- Add more order cards as needed -->
+        </div>
+
+        <!-- Past Orders -->
+        <div class="space-y-4 mt-8 hidden">
+            <!-- Past Order Card 1 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900">McDonald's</h3>
+                            <p class="text-xs text-gray-500">Order #ORD123455</p>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Delivered
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>Delivered on 15 Mar, 2:30 PM</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-gray-900">₹649</span>
+                            <span class="text-xs text-gray-500">• 2 items</span>
+                        </div>
+                        <button class="text-sm font-medium text-primary hover:text-primary-dark">
+                            Reorder
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Order Card 2 -->
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                <div class="p-4">
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900">KFC</h3>
+                            <p class="text-xs text-gray-500">Order #ORD123454</p>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Delivered
+                        </span>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <span>Delivered on 14 Mar, 7:45 PM</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-sm font-medium text-gray-900">₹1,199</span>
+                            <span class="text-xs text-gray-500">• 4 items</span>
+                        </div>
+                        <button class="text-sm font-medium text-primary hover:text-primary-dark">
+                            Reorder
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab switching functionality
+        const tabs = document.querySelectorAll('button');
+        const currentOrders = document.querySelector('.space-y-4');
+        const pastOrders = document.querySelector('.space-y-4.hidden');
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                // Update tab styles
+                tabs.forEach(t => {
+                    t.classList.remove('text-primary', 'border-b-2', 'border-primary');
+                    t.classList.add('text-gray-500');
+                });
+                tab.classList.remove('text-gray-500');
+                tab.classList.add('text-primary', 'border-b-2', 'border-primary');
+
+                // Show/hide orders
+                if (index === 0) {
+                    currentOrders.classList.remove('hidden');
+                    pastOrders.classList.add('hidden');
+                } else {
+                    currentOrders.classList.add('hidden');
+                    pastOrders.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Function to format date
+        function formatDate(date) {
+            return new Date(date).toLocaleDateString('en-IN', {
+                day: 'numeric',
+                month: 'short',
+                hour: 'numeric',
+                minute: 'numeric',
+                hour12: true
+            });
+        }
+    </script>
+</body>
+</html> 

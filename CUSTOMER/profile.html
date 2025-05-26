@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Food Delivery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ecdc4',
+                        secondary: '#ff6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <a href="home.html" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-arrow-left text-xl"></i>
+                </a>
+                <h1 class="text-xl font-semibold text-gray-800">Profile</h1>
+            </div>
+            <a href="home.html" class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-home text-xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 pt-20 pb-8">
+        <!-- Profile Photo Section -->
+        <div class="flex flex-col items-center mb-8">
+            <div class="relative">
+                <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                </div>
+                <button class="absolute bottom-0 right-0 bg-primary text-white p-2 rounded-full shadow-lg hover:bg-opacity-90">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </button>
+            </div>
+            <h2 class="mt-4 text-lg font-medium text-gray-900">Rahul Sharma</h2>
+            <p class="text-sm text-gray-500">rahul.sharma@email.com</p>
+        </div>
+
+        <!-- Profile Form -->
+        <form id="profileForm" class="space-y-6">
+            <!-- Personal Information -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Personal Information</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="firstName" class="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                        <input type="text" id="firstName" value="Rahul" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div>
+                        <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                        <input type="text" id="lastName" value="Sharma" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" value="rahul.sharma@email.com" required
+                        class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                </div>
+                <div class="mt-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <div class="flex">
+                        <span class="inline-flex items-center px-3 rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                            +91
+                        </span>
+                        <input type="tel" id="phone" value="98765 43210" required
+                            class="flex-1 px-3 py-2 rounded-r-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                            pattern="[0-9]{10}"
+                            maxlength="10">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Address Information -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Address Information</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Street Address</label>
+                        <input type="text" id="address" value="123, Green Park" required
+                            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="landmark" class="block text-sm font-medium text-gray-700 mb-1">Landmark</label>
+                            <input type="text" id="landmark" value="Near Metro Station"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="pincode" class="block text-sm font-medium text-gray-700 mb-1">Pincode</label>
+                            <input type="text" id="pincode" value="110016" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                pattern="[0-9]{6}"
+                                maxlength="6">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="city" class="block text-sm font-medium text-gray-700 mb-1">City</label>
+                            <input type="text" id="city" value="New Delhi" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                        <div>
+                            <label for="state" class="block text-sm font-medium text-gray-700 mb-1">State</label>
+                            <input type="text" id="state" value="Delhi" required
+                                class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preferences -->
+            <div class="bg-white rounded-lg p-4">
+                <h3 class="text-lg font-medium text-gray-900 mb-4">Preferences</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center">
+                        <input type="checkbox" id="notifications" checked
+                            class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                        <label for="notifications" class="ml-2 block text-sm text-gray-700">
+                            Receive order notifications
+                        </label>
+                    </div>
+                    <div class="flex items-center">
+                        <input type="checkbox" id="marketing" checked
+                            class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                        <label for="marketing" class="ml-2 block text-sm text-gray-700">
+                            Receive promotional offers
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col space-y-3">
+                <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-lg font-medium hover:bg-opacity-90 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                    Update Profile
+                </button>
+                <button onclick="logout()" class="w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-red-600 transition-colors">
+                    Logout
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        // Format phone number as user types
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', function(e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,5})(\d{0,5})/);
+            e.target.value = !x[2] ? x[1] : x[1] + ' ' + x[2];
+        });
+
+        // Format pincode as user types
+        const pincodeInput = document.getElementById('pincode');
+        pincodeInput.addEventListener('input', function(e) {
+            e.target.value = e.target.value.replace(/\D/g, '').slice(0, 6);
+        });
+
+        // Handle form submission
+        document.getElementById('profileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                landmark: document.getElementById('landmark').value,
+                pincode: document.getElementById('pincode').value,
+                city: document.getElementById('city').value,
+                state: document.getElementById('state').value,
+                notifications: document.getElementById('notifications').checked,
+                marketing: document.getElementById('marketing').checked
+            };
+
+            // Here you would typically send the data to your backend
+            console.log('Updating profile:', formData);
+
+            // Show success message
+            alert('Profile updated successfully!');
+        });
+
+        // Handle logout
+        function logout() {
+            // Simulate logout
+            window.location.href = 'login.html';
+        }
+    </script>
+</body>
+</html> 
