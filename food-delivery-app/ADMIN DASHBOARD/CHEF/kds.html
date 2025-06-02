@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitchen Display System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4ecdc4',
+                        secondary: '#ff6b6b',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Sidebar -->
+    <aside class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg">
+        <div class="p-6">
+            <div class="flex items-center space-x-3 mb-8">
+                <i class="fas fa-utensils text-2xl text-primary"></i>
+                <h1 class="text-xl font-bold text-gray-800">Chef Panel</h1>
+            </div>
+            <nav class="space-y-2">
+                <a href="kds.html" class="flex items-center space-x-3 text-primary bg-primary/10 px-4 py-3 rounded-lg">
+                    <i class="fas fa-clipboard-list"></i>
+                    <span>New Orders</span>
+                </a>
+                <a href="order-status.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
+                    <i class="fas fa-tasks"></i>
+                    <span>Update Status</span>
+                </a>
+                <a href="consumption-logs.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
+                    <i class="fas fa-history"></i>
+                    <span>Consumption Logs</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-8">
+            <div>
+                <h2 class="text-2xl font-bold text-gray-800">Kitchen Display System</h2>
+                <p class="text-gray-600">Manage and track food preparation</p>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-bell text-xl"></i>
+                </button>
+                <button onclick="logout()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-sign-out-alt text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Order Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- New Order Card -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Order #1234</h3>
+                        <p class="text-sm text-gray-500">2:30 PM</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs font-medium bg-yellow-100 text-yellow-800 rounded-full">New</span>
+                </div>
+                <div class="space-y-3 mb-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">2x Butter Chicken</span>
+                        <span class="text-sm text-gray-500">Main Course</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">1x Naan</span>
+                        <span class="text-sm text-gray-500">Bread</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <button onclick="startPreparation('1234')" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                        Start Preparation
+                    </button>
+                    <button class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- In Progress Order Card -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Order #1233</h3>
+                        <p class="text-sm text-gray-500">2:15 PM</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">In Progress</span>
+                </div>
+                <div class="space-y-3 mb-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">1x Pizza Margherita</span>
+                        <span class="text-sm text-gray-500">Main Course</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">2x Coke</span>
+                        <span class="text-sm text-gray-500">Beverage</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <button onclick="markAsReady('1233')" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+                        Mark as Ready
+                    </button>
+                    <button class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ready for Pickup Order Card -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Order #1232</h3>
+                        <p class="text-sm text-gray-500">2:00 PM</p>
+                    </div>
+                    <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Ready</span>
+                </div>
+                <div class="space-y-3 mb-4">
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">1x Burger</span>
+                        <span class="text-sm text-gray-500">Main Course</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm font-medium text-gray-700">1x Fries</span>
+                        <span class="text-sm text-gray-500">Side</span>
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <button onclick="handoverToDelivery('1232')" class="px-4 py-2 bg-secondary text-white rounded-lg hover:bg-secondary-dark focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2">
+                        Handover to Delivery
+                    </button>
+                    <button class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function startPreparation(orderId) {
+            // Simulate starting preparation
+            alert(`Starting preparation for order #${orderId}`);
+        }
+
+        function markAsReady(orderId) {
+            // Simulate marking order as ready
+            alert(`Order #${orderId} marked as ready`);
+        }
+
+        function handoverToDelivery(orderId) {
+            // Simulate handover to delivery
+            alert(`Order #${orderId} handed over to delivery`);
+        }
+
+        function logout() {
+            // Simulate logout
+            window.location.href = '../login.html';
+        }
+    </script>
+</body>
+</html> 

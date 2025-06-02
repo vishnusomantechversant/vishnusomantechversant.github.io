@@ -79,7 +79,13 @@
                             <span class="text-yellow-400"><i class="fas fa-star"></i></span>
                             <span class="text-sm text-gray-600">4.8 (120)</span>
                         </div>
-                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
+                        <button onclick="addToCart({
+                            id: '1',
+                            name: 'Butter Chicken',
+                            price: 250,
+                            image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38',
+                            quantity: 1
+                        })" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -102,7 +108,13 @@
                             <span class="text-yellow-400"><i class="fas fa-star"></i></span>
                             <span class="text-sm text-gray-600">4.6 (98)</span>
                         </div>
-                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
+                        <button onclick="addToCart({
+                            id: '2',
+                            name: 'Classic Burger',
+                            price: 999,
+                            image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd',
+                            quantity: 1
+                        })" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -125,7 +137,13 @@
                             <span class="text-yellow-400"><i class="fas fa-star"></i></span>
                             <span class="text-sm text-gray-600">4.9 (156)</span>
                         </div>
-                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
+                        <button onclick="addToCart({
+                            id: '3',
+                            name: 'Salmon Roll',
+                            price: 1499,
+                            image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c',
+                            quantity: 1
+                        })" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -148,7 +166,13 @@
                             <span class="text-yellow-400"><i class="fas fa-star"></i></span>
                             <span class="text-sm text-gray-600">4.7 (89)</span>
                         </div>
-                        <button class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
+                        <button onclick="addToCart({
+                            id: '4',
+                            name: 'Seafood Pasta',
+                            price: 1699,
+                            image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141',
+                            quantity: 1
+                        })" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
                             Add to Cart
                         </button>
                     </div>
@@ -196,26 +220,27 @@
             });
         });
 
-        // Add to cart functionality
-        document.querySelectorAll('button').forEach(button => {
-            if (button.textContent.trim() === 'Add to Cart') {
-                button.addEventListener('click', () => {
-                    const cartCount = document.querySelector('.fa-shopping-cart + span');
-                    const currentCount = parseInt(cartCount.textContent);
-                    cartCount.textContent = currentCount + 1;
-                    
-                    // Show notification
-                    const notification = document.createElement('div');
-                    notification.className = 'fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg';
-                    notification.textContent = 'Item added to cart!';
-                    document.body.appendChild(notification);
-                    
-                    setTimeout(() => {
-                        notification.remove();
-                    }, 2000);
-                });
+        function addToCart(item) {
+            // Get existing cart items from localStorage
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            
+            // Check if item already exists in cart
+            const existingItemIndex = cartItems.findIndex(cartItem => cartItem.id === item.id);
+            
+            if (existingItemIndex > -1) {
+                // Update quantity if item exists
+                cartItems[existingItemIndex].quantity += 1;
+            } else {
+                // Add new item if it doesn't exist
+                cartItems.push(item);
             }
-        });
+            
+            // Save updated cart to localStorage
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Redirect to cart page
+            window.location.href = 'cart.html';
+        }
     </script>
 </body>
 </html> 

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart - Food Delivery</title>
+    <title>Cart - Food Delivery</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
@@ -17,201 +18,305 @@
             }
         }
     </script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Header -->
-    <header class="bg-white shadow-sm fixed w-full top-0 z-50">
-        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <a href="home.html" class="text-gray-600 hover:text-gray-800">
-                    <i class="fas fa-arrow-left text-xl"></i>
-                </a>
-                <h1 class="text-xl font-semibold text-gray-800">Your Cart</h1>
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <a href="home.html" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                    <h1 class="text-xl font-bold text-gray-800">Your Cart</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="profile.html" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </div>
             </div>
-            <a href="home.html" class="text-gray-600 hover:text-gray-800">
-                <i class="fas fa-home text-xl"></i>
-            </a>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 pt-20 pb-32">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Cart Items -->
-        <div class="space-y-4" id="cartItems">
-            <!-- Sample Cart Item -->
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-                <div class="flex items-start space-x-4">
-                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38" 
-                         alt="Margherita Pizza" 
-                         class="w-20 h-20 rounded-lg object-cover">
-                    <div class="flex-1">
-                        <div class="flex justify-between">
-                            <h3 class="font-medium text-gray-800">Margherita Pizza</h3>
-                            <button onclick="removeItem(this)" class="text-gray-400 hover:text-red-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-1">Medium • Thin Crust</p>
-                        <p class="text-sm text-gray-500">Extra Cheese, Mushrooms</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <div class="flex items-center space-x-3">
-                                <button onclick="updateItemQuantity(this, -1)" class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                                    </svg>
-                                </button>
-                                <span class="text-gray-800">2</span>
-                                <button onclick="updateItemQuantity(this, 1)" class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <span class="font-medium text-gray-800">₹738</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Cart Items</h2>
+            <div id="cartItems" class="space-y-4">
+                <!-- Cart items will be dynamically added here -->
             </div>
+        </div>
 
-            <!-- Another Sample Cart Item -->
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-                <div class="flex items-start space-x-4">
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591" 
-                         alt="Pepperoni Pizza" 
-                         class="w-20 h-20 rounded-lg object-cover">
-                    <div class="flex-1">
-                        <div class="flex justify-between">
-                            <h3 class="font-medium text-gray-800">Pepperoni Pizza</h3>
-                            <button onclick="removeItem(this)" class="text-gray-400 hover:text-red-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                                </svg>
-                            </button>
-                        </div>
-                        <p class="text-sm text-gray-500 mt-1">Large • Thick Crust</p>
-                        <p class="text-sm text-gray-500">Extra Cheese</p>
-                        <div class="flex items-center justify-between mt-2">
-                            <div class="flex items-center space-x-3">
-                                <button onclick="updateItemQuantity(this, -1)" class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
-                                    </svg>
-                                </button>
-                                <span class="text-gray-800">1</span>
-                                <button onclick="updateItemQuantity(this, 1)" class="w-6 h-6 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-gray-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <span class="font-medium text-gray-800">₹469</span>
-                        </div>
-                    </div>
+        <!-- Delivery Mode Selection -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Delivery Mode</h2>
+            <div class="flex space-x-4">
+                <button id="normalDelivery" class="flex-1 py-3 px-4 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
+                    <i class="fas fa-bolt mr-2"></i>
+                    Normal Delivery
+                </button>
+                <button id="preBooking" class="flex-1 py-3 px-4 border border-gray-300 text-gray-600 rounded-lg hover:border-primary hover:text-primary transition-colors">
+                    <i class="fas fa-calendar-alt mr-2"></i>
+                    Pre-booking
+                </button>
+            </div>
+        </div>
+
+        <!-- Normal Delivery Options -->
+        <div id="normalDeliveryOptions" class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Delivery Details</h2>
+            <div class="space-y-4">
+                <!-- Delivery Address -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Address</label>
+                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                        <option value="">Select Delivery Address</option>
+                        <option value="home">Home - 123 Main Street</option>
+                        <option value="office">Office - 456 Business Park</option>
+                        <option value="other">Add New Address</option>
+                    </select>
+                </div>
+
+                <!-- Special Instructions -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Special Instructions</label>
+                    <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" rows="2" placeholder="Any special requests or delivery instructions?"></textarea>
                 </div>
             </div>
         </div>
 
-        <!-- Empty Cart Message (Hidden by default) -->
-        <div id="emptyCart" class="hidden text-center py-12">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-            <h3 class="mt-4 text-lg font-medium text-gray-900">Your cart is empty</h3>
-            <p class="mt-2 text-gray-500">Add some delicious items to your cart</p>
-            <a href="home.html" class="mt-4 inline-block bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-opacity-90 transition-all duration-200">
-                Browse Menu
-            </a>
-        </div>
-    </main>
+        <!-- Pre-booking Options -->
+        <div id="preBookingOptions" class="bg-white rounded-lg shadow-sm p-6 mb-6 hidden">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Pre-booking Options</h2>
+            <div class="space-y-4">
+                <!-- Delivery Address -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Delivery Address</label>
+                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                        <option value="">Select Delivery Address</option>
+                        <option value="home">Home - 123 Main Street</option>
+                        <option value="office">Office - 456 Business Park</option>
+                        <option value="other">Add New Address</option>
+                    </select>
+                </div>
 
-    <!-- Price Summary and Checkout -->
-    <div class="fixed bottom-0 left-0 right-0 bg-white border-t">
-        <div class="container mx-auto px-4 py-4">
-            <div class="space-y-2 mb-4">
-                <div class="flex justify-between text-sm">
-                    <span class="text-gray-600">Subtotal</span>
-                    <span class="text-gray-800">₹1,207</span>
+                <!-- Meal Type Selection -->
+                <div class="flex space-x-4">
+                    <button class="flex-1 py-3 px-4 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
+                        <i class="fas fa-sun mr-2"></i>
+                        Breakfast
+                    </button>
+                    <button class="flex-1 py-3 px-4 border border-gray-300 text-gray-600 rounded-lg hover:border-primary hover:text-primary transition-colors">
+                        <i class="fas fa-utensils mr-2"></i>
+                        Lunch
+                    </button>
                 </div>
-                <div class="flex justify-between text-sm">
-                    <span class="text-gray-600">Delivery Fee</span>
-                    <span class="text-gray-800">₹40</span>
+
+                <!-- Date Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Date</label>
+                    <input type="date" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
                 </div>
-                <div class="flex justify-between text-sm">
-                    <span class="text-gray-600">Taxes</span>
-                    <span class="text-gray-800">₹124</span>
+
+                <!-- Time Selection -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Select Time</label>
+                    <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                        <option value="">Select Time</option>
+                        <option value="7:00">7:00 AM</option>
+                        <option value="7:30">7:30 AM</option>
+                        <option value="8:00">8:00 AM</option>
+                        <option value="8:30">8:30 AM</option>
+                        <option value="9:00">9:00 AM</option>
+                        <option value="12:00">12:00 PM</option>
+                        <option value="12:30">12:30 PM</option>
+                        <option value="13:00">1:00 PM</option>
+                        <option value="13:30">1:30 PM</option>
+                        <option value="14:00">2:00 PM</option>
+                    </select>
                 </div>
-                <div class="border-t pt-2 flex justify-between font-medium">
-                    <span class="text-gray-800">Total</span>
-                    <span class="text-gray-800">₹1,371</span>
+
+                <!-- Special Instructions -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Special Instructions</label>
+                    <textarea class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" rows="2" placeholder="Any special requests or dietary requirements?"></textarea>
                 </div>
             </div>
-            <button onclick="proceedToCheckout()" class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition-colors">
+        </div>
+
+        <!-- Order Summary -->
+        <div class="bg-white rounded-lg shadow-sm p-6">
+            <h2 class="text-lg font-semibold text-gray-800 mb-4">Order Summary</h2>
+            <div class="order-summary">
+                <!-- Order summary will be dynamically updated -->
+            </div>
+            <button onclick="window.location.href='checkout.html'" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-opacity-90 transition-colors">
                 Proceed to Checkout
             </button>
         </div>
-    </div>
+    </main>
 
     <script>
-        function updateItemQuantity(button, change) {
-            const quantityElement = button.parentElement.querySelector('span');
-            let quantity = parseInt(quantityElement.textContent);
-            quantity = Math.max(1, quantity + change);
-            quantityElement.textContent = quantity;
-            updateItemPrice(button.closest('.bg-white'));
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load cart items from localStorage
+            const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const cartItemsContainer = document.getElementById('cartItems');
+            let totalAmount = 0;
 
-        function updateItemPrice(itemElement) {
-            const basePrice = parseInt(itemElement.querySelector('.font-medium.text-gray-800').textContent.replace('₹', ''));
-            const quantity = parseInt(itemElement.querySelector('.text-gray-800').textContent);
-            const newPrice = basePrice * quantity;
-            itemElement.querySelector('.font-medium.text-gray-800').textContent = `₹${newPrice}`;
-            updateTotalPrice();
-        }
+            // Display cart items
+            cartItems.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                totalAmount += itemTotal;
 
-        function removeItem(button) {
-            const itemElement = button.closest('.bg-white');
-            itemElement.remove();
-            updateTotalPrice();
-            checkEmptyCart();
-        }
-
-        function updateTotalPrice() {
-            const items = document.querySelectorAll('#cartItems > div');
-            let subtotal = 0;
-            
-            items.forEach(item => {
-                const price = parseInt(item.querySelector('.font-medium.text-gray-800').textContent.replace('₹', ''));
-                subtotal += price;
+                const itemElement = document.createElement('div');
+                itemElement.className = 'flex items-center justify-between border-b pb-4';
+                itemElement.innerHTML = `
+                    <div class="flex items-center space-x-4">
+                        <img src="${item.image}" alt="${item.name}" class="w-20 h-20 rounded-lg object-cover">
+                        <div>
+                            <h3 class="text-gray-800 font-medium">${item.name}</h3>
+                            <p class="text-gray-500 text-sm">₹${item.price}</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <button onclick="updateQuantity('${item.id}', -1)" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <span class="text-gray-800">${item.quantity}</span>
+                        <button onclick="updateQuantity('${item.id}', 1)" class="text-gray-500 hover:text-gray-700">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button onclick="removeItem('${item.id}')" class="text-red-500 hover:text-red-700">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
             });
 
-            const deliveryFee = 40;
-            const taxes = Math.round(subtotal * 0.1); // 10% tax
-            const total = subtotal + deliveryFee + taxes;
+            // Update order summary
+            updateOrderSummary(totalAmount);
 
-            document.querySelector('.text-gray-800:nth-child(2)').textContent = `₹${subtotal}`;
-            document.querySelector('.text-gray-800:nth-child(4)').textContent = `₹${taxes}`;
-            document.querySelector('.text-gray-800:nth-child(6)').textContent = `₹${total}`;
-        }
+            // Delivery mode toggle
+            const normalDeliveryBtn = document.getElementById('normalDelivery');
+            const preBookingBtn = document.getElementById('preBooking');
+            const normalDeliveryOptions = document.getElementById('normalDeliveryOptions');
+            const preBookingOptions = document.getElementById('preBookingOptions');
 
-        function checkEmptyCart() {
-            const cartItems = document.getElementById('cartItems');
-            const emptyCart = document.getElementById('emptyCart');
+            normalDeliveryBtn.addEventListener('click', function() {
+                normalDeliveryBtn.classList.add('border-primary', 'text-primary');
+                preBookingBtn.classList.remove('border-primary', 'text-primary');
+                normalDeliveryOptions.classList.remove('hidden');
+                preBookingOptions.classList.add('hidden');
+            });
+
+            preBookingBtn.addEventListener('click', function() {
+                preBookingBtn.classList.add('border-primary', 'text-primary');
+                normalDeliveryBtn.classList.remove('border-primary', 'text-primary');
+                preBookingOptions.classList.remove('hidden');
+                normalDeliveryOptions.classList.add('hidden');
+            });
+
+            // Pre-booking functionality
+            const breakfastBtn = preBookingOptions.querySelector('button:first-of-type');
+            const lunchBtn = preBookingOptions.querySelector('button:nth-of-type(2)');
+            const timeSelect = preBookingOptions.querySelector('select');
+
+            breakfastBtn.addEventListener('click', function() {
+                breakfastBtn.classList.add('border-primary', 'text-primary');
+                lunchBtn.classList.remove('border-primary', 'text-primary');
+                updateTimeSlots('breakfast');
+            });
+
+            lunchBtn.addEventListener('click', function() {
+                lunchBtn.classList.add('border-primary', 'text-primary');
+                breakfastBtn.classList.remove('border-primary', 'text-primary');
+                updateTimeSlots('lunch');
+            });
+
+            function updateTimeSlots(mealType) {
+                const breakfastTimes = ['7:00', '7:30', '8:00', '8:30', '9:00'];
+                const lunchTimes = ['12:00', '12:30', '13:00', '13:30', '14:00'];
+                
+                timeSelect.innerHTML = '';
+                const times = mealType === 'breakfast' ? breakfastTimes : lunchTimes;
+                
+                times.forEach(time => {
+                    const option = document.createElement('option');
+                    option.value = time;
+                    option.textContent = formatTime(time);
+                    timeSelect.appendChild(option);
+                });
+            }
+
+            function formatTime(time) {
+                const [hours, minutes] = time.split(':');
+                const hour = parseInt(hours);
+                const ampm = hour >= 12 ? 'PM' : 'AM';
+                const hour12 = hour % 12 || 12;
+                return `${hour12}:${minutes} ${ampm}`;
+            }
+
+            // Set default delivery mode
+            normalDeliveryBtn.click();
+        });
+
+        function updateQuantity(itemId, change) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            const itemIndex = cartItems.findIndex(item => item.id === itemId);
             
-            if (cartItems.children.length === 0) {
-                cartItems.classList.add('hidden');
-                emptyCart.classList.remove('hidden');
-            } else {
-                cartItems.classList.remove('hidden');
-                emptyCart.classList.add('hidden');
+            if (itemIndex > -1) {
+                cartItems[itemIndex].quantity += change;
+                
+                // Remove item if quantity becomes 0
+                if (cartItems[itemIndex].quantity <= 0) {
+                    cartItems.splice(itemIndex, 1);
+                }
+                
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                location.reload(); // Refresh to update display
             }
         }
 
-        function proceedToCheckout() {
-            window.location.href = 'checkout.html';
+        function removeItem(itemId) {
+            let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+            cartItems = cartItems.filter(item => item.id !== itemId);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            location.reload(); // Refresh to update display
+        }
+
+        function updateOrderSummary(subtotal) {
+            const deliveryFee = 40;
+            const tax = Math.round(subtotal * 0.12); // 12% tax
+            const total = subtotal + deliveryFee + tax;
+
+            const orderSummary = document.querySelector('.order-summary');
+            if (orderSummary) {
+                orderSummary.innerHTML = `
+                    <div class="space-y-2 mb-4">
+                        <div class="flex justify-between text-gray-600">
+                            <span>Subtotal</span>
+                            <span>₹${subtotal}</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Delivery Fee</span>
+                            <span>₹${deliveryFee}</span>
+                        </div>
+                        <div class="flex justify-between text-gray-600">
+                            <span>Tax</span>
+                            <span>₹${tax}</span>
+                        </div>
+                        <div class="border-t pt-2 mt-2">
+                            <div class="flex justify-between text-gray-800 font-semibold">
+                                <span>Total</span>
+                                <span>₹${total}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
         }
     </script>
 </body>
