@@ -65,83 +65,133 @@
         <!-- Header -->
         <div class="flex justify-between items-center mb-8">
             <div>
-                <h2 class="text-2xl font-bold text-gray-800">Menu Items</h2>
-                <p class="text-gray-600">Manage your restaurant's menu items</p>
+                <h2 class="text-2xl font-bold text-gray-800">Menu Management</h2>
+                <p class="text-gray-600">Manage your restaurant's menu categories and items</p>
             </div>
-            <div class="flex items-center space-x-4">
-                <a href="categories.html" class="text-gray-600 hover:text-gray-800 flex items-center space-x-2">
-                    <i class="fas fa-tags"></i>
-                    <span>Manage Categories</span>
-                </a>
-                <button onclick="openMenuItemModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
-                    <i class="fas fa-plus"></i>
-                    <span>Add Menu Item</span>
-                </button>
-                <button onclick="logout()" class="text-gray-600 hover:text-gray-800">
-                    <i class="fas fa-sign-out-alt text-xl"></i>
-                </button>
-            </div>
+            <button onclick="logout()" class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-sign-out-alt text-xl"></i>
+            </button>
         </div>
 
-        <!-- Menu Items List -->
-        <div class="bg-white rounded-lg shadow-sm p-6">
-            <div class="overflow-x-auto">
-                <table class="w-full">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Item</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prep Time</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customizations</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex items-center">
-                                    <div class="flex-shrink-0 h-10 w-10">
-                                        <img class="h-10 w-10 rounded-full object-cover" src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=40&h=40&fit=crop" alt="Butter Chicken">
-                                    </div>
-                                    <div class="ml-4">
-                                        <div class="text-sm font-medium text-gray-900">Butter Chicken</div>
-                                        <div class="text-sm text-gray-500">Creamy curry with tender chicken</div>
+        <!-- Two Column Layout -->
+        <div class="grid grid-cols-2 gap-6">
+            <!-- Categories Section -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800">Categories</h3>
+                    <button onclick="openCategoryModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Category</span>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <!-- Category List -->
+                    <div class="border rounded-lg divide-y">
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-gray-800 font-medium">Main Course</span>
+                                <span class="text-sm text-gray-500">(12 items)</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button class="text-gray-600 hover:text-gray-800">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-gray-800 font-medium">Appetizers</span>
+                                <span class="text-sm text-gray-500">(8 items)</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button class="text-gray-600 hover:text-gray-800">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-4 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-gray-800 font-medium">Beverages</span>
+                                <span class="text-sm text-gray-500">(6 items)</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <button class="text-gray-600 hover:text-gray-800">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <label class="relative inline-flex items-center cursor-pointer">
+                                    <input type="checkbox" class="sr-only peer" checked>
+                                    <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Items Section -->
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800">Menu Items</h3>
+                    <button onclick="openMenuItemModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
+                        <i class="fas fa-plus"></i>
+                        <span>Add Item</span>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <!-- Menu Items List -->
+                    <div class="border rounded-lg divide-y">
+                        <div class="p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <img class="h-12 w-12 rounded-lg object-cover" src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=48&h=48&fit=crop" alt="Butter Chicken">
+                                    <div>
+                                        <h4 class="text-gray-800 font-medium">Butter Chicken</h4>
+                                        <p class="text-sm text-gray-500">Main Course</p>
                                     </div>
                                 </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Main Course</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">₹350</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">25 mins</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="flex flex-wrap gap-1">
-                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Extra Cheese (+₹30)</span>
-                                    <span class="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Extra Spicy (+₹20)</span>
-                                </div>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Available</span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <div class="flex space-x-3">
-                                    <button onclick="openMenuItemModal(1)" class="text-primary hover:text-primary-dark">
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-gray-800 font-medium">₹350</span>
+                                    <button class="text-gray-600 hover:text-gray-800">
                                         <i class="fas fa-edit"></i>
                                     </button>
-                                    <button onclick="toggleItemStatus(1)" class="text-yellow-600 hover:text-yellow-800">
-                                        <i class="fas fa-ban"></i>
-                                    </button>
-                                    <button onclick="deleteMenuItem(1)" class="text-red-600 hover:text-red-800">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked>
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                    </label>
                                 </div>
-                            </td>
-                        </tr>
-                        <!-- Add more menu item rows here -->
-                    </tbody>
-                </table>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <img class="h-12 w-12 rounded-lg object-cover" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=48&h=48&fit=crop" alt="Pizza Margherita">
+                                    <div>
+                                        <h4 class="text-gray-800 font-medium">Pizza Margherita</h4>
+                                        <p class="text-sm text-gray-500">Main Course</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <span class="text-gray-800 font-medium">₹450</span>
+                                    <button class="text-gray-600 hover:text-gray-800">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <label class="relative inline-flex items-center cursor-pointer">
+                                        <input type="checkbox" class="sr-only peer" checked>
+                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -281,6 +331,49 @@
                         Cancel
                     </button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Modal -->
+    <div id="categoryModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
+        <div class="relative top-20 mx-auto p-8 border w-[500px] shadow-xl rounded-lg bg-white">
+            <div class="mt-3">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900" id="categoryModalTitle">Add New Category</h3>
+                    <button onclick="closeCategoryModal()" class="text-gray-400 hover:text-gray-500 transition-colors duration-200">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <form id="categoryForm" class="space-y-5">
+                    <input type="hidden" id="categoryId">
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Category Name</label>
+                        <input type="text" id="categoryName" 
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" 
+                            placeholder="Enter category name"
+                            required>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea id="categoryDescription" 
+                            class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" 
+                            rows="3"
+                            placeholder="Enter category description"
+                            required></textarea>
+                    </div>
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
+                        <button type="button" 
+                            onclick="closeCategoryModal()" 
+                            class="px-6 py-2.5 bg-gray-100 text-gray-700 text-base font-medium rounded-lg shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200">
+                            Cancel
+                        </button>
+                        <button type="submit" 
+                            class="px-6 py-2.5 bg-primary text-white text-base font-medium rounded-lg shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -441,6 +534,61 @@
 
         function logout() {
             window.location.href = 'login.html';
+        }
+
+        function openCategoryModal(categoryId = null) {
+            const modal = document.getElementById('categoryModal');
+            const form = document.getElementById('categoryForm');
+            const modalTitle = document.getElementById('categoryModalTitle');
+            
+            form.reset();
+            
+            if (categoryId) {
+                modalTitle.textContent = 'Edit Category';
+                document.getElementById('categoryId').value = categoryId;
+                // Here you would typically fetch category data from your backend
+                document.getElementById('categoryName').value = 'Main Course';
+                document.getElementById('categoryDescription').value = 'Main course dishes including curries, rice, and breads';
+            } else {
+                modalTitle.textContent = 'Add New Category';
+                document.getElementById('categoryId').value = '';
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeCategoryModal() {
+            const modal = document.getElementById('categoryModal');
+            modal.classList.add('hidden');
+        }
+
+        // Initialize category form submission
+        document.getElementById('categoryForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                id: document.getElementById('categoryId').value,
+                name: document.getElementById('categoryName').value,
+                description: document.getElementById('categoryDescription').value
+            };
+
+            // Here you would typically make an API call to save the category
+            console.log('Saving category:', formData);
+            
+            closeCategoryModal();
+            alert(formData.id ? 'Category updated successfully' : 'Category added successfully');
+        });
+
+        // Close modals when clicking outside
+        window.onclick = function(event) {
+            const categoryModal = document.getElementById('categoryModal');
+            const menuItemModal = document.getElementById('menuItemModal');
+            if (event.target === categoryModal) {
+                closeCategoryModal();
+            }
+            if (event.target === menuItemModal) {
+                closeMenuItemModal();
+            }
         }
     </script>
 </body>
