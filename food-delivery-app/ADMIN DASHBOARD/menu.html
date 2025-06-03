@@ -68,26 +68,26 @@
                 <h2 class="text-2xl font-bold text-gray-800">Menu Management</h2>
                 <p class="text-gray-600">Manage your restaurant's menu categories and items</p>
             </div>
-            <button onclick="logout()" class="text-gray-600 hover:text-gray-800">
-                <i class="fas fa-sign-out-alt text-xl"></i>
-            </button>
+                <button onclick="logout()" class="text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-sign-out-alt text-xl"></i>
+                </button>
         </div>
 
         <!-- Two Column Layout -->
         <div class="grid grid-cols-2 gap-6">
             <!-- Categories Section -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="bg-white rounded-lg shadow-sm p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-xl font-semibold text-gray-800">Categories</h3>
                     <button onclick="openCategoryModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
-                        <i class="fas fa-plus"></i>
+                            <i class="fas fa-plus"></i>
                         <span>Add Category</span>
-                    </button>
-                </div>
+                        </button>
+                    </div>
                 <div class="space-y-4">
                     <!-- Category List -->
                     <div class="border rounded-lg divide-y">
-                        <div class="p-4 flex items-center justify-between">
+                        <div class="p-4 flex items-center justify-between bg-primary/10 category-item" data-category="main-course" onclick="selectCategory('main-course')">
                             <div class="flex items-center space-x-3">
                                 <span class="text-gray-800 font-medium">Main Course</span>
                                 <span class="text-sm text-gray-500">(12 items)</span>
@@ -102,7 +102,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="p-4 flex items-center justify-between">
+                        <div class="p-4 flex items-center justify-between hover:bg-gray-50 cursor-pointer category-item" data-category="appetizers" onclick="selectCategory('appetizers')">
                             <div class="flex items-center space-x-3">
                                 <span class="text-gray-800 font-medium">Appetizers</span>
                                 <span class="text-sm text-gray-500">(8 items)</span>
@@ -117,7 +117,7 @@
                                 </label>
                             </div>
                         </div>
-                        <div class="p-4 flex items-center justify-between">
+                        <div class="p-4 flex items-center justify-between hover:bg-gray-50 cursor-pointer category-item" data-category="beverages" onclick="selectCategory('beverages')">
                             <div class="flex items-center space-x-3">
                                 <span class="text-gray-800 font-medium">Beverages</span>
                                 <span class="text-sm text-gray-500">(6 items)</span>
@@ -137,59 +137,21 @@
             </div>
 
             <!-- Menu Items Section -->
-            <div class="bg-white rounded-lg shadow-sm p-6">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="text-xl font-semibold text-gray-800">Menu Items</h3>
+            <div class="bg-white rounded-lg shadow-sm p-6 menu-items-section">
+                    <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h3 class="text-xl font-semibold text-gray-800">Menu Items</h3>
+                        <p class="text-sm text-gray-500 category-name">Main Course Items</p>
+                    </div>
                     <button onclick="openMenuItemModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
                         <i class="fas fa-plus"></i>
                         <span>Add Item</span>
-                    </button>
+                        </button>
                 </div>
                 <div class="space-y-4">
                     <!-- Menu Items List -->
-                    <div class="border rounded-lg divide-y">
-                        <div class="p-4">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-4">
-                                    <img class="h-12 w-12 rounded-lg object-cover" src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=48&h=48&fit=crop" alt="Butter Chicken">
-                                    <div>
-                                        <h4 class="text-gray-800 font-medium">Butter Chicken</h4>
-                                        <p class="text-sm text-gray-500">Main Course</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-gray-800 font-medium">₹350</span>
-                                    <button class="text-gray-600 hover:text-gray-800">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-4">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-4">
-                                    <img class="h-12 w-12 rounded-lg object-cover" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=48&h=48&fit=crop" alt="Pizza Margherita">
-                                    <div>
-                                        <h4 class="text-gray-800 font-medium">Pizza Margherita</h4>
-                                        <p class="text-sm text-gray-500">Main Course</p>
-                                    </div>
-                                </div>
-                                <div class="flex items-center space-x-3">
-                                    <span class="text-gray-800 font-medium">₹450</span>
-                                    <button class="text-gray-600 hover:text-gray-800">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
-                                    <label class="relative inline-flex items-center cursor-pointer">
-                                        <input type="checkbox" class="sr-only peer" checked>
-                                        <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="border rounded-lg divide-y menu-items-list">
+                        <!-- Menu items will be dynamically populated here -->
                     </div>
                 </div>
             </div>
@@ -198,7 +160,7 @@
 
     <!-- Menu Item Modal -->
     <div id="menuItemModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
-        <div class="relative top-20 mx-auto p-8 border w-[600px] shadow-xl rounded-lg bg-white">
+        <div class="relative top-20 mx-auto p-8 border w-[700px] shadow-xl rounded-lg bg-white">
             <div class="mt-3">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-xl font-semibold text-gray-900" id="modalTitle">Add New Menu Item</h3>
@@ -215,24 +177,54 @@
                                 class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" 
                                 placeholder="Enter item name"
                                 required>
-                        </div>
+                            </div>
                         <div class="space-y-2">
                             <label class="block text-sm font-medium text-gray-700">Category</label>
                             <select id="itemCategory" 
                                 class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" 
                                 required>
-                                <option value="">Select category</option>
-                                <option value="main">Main Course</option>
-                                <option value="appetizer">Appetizers</option>
-                                <option value="beverage">Beverages</option>
-                                <option value="dessert">Desserts</option>
-                            </select>
+                                    <option value="">Select category</option>
+                                    <option value="main">Main Course</option>
+                                    <option value="appetizer">Appetizers</option>
+                                    <option value="beverage">Beverages</option>
+                                    <option value="dessert">Desserts</option>
+                                </select>
+                            </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Food Type</label>
+                            <div class="flex space-x-4">
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="foodType" value="veg" class="form-radio text-primary" checked>
+                                    <span class="ml-2 text-gray-700">Vegetarian</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="radio" name="foodType" value="non-veg" class="form-radio text-primary">
+                                    <span class="ml-2 text-gray-700">Non-Vegetarian</span>
+                                </label>
+                            </div>
                         </div>
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">Price (₹)</label>
+                            <label class="block text-sm font-medium text-gray-700">Meal Timing</label>
+                            <div class="flex flex-wrap gap-2">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="mealTiming" value="breakfast" class="form-checkbox text-primary">
+                                    <span class="ml-2 text-gray-700">Breakfast</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="mealTiming" value="lunch" class="form-checkbox text-primary">
+                                    <span class="ml-2 text-gray-700">Lunch</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="mealTiming" value="dinner" class="form-checkbox text-primary">
+                                    <span class="ml-2 text-gray-700">Dinner</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-sm font-medium text-gray-700">Base Price (₹)</label>
                             <input type="number" id="itemPrice" 
                                 class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" 
-                                placeholder="Enter price"
+                                placeholder="Enter base price"
                                 min="0"
                                 step="0.01"
                                 required>
@@ -254,61 +246,67 @@
                             placeholder="Enter item description"
                             required></textarea>
                     </div>
-                    <div class="space-y-2">
-                        <label class="block text-sm font-medium text-gray-700">Item Image</label>
-                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
-                            <div class="space-y-1 text-center">
-                                <i class="fas fa-cloud-upload-alt text-3xl text-gray-400"></i>
-                                <div class="flex text-sm text-gray-600">
-                                    <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-primary-dark focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
-                                        <span>Upload a file</span>
-                                        <input id="file-upload" name="file-upload" type="file" class="sr-only" accept="image/*">
-                                    </label>
-                                    <p class="pl-1">or drag and drop</p>
-                                </div>
-                                <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space-y-2">
-                        <label class="block text-sm font-medium text-gray-700">Status</label>
-                        <select id="itemStatus" 
-                            class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" 
-                            required>
-                            <option value="available">Available</option>
-                            <option value="unavailable">Unavailable</option>
-                        </select>
-                    </div>
 
-                    <!-- Customizations Section -->
+                    <!-- Variations Section -->
                     <div class="space-y-4 pt-4 border-t border-gray-200">
                         <div class="flex justify-between items-center">
-                            <h4 class="text-lg font-medium text-gray-900">Customizations</h4>
-                            <button type="button" onclick="addCustomization()" class="text-primary hover:text-primary-dark flex items-center space-x-1">
+                            <h4 class="text-lg font-medium text-gray-900">Variations</h4>
+                            <button type="button" onclick="addVariation()" class="text-primary hover:text-primary-dark flex items-center space-x-1">
                                 <i class="fas fa-plus"></i>
-                                <span>Add Customization</span>
+                                <span>Add Variation</span>
                             </button>
                         </div>
-                        <div id="customizationsList" class="space-y-3">
-                            <!-- Customization items will be added here dynamically -->
+                        <div id="variationsList" class="space-y-3">
+                            <!-- Variation items will be added here dynamically -->
+                            </div>
                         </div>
-                    </div>
+
+                    <!-- Add-ons Section -->
+                    <div class="space-y-4 pt-4 border-t border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-lg font-medium text-gray-900">Add-ons</h4>
+                            <button type="button" onclick="addAddon()" class="text-primary hover:text-primary-dark flex items-center space-x-1">
+                                <i class="fas fa-plus"></i>
+                                <span>Add Add-on</span>
+                            </button>
+                        </div>
+                        <div id="addonsList" class="space-y-3">
+                            <!-- Add-on items will be added here dynamically -->
+                        </div>
+                        </div>
+
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Item Image</label>
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg">
+                                <div class="space-y-1 text-center">
+                                    <i class="fas fa-cloud-upload-alt text-3xl text-gray-400"></i>
+                                    <div class="flex text-sm text-gray-600">
+                                        <label for="file-upload" class="relative cursor-pointer bg-white rounded-md font-medium text-primary hover:text-primary-dark focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary">
+                                            <span>Upload a file</span>
+                                            <input id="file-upload" name="file-upload" type="file" class="sr-only" accept="image/*">
+                                        </label>
+                                        <p class="pl-1">or drag and drop</p>
+                                    </div>
+                                    <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+                                </div>
+                            </div>
+                        </div>
 
                     <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
                         <button type="button" 
                             onclick="closeMenuItemModal()" 
                             class="px-6 py-2.5 bg-gray-100 text-gray-700 text-base font-medium rounded-lg shadow-sm hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200">
                             Cancel
-                        </button>
+                            </button>
                         <button type="submit" 
                             class="px-6 py-2.5 bg-primary text-white text-base font-medium rounded-lg shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary transition-all duration-200">
                             Save Changes
-                        </button>
-                    </div>
-                </form>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
 
     <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full">
@@ -382,6 +380,55 @@
         let itemToDelete = null;
         let isEditing = false;
         let customizations = [];
+        let currentCategory = 'main-course';
+        let menuItems = {
+            'main-course': [
+                {
+                    id: 1,
+                    name: 'Butter Chicken',
+                    description: 'Creamy curry with tender chicken',
+                    price: 350,
+                    image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=48&h=48&fit=crop',
+                    available: true
+                },
+                {
+                    id: 2,
+                    name: 'Pizza Margherita',
+                    description: 'Classic Italian pizza with tomato and mozzarella',
+                    price: 450,
+                    image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=48&h=48&fit=crop',
+                    available: true
+                },
+                {
+                    id: 3,
+                    name: 'Chicken Biryani',
+                    description: 'Fragrant rice dish with spices and chicken',
+                    price: 400,
+                    image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=48&h=48&fit=crop',
+                    available: true
+                }
+            ],
+            'appetizers': [
+                {
+                    id: 4,
+                    name: 'Garlic Bread',
+                    description: 'Toasted bread with garlic butter',
+                    price: 150,
+                    image: 'https://images.unsplash.com/photo-1573140247632-f8fd74997d5c?w=48&h=48&fit=crop',
+                    available: true
+                }
+            ],
+            'beverages': [
+                {
+                    id: 5,
+                    name: 'Fresh Lime Soda',
+                    description: 'Refreshing lime drink',
+                    price: 80,
+                    image: 'https://images.unsplash.com/photo-1621263764928-df1444c5e859?w=48&h=48&fit=crop',
+                    available: true
+                }
+            ]
+        };
 
         function addCustomization() {
             const customizationsList = document.getElementById('customizationsList');
@@ -421,14 +468,110 @@
             }
         }
 
+        function addVariation() {
+            const variationsList = document.getElementById('variationsList');
+            const variationId = Date.now(); // Unique ID for the variation
+
+            const variationHtml = `
+                <div id="variation-${variationId}" class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <div class="flex-1 grid grid-cols-3 gap-3">
+                        <div>
+                            <input type="text" 
+                                placeholder="Variation name" 
+                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                required>
+                        </div>
+                        <div>
+                            <input type="number" 
+                                placeholder="Additional price" 
+                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                min="0"
+                                step="1"
+                                required>
+                        </div>
+                        <div>
+                            <select class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="veg">Vegetarian</option>
+                                <option value="non-veg">Non-Vegetarian</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeVariation(${variationId})" class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+
+            variationsList.insertAdjacentHTML('beforeend', variationHtml);
+        }
+
+        function removeVariation(id) {
+            const variation = document.getElementById(`variation-${id}`);
+            if (variation) {
+                variation.remove();
+            }
+        }
+
+        function addAddon() {
+            const addonsList = document.getElementById('addonsList');
+            const addonId = Date.now(); // Unique ID for the addon
+
+            const addonHtml = `
+                <div id="addon-${addonId}" class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
+                    <div class="flex-1 grid grid-cols-4 gap-3">
+                        <div>
+                            <input type="text" 
+                                placeholder="Add-on name" 
+                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                required>
+                        </div>
+                        <div>
+                            <input type="number" 
+                                placeholder="Price" 
+                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                min="0"
+                                step="1"
+                                required>
+                        </div>
+                        <div>
+                            <select class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="veg">Vegetarian</option>
+                                <option value="non-veg">Non-Vegetarian</option>
+                            </select>
+                        </div>
+                        <div>
+                            <select class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                                <option value="optional">Optional</option>
+                                <option value="required">Required</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="button" onclick="removeAddon(${addonId})" class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+
+            addonsList.insertAdjacentHTML('beforeend', addonHtml);
+        }
+
+        function removeAddon(id) {
+            const addon = document.getElementById(`addon-${id}`);
+            if (addon) {
+                addon.remove();
+            }
+        }
+
         function openMenuItemModal(itemId = null) {
             const modal = document.getElementById('menuItemModal');
             const form = document.getElementById('menuItemForm');
             const modalTitle = document.getElementById('modalTitle');
-            const customizationsList = document.getElementById('customizationsList');
+            const variationsList = document.getElementById('variationsList');
+            const addonsList = document.getElementById('addonsList');
             
             form.reset();
-            customizationsList.innerHTML = ''; // Clear existing customizations
+            variationsList.innerHTML = ''; // Clear existing variations
+            addonsList.innerHTML = ''; // Clear existing addons
             
             if (itemId) {
                 isEditing = true;
@@ -441,11 +584,21 @@
                 document.getElementById('itemPrice').value = '350';
                 document.getElementById('itemPrepTime').value = '25';
                 document.getElementById('itemDescription').value = 'Creamy curry with tender chicken';
-                document.getElementById('itemStatus').value = 'available';
+                
+                // Set food type
+                document.querySelector('input[name="foodType"][value="non-veg"]').checked = true;
+                
+                // Set meal timing
+                document.querySelector('input[name="mealTiming"][value="lunch"]').checked = true;
+                document.querySelector('input[name="mealTiming"][value="dinner"]').checked = true;
 
-                // Add sample customizations
-                addCustomization();
-                addCustomization();
+                // Add sample variations
+                addVariation();
+                addVariation();
+
+                // Add sample addons
+                addAddon();
+                addAddon();
             } else {
                 isEditing = false;
                 modalTitle.textContent = 'Add New Menu Item';
@@ -464,30 +617,48 @@
         document.getElementById('menuItemForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Collect customizations
-            const customizationsElements = document.querySelectorAll('#customizationsList > div');
-            const customizations = Array.from(customizationsElements).map(element => {
-                const inputs = element.querySelectorAll('input');
+            // Collect variations
+            const variationsElements = document.querySelectorAll('#variationsList > div');
+            const variations = Array.from(variationsElements).map(element => {
+                const inputs = element.querySelectorAll('input, select');
                 return {
                     name: inputs[0].value,
-                    price: inputs[1].value
+                    price: inputs[1].value,
+                    type: inputs[2].value
                 };
             });
+
+            // Collect addons
+            const addonsElements = document.querySelectorAll('#addonsList > div');
+            const addons = Array.from(addonsElements).map(element => {
+                const inputs = element.querySelectorAll('input, select');
+                return {
+                    name: inputs[0].value,
+                    price: inputs[1].value,
+                    type: inputs[2].value,
+                    required: inputs[3].value === 'required'
+                };
+            });
+
+            // Collect meal timings
+            const mealTimings = Array.from(document.querySelectorAll('input[name="mealTiming"]:checked')).map(input => input.value);
 
             const formData = {
                 id: document.getElementById('itemId').value,
                 name: document.getElementById('itemName').value,
                 category: document.getElementById('itemCategory').value,
+                foodType: document.querySelector('input[name="foodType"]:checked').value,
+                mealTimings: mealTimings,
                 price: document.getElementById('itemPrice').value,
                 prepTime: document.getElementById('itemPrepTime').value,
                 description: document.getElementById('itemDescription').value,
-                status: document.getElementById('itemStatus').value,
-                customizations: customizations
+                variations: variations,
+                addons: addons
             };
 
             // Here you would typically make an API call to save the item
             console.log('Saving menu item:', formData);
-            
+
             closeMenuItemModal();
             alert(isEditing ? 'Menu item updated successfully' : 'Menu item added successfully');
         });
@@ -590,6 +761,66 @@
                 closeMenuItemModal();
             }
         }
+
+        function selectCategory(categoryId) {
+            currentCategory = categoryId;
+            
+            // Update category highlighting
+            document.querySelectorAll('.category-item').forEach(item => {
+                item.classList.remove('bg-primary/10');
+                if (item.dataset.category === categoryId) {
+                    item.classList.add('bg-primary/10');
+                }
+            });
+
+            // Update menu items section
+            const menuItemsSection = document.querySelector('.menu-items-section');
+            const categoryName = document.querySelector('.category-name');
+            const items = menuItems[categoryId] || [];
+
+            categoryName.textContent = `${categoryId.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')} Items`;
+
+            // Update menu items list
+            const menuItemsList = document.querySelector('.menu-items-list');
+            menuItemsList.innerHTML = items.map(item => `
+                <div class="p-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-4">
+                            <img class="h-12 w-12 rounded-lg object-cover" src="${item.image}" alt="${item.name}">
+                            <div>
+                                <h4 class="text-gray-800 font-medium">${item.name}</h4>
+                                <p class="text-sm text-gray-500">${item.description}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="text-gray-800 font-medium">₹${item.price}</span>
+                            <button onclick="openMenuItemModal(${item.id})" class="text-gray-600 hover:text-gray-800">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" class="sr-only peer" ${item.available ? 'checked' : ''} onchange="toggleItemAvailability(${item.id})">
+                                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleItemAvailability(itemId) {
+            // Find the item in the current category
+            const item = menuItems[currentCategory].find(item => item.id === itemId);
+            if (item) {
+                item.available = !item.available;
+                // Here you would typically make an API call to update the item status
+                console.log(`Item ${itemId} availability toggled to ${item.available}`);
+            }
+        }
+
+        // Initialize the page with Main Course selected
+        document.addEventListener('DOMContentLoaded', function() {
+            selectCategory('main-course');
+        });
     </script>
 </body>
 </html> 

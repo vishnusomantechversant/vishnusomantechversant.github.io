@@ -61,6 +61,35 @@
             </div>
         </div>
 
+        <!-- Filter and Sort Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <!-- Filter Options -->
+            <div class="flex items-center space-x-4">
+                <span class="text-gray-600 font-medium">Filter:</span>
+                <div class="flex space-x-2">
+                    <button onclick="filterItems('all')" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors filter-btn active" data-filter="all">
+                        All
+                    </button>
+                    <button onclick="filterItems('veg')" class="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-primary hover:text-white transition-colors filter-btn" data-filter="veg">
+                        <i class="fas fa-leaf text-green-500 mr-1"></i>Veg
+                    </button>
+                    <button onclick="filterItems('non-veg')" class="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-primary hover:text-white transition-colors filter-btn" data-filter="non-veg">
+                        <i class="fas fa-drumstick-bite text-red-500 mr-1"></i>Non-Veg
+                    </button>
+                </div>
+            </div>
+
+            <!-- Sort Options -->
+            <div class="flex items-center space-x-2">
+                <span class="text-gray-600 font-medium">Sort by:</span>
+                <select onchange="sortItems(this.value)" class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <option value="popularity">Popularity</option>
+                    <option value="price-low-high">Price: Low to High</option>
+                    <option value="price-high-low">Price: High to Low</option>
+                </select>
+            </div>
+        </div>
+
         <!-- Menu List -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <!-- Menu Item 1 -->
@@ -241,6 +270,129 @@
             // Redirect to cart page
             window.location.href = 'cart.html';
         }
+
+        // Filter and Sort functionality
+        let menuItems = [
+            {
+                id: '1',
+                name: 'Margherita Pizza',
+                description: 'Classic tomato sauce, mozzarella, basil',
+                price: 12.99,
+                image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591',
+                rating: 4.8,
+                reviews: 120,
+                type: 'veg'
+            },
+            {
+                id: '2',
+                name: 'Classic Burger',
+                description: 'Angus beef, lettuce, tomato, special sauce',
+                price: 9.99,
+                image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd',
+                rating: 4.6,
+                reviews: 98,
+                type: 'non-veg'
+            },
+            {
+                id: '3',
+                name: 'Salmon Roll',
+                description: 'Fresh salmon, avocado, cucumber',
+                price: 14.99,
+                image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c',
+                rating: 4.9,
+                reviews: 156,
+                type: 'non-veg'
+            },
+            {
+                id: '4',
+                name: 'Seafood Pasta',
+                description: 'Shrimp, mussels, white wine sauce',
+                price: 16.99,
+                image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141',
+                rating: 4.7,
+                reviews: 89,
+                type: 'non-veg'
+            }
+        ];
+
+        function filterItems(type) {
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-primary', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-600');
+            });
+            event.target.classList.remove('bg-white', 'text-gray-600');
+            event.target.classList.add('bg-primary', 'text-white');
+
+            // Filter items
+            const filteredItems = type === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.type === type);
+
+            // Get current sort value
+            const sortSelect = document.querySelector('select');
+            const currentSort = sortSelect.value;
+
+            // Apply current sort to filtered items
+            sortItems(currentSort, filteredItems);
+        }
+
+        function sortItems(sortType, items = menuItems) {
+            let sortedItems = [...items];
+
+            switch(sortType) {
+                case 'price-low-high':
+                    sortedItems.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high-low':
+                    sortedItems.sort((a, b) => b.price - a.price);
+                    break;
+                case 'popularity':
+                    sortedItems.sort((a, b) => b.reviews - a.reviews);
+                    break;
+            }
+
+            // Update the menu items display
+            updateMenuDisplay(sortedItems);
+        }
+
+        function updateMenuDisplay(items) {
+            const menuList = document.querySelector('.grid');
+            menuList.innerHTML = items.map(item => `
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <a href="menu-detail.html" class="text-lg font-semibold text-gray-800 hover:text-primary transition-colors">${item.name}</a>
+                                <p class="text-sm text-gray-600">${item.description}</p>
+                            </div>
+                            <span class="text-primary font-bold">$${item.price}</span>
+                        </div>
+                        <div class="mt-4 flex justify-between items-center">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-yellow-400"><i class="fas fa-star"></i></span>
+                                <span class="text-sm text-gray-600">${item.rating} (${item.reviews})</span>
+                            </div>
+                            <button onclick="addToCart({
+                                id: '${item.id}',
+                                name: '${item.name}',
+                                price: ${item.price * 100},
+                                image: '${item.image}',
+                                quantity: 1
+                            })" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-opacity-90 transition-colors">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize with all items
+        document.addEventListener('DOMContentLoaded', function() {
+            updateMenuDisplay(menuItems);
+        });
     </script>
 </body>
 </html> 
