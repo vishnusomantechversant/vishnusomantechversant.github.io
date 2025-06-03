@@ -69,6 +69,16 @@
                 <p class="text-gray-600">Manage and track all orders</p>
             </div>
             <div class="flex items-center space-x-4">
+                <div class="flex space-x-2">
+                    <button onclick="exportToCSV()" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center space-x-2">
+                        <i class="fas fa-file-csv"></i>
+                        <span>Export CSV</span>
+                    </button>
+                    <button onclick="exportToPDF()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex items-center space-x-2">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Export PDF</span>
+                    </button>
+                </div>
                 <button class="text-gray-600 hover:text-gray-800">
                     <i class="fas fa-bell text-xl"></i>
                 </button>
@@ -323,6 +333,8 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
     <script>
         let currentOrderId = null;
         let currentAssignmentType = null;
@@ -423,6 +435,81 @@
             if (event.target === riderModal) {
                 closeAssignRiderModal();
             }
+        }
+
+        function exportToCSV() {
+            // Get table data
+            const table = document.querySelector('table');
+            const rows = Array.from(table.querySelectorAll('tr'));
+            
+            // Convert table data to CSV format
+            const csvContent = rows.map(row => {
+                const cells = Array.from(row.querySelectorAll('th, td'));
+                return cells.map(cell => {
+                    // Handle nested content (like customer info)
+                    const text = cell.textContent.trim().replace(/\n/g, ' ');
+                    return `"${text}"`;
+                }).join(',');
+            }).join('\n');
+
+            // Create and download CSV file
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', `orders_${new Date().toISOString().split('T')[0]}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            // Add title
+            doc.setFontSize(16);
+            doc.text('Orders Report', 14, 15);
+            doc.setFontSize(10);
+            doc.text(`Generated on: ${new Date().toLocaleDateString()}`, 14, 22);
+
+            // Get table data
+            const table = document.querySelector('table');
+            const rows = Array.from(table.querySelectorAll('tr'));
+            
+            // Prepare data for PDF
+            const tableData = rows.map(row => {
+                const cells = Array.from(row.querySelectorAll('th, td'));
+                return cells.map(cell => {
+                    // Handle nested content (like customer info)
+                    return cell.textContent.trim().replace(/\n/g, ' ');
+                });
+            });
+
+            // Add table to PDF
+            doc.autoTable({
+                head: [tableData[0]],
+                body: tableData.slice(1),
+                startY: 30,
+                theme: 'grid',
+                styles: {
+                    fontSize: 8,
+                    cellPadding: 2
+                },
+                headStyles: {
+                    fillColor: [78, 205, 196],
+                    textColor: 255
+                }
+            });
+
+            // Add summary
+            const finalY = doc.lastAutoTable.finalY || 30;
+            doc.setFontSize(10);
+            doc.text(`Total Orders: ${tableData.length - 1}`, 14, finalY + 10);
+
+            // Save PDF
+            doc.save(`orders_${new Date().toISOString().split('T')[0]}.pdf`);
         }
     </script>
 </body>
