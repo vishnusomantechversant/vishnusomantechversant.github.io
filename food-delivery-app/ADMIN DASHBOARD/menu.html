@@ -21,7 +21,7 @@
 </head>
 <body class="bg-gray-50 min-h-screen">
     <!-- Sidebar -->
-    <aside class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg">
+    <aside class="fixed top-0 left-0 h-full w-64 bg-white shadow-lg z-50 lg:block hidden">
         <div class="p-6">
             <div class="flex items-center space-x-3 mb-8">
                 <i class="fas fa-utensils text-2xl text-primary"></i>
@@ -48,10 +48,6 @@
                     <i class="fas fa-box"></i>
                     <span>Inventory</span>
                 </a>
-                <!-- <a href="notifications.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
-                    <i class="fas fa-bell"></i>
-                    <span>Notifications</span>
-                </a> -->
                 <a href="settings.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
                     <i class="fas fa-cog"></i>
                     <span>Settings</span>
@@ -60,30 +56,78 @@
         </div>
     </aside>
 
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuButton" class="lg:hidden fixed top-4 left-4 z-50 p-2 rounded-md text-gray-600 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary">
+        <i class="fas fa-bars text-xl"></i>
+    </button>
+
+    <!-- Mobile Sidebar -->
+    <div id="mobileSidebar" class="lg:hidden fixed inset-0 bg-gray-600 bg-opacity-50 z-40 hidden">
+        <div class="fixed inset-y-0 left-0 w-64 bg-white shadow-lg">
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-utensils text-2xl text-primary"></i>
+                        <h1 class="text-xl font-bold text-gray-800">Admin Panel</h1>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <nav class="space-y-2">
+                    <a href="dashboard.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Dashboard</span>
+                    </a>
+                    <a href="orders.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Orders</span>
+                    </a>
+                    <a href="menu.html" class="flex items-center space-x-3 text-primary bg-primary/10 px-4 py-3 rounded-lg">
+                        <i class="fas fa-utensils"></i>
+                        <span>Menu Items</span>
+                    </a>
+                    <a href="users.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
+                        <i class="fas fa-users"></i>
+                        <span>Users & Roles</span>
+                    </a>
+                    <a href="inventory.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
+                        <i class="fas fa-box"></i>
+                        <span>Inventory</span>
+                    </a>
+                    <a href="settings.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
     <!-- Main Content -->
-    <main class="ml-64 p-8">
+    <main class="lg:ml-64 p-4 lg:p-8">
         <!-- Header -->
         <div class="flex justify-between items-center mb-8">
             <div>
                 <h2 class="text-2xl font-bold text-gray-800">Menu Management</h2>
                 <p class="text-gray-600">Manage your restaurant's menu categories and items</p>
             </div>
-                <button onclick="logout()" class="text-gray-600 hover:text-gray-800">
-                    <i class="fas fa-sign-out-alt text-xl"></i>
-                </button>
+            <button onclick="logout()" class="text-gray-600 hover:text-gray-800">
+                <i class="fas fa-sign-out-alt text-xl"></i>
+            </button>
         </div>
 
         <!-- Two Column Layout -->
-        <div class="grid grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <!-- Categories Section -->
-                <div class="bg-white rounded-lg shadow-sm p-6">
+            <div class="bg-white rounded-lg shadow-sm p-4 lg:p-6">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-xl font-semibold text-gray-800">Categories</h3>
-                    <button onclick="openCategoryModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
-                            <i class="fas fa-plus"></i>
+                    <button onclick="openCategoryModal()" class="bg-primary text-white px-3 py-2 lg:px-4 lg:py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
+                        <i class="fas fa-plus"></i>
                         <span>Add Category</span>
-                        </button>
-                    </div>
+                    </button>
+                </div>
                 <div class="space-y-4">
                     <!-- Category List -->
                     <div class="border rounded-lg divide-y">
@@ -93,7 +137,7 @@
                                 <span class="text-sm text-gray-500">(12 items)</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <button class="text-gray-600 hover:text-gray-800">
+                                <button onclick="openCategoryModal(1); event.stopPropagation();" class="text-gray-600 hover:text-gray-800">
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 <label class="relative inline-flex items-center cursor-pointer">
@@ -108,7 +152,7 @@
                                 <span class="text-sm text-gray-500">(8 items)</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <button class="text-gray-600 hover:text-gray-800">
+                                <button onclick="openCategoryModal(2); event.stopPropagation();" class="text-gray-600 hover:text-gray-800">
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 <label class="relative inline-flex items-center cursor-pointer">
@@ -123,7 +167,7 @@
                                 <span class="text-sm text-gray-500">(6 items)</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <button class="text-gray-600 hover:text-gray-800">
+                                <button onclick="openCategoryModal(3); event.stopPropagation();" class="text-gray-600 hover:text-gray-800">
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 <label class="relative inline-flex items-center cursor-pointer">
@@ -137,16 +181,16 @@
             </div>
 
             <!-- Menu Items Section -->
-            <div class="bg-white rounded-lg shadow-sm p-6 menu-items-section">
-                    <div class="flex justify-between items-center mb-6">
+            <div class="bg-white rounded-lg shadow-sm p-4 lg:p-6 menu-items-section">
+                <div class="flex justify-between items-center mb-6">
                     <div>
                         <h3 class="text-xl font-semibold text-gray-800">Menu Items</h3>
                         <p class="text-sm text-gray-500 category-name">Main Course Items</p>
                     </div>
-                    <button onclick="openMenuItemModal()" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
+                    <button onclick="openMenuItemModal()" class="bg-primary text-white px-3 py-2 lg:px-4 lg:py-2 rounded-lg hover:bg-primary/90 flex items-center space-x-2">
                         <i class="fas fa-plus"></i>
                         <span>Add Item</span>
-                        </button>
+                    </button>
                 </div>
                 <div class="space-y-4">
                     <!-- Menu Items List -->
@@ -160,7 +204,7 @@
 
     <!-- Menu Item Modal -->
     <div id="menuItemModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
-        <div class="relative top-20 mx-auto p-8 border w-[700px] shadow-xl rounded-lg bg-white">
+        <div class="relative top-20 mx-auto p-4 lg:p-8 border w-[90%] lg:w-[700px] shadow-xl rounded-lg bg-white">
             <div class="mt-3">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-xl font-semibold text-gray-900" id="modalTitle">Add New Menu Item</h3>
@@ -335,7 +379,7 @@
 
     <!-- Category Modal -->
     <div id="categoryModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden overflow-y-auto h-full w-full z-50">
-        <div class="relative top-20 mx-auto p-8 border w-[500px] shadow-xl rounded-lg bg-white">
+        <div class="relative top-20 mx-auto p-4 lg:p-8 border w-[90%] lg:w-[500px] shadow-xl rounded-lg bg-white">
             <div class="mt-3">
                 <div class="flex justify-between items-center mb-6">
                     <h3 class="text-xl font-semibold text-gray-900" id="categoryModalTitle">Add New Category</h3>
@@ -359,6 +403,24 @@
                             rows="3"
                             placeholder="Enter category description"
                             required></textarea>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-sm font-medium text-gray-700">Available Time Window</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">Start Time</label>
+                                <input type="time" id="categoryStartTime" 
+                                    class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" 
+                                    required>
+                            </div>
+                            <div>
+                                <label class="block text-xs text-gray-500 mb-1">End Time</label>
+                                <input type="time" id="categoryEndTime" 
+                                    class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200" 
+                                    required>
+                            </div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">Orders for items in this category will only be allowed within this time window.</p>
                     </div>
                     <div class="flex justify-end space-x-3 pt-4 border-t border-gray-200">
                         <button type="button" 
@@ -718,11 +780,23 @@
                 modalTitle.textContent = 'Edit Category';
                 document.getElementById('categoryId').value = categoryId;
                 // Here you would typically fetch category data from your backend
-                document.getElementById('categoryName').value = 'Main Course';
-                document.getElementById('categoryDescription').value = 'Main course dishes including curries, rice, and breads';
+                const categoryData = {
+                    1: { name: 'Main Course', description: 'Main course dishes including curries, rice, and breads', startTime: '11:00', endTime: '22:00' },
+                    2: { name: 'Appetizers', description: 'Starters and small bites', startTime: '10:00', endTime: '22:00' },
+                    3: { name: 'Beverages', description: 'Drinks and refreshments', startTime: '09:00', endTime: '23:00' }
+                };
+
+                const data = categoryData[categoryId] || {};
+                document.getElementById('categoryName').value = data.name || '';
+                document.getElementById('categoryDescription').value = data.description || '';
+                document.getElementById('categoryStartTime').value = data.startTime || '09:00';
+                document.getElementById('categoryEndTime').value = data.endTime || '21:00';
             } else {
                 modalTitle.textContent = 'Add New Category';
                 document.getElementById('categoryId').value = '';
+                // Set default time values for new categories
+                document.getElementById('categoryStartTime').value = '09:00';
+                document.getElementById('categoryEndTime').value = '21:00';
             }
             
             modal.classList.remove('hidden');
@@ -740,7 +814,9 @@
             const formData = {
                 id: document.getElementById('categoryId').value,
                 name: document.getElementById('categoryName').value,
-                description: document.getElementById('categoryDescription').value
+                description: document.getElementById('categoryDescription').value,
+                startTime: document.getElementById('categoryStartTime').value,
+                endTime: document.getElementById('categoryEndTime').value
             };
 
             // Here you would typically make an API call to save the category
@@ -820,6 +896,21 @@
         // Initialize the page with Main Course selected
         document.addEventListener('DOMContentLoaded', function() {
             selectCategory('main-course');
+        });
+
+        // Add mobile menu functionality
+        function toggleMobileMenu() {
+            const mobileSidebar = document.getElementById('mobileSidebar');
+            mobileSidebar.classList.toggle('hidden');
+        }
+
+        document.getElementById('mobileMenuButton').addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking outside
+        document.getElementById('mobileSidebar').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleMobileMenu();
+            }
         });
     </script>
 </body>

@@ -80,7 +80,7 @@
         </div>
 
         <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <div class="flex items-center justify-between mb-4">
                     <h3 class="text-gray-500 text-sm">Total Orders</h3>
@@ -107,6 +107,14 @@
             </div>
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-gray-500 text-sm">Active Delivery Partners</h3>
+                    <i class="fas fa-motorcycle text-primary"></i>
+                </div>
+                <p class="text-2xl font-bold text-gray-800">156</p>
+                <p class="text-green-500 text-sm">↑ 3% from last month</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <div class="flex items-center justify-between mb-4">
                     <h3 class="text-gray-500 text-sm">Average Order Value</h3>
                     <i class="fas fa-chart-line text-primary"></i>
                 </div>
@@ -116,7 +124,7 @@
         </div>
 
         <!-- Charts -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Revenue Overview</h3>
                 <canvas id="revenueChart" height="300"></canvas>
@@ -124,6 +132,10 @@
             <div class="bg-white rounded-lg shadow-sm p-6">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Order Distribution</h3>
                 <canvas id="orderChart" height="300"></canvas>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-6">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Order Types</h3>
+                <canvas id="orderTypesChart" height="300"></canvas>
             </div>
         </div>
 
@@ -235,6 +247,39 @@
                 plugins: {
                     legend: {
                         position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Order Types Chart
+        const orderTypesCtx = document.getElementById('orderTypesChart').getContext('2d');
+        new Chart(orderTypesCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Pre-order', 'Pick-up'],
+                datasets: [{
+                    data: [70, 30],
+                    backgroundColor: ['#4ecdc4', '#ff6b6b'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ${percentage}% (${value} orders)`;
+                            }
+                        }
                     }
                 }
             }
