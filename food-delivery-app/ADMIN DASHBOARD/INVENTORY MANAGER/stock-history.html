@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consumption Logs - Inventory Management</title>
+    <title>Stock History - Inventory Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -36,7 +37,7 @@
                     <i class="fas fa-plus"></i>
                     <span>Add Ingredient</span>
                 </a>
-                <a href="consumption-logs.html" class="flex items-center space-x-3 text-primary bg-primary/10 px-4 py-3 rounded-lg">
+                <a href="consumption-logs.html" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 px-4 py-3 rounded-lg">
                     <i class="fas fa-history"></i>
                     <span>Consumption Logs</span>
                 </a>
@@ -53,8 +54,8 @@
         <!-- Header -->
         <div class="flex justify-between items-center mb-8">
             <div>
-                <h2 class="text-2xl font-bold text-gray-800">Consumption Logs</h2>
-                <p class="text-gray-600">Track ingredient usage and consumption history</p>
+                <h2 class="text-2xl font-bold text-gray-800">Stock History</h2>
+                <p class="text-gray-600">Detailed stock level history and trends</p>
             </div>
             <div class="flex items-center space-x-4">
                 <button class="text-gray-600 hover:text-gray-800">
@@ -66,79 +67,79 @@
             </div>
         </div>
 
-        <!-- Filter Bar -->
-        <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
-            <div class="flex flex-wrap gap-4">
-                <div class="flex-1 min-w-[200px]">
-                    <input type="text" placeholder="Search ingredients..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+        <!-- Ingredient Info -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-800">Chicken</h3>
+                    <p class="text-gray-600">Category: Meat</p>
                 </div>
-                <div class="flex gap-4">
-                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
-                        <option value="">All Categories</option>
-                        <option value="vegetables">Vegetables</option>
-                        <option value="meat">Meat</option>
-                        <option value="spices">Spices</option>
-                        <option value="dairy">Dairy</option>
-                    </select>
-                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
-                        <option value="">All Staff</option>
-                        <option value="chef-john">Chef John</option>
-                        <option value="chef-sarah">Chef Sarah</option>
-                        <option value="chef-mike">Chef Mike</option>
-                        <option value="chef-emma">Chef Emma</option>
-                    </select>
-                    <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
-                        <option value="today">Today</option>
-                        <option value="week">This Week</option>
-                        <option value="month">This Month</option>
-                        <option value="custom">Custom Range</option>
-                    </select>
+                <div class="flex items-center space-x-4">
+                    <div class="text-right">
+                        <p class="text-sm text-gray-600">Current Stock</p>
+                        <p class="text-lg font-semibold text-gray-800">2.5 kg</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm text-gray-600">Minimum Level</p>
+                        <p class="text-lg font-semibold text-gray-800">5.0 kg</p>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Consumption Logs Table -->
+        <!-- Stock Level Chart -->
+        <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-semibold text-gray-800">Stock Level Trend</h3>
+                <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
+                    <option value="week">Last Week</option>
+                    <option value="month">Last Month</option>
+                    <option value="year">Last Year</option>
+                </select>
+            </div>
+            <div class="h-80">
+                <canvas id="stockChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Stock History Table -->
         <div class="bg-white rounded-lg shadow-sm overflow-hidden">
             <div class="overflow-x-auto">
                 <table class="w-full">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ingredient</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity Used</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Unit</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock Level</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Change</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Time</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Chef</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Updated By</th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Tomatoes</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Vegetables</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2.5</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">kg</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-02-20 10:30 AM</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2.5 kg</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-1.5 kg</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Consumption</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#1234</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">10:30 AM</td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Chef John</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Chicken</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Meat</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">1.0</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">kg</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#1235</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">11:15 AM</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Chef Sarah</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-02-19 09:15 AM</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">4.0 kg</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">+2.0 kg</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Restock</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#1233</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Admin</td>
                         </tr>
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Basil</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Spices</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">0.1</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">kg</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#1236</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">11:45 AM</td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Chef Mike</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2024-02-18 02:45 PM</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">2.0 kg</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-1.0 kg</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Consumption</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">#1232</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Chef Sarah</td>
                         </tr>
                     </tbody>
                 </table>
@@ -190,6 +191,45 @@
             // Simulate logout
             window.location.href = '../login.html';
         }
+
+        // Initialize Stock Level Chart
+        const ctx = document.getElementById('stockChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Stock Level (kg)',
+                    data: [5.0, 4.5, 4.0, 3.5, 3.0, 2.5, 2.5],
+                    borderColor: '#4ecdc4',
+                    backgroundColor: 'rgba(78, 205, 196, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.05)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
     </script>
 </body>
 </html> 

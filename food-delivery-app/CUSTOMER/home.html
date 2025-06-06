@@ -74,7 +74,7 @@
                         <i class="fas fa-leaf text-green-500 mr-1"></i>Veg
                     </button>
                     <button onclick="filterItems('non-veg')" class="px-4 py-2 bg-white text-gray-600 rounded-lg hover:bg-primary hover:text-white transition-colors filter-btn" data-filter="non-veg">
-                        <i class="fas fa-drumstick-bite text-red-500 mr-1"></i>Non-Veg
+                        <i class="fas fa-meat mr-1"></i>Non-Veg
                     </button>
                 </div>
             </div>
@@ -94,7 +94,12 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <!-- Menu Item 1 -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591" alt="Pizza" class="w-full h-48 object-cover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591" alt="Pizza" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        <i class="fas fa-leaf mr-1"></i>Veg
+                    </span>
+                </div>
                 <div class="p-4">
                     <div class="flex justify-between items-start">
                         <div>
@@ -123,7 +128,12 @@
 
             <!-- Menu Item 2 -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" alt="Burger" class="w-full h-48 object-cover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" alt="Burger" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                        <i class="fas fa-meat mr-1"></i>Non-Veg
+                    </span>
+                </div>
                 <div class="p-4">
                     <div class="flex justify-between items-start">
                         <div>
@@ -152,7 +162,12 @@
 
             <!-- Menu Item 3 -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c" alt="Sushi" class="w-full h-48 object-cover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c" alt="Sushi" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                        <i class="fas fa-meat mr-1"></i>Non-Veg
+                    </span>
+                </div>
                 <div class="p-4">
                     <div class="flex justify-between items-start">
                         <div>
@@ -181,7 +196,12 @@
 
             <!-- Menu Item 4 -->
             <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="Pasta" class="w-full h-48 object-cover">
+                <div class="relative">
+                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="Pasta" class="w-full h-48 object-cover">
+                    <span class="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                        <i class="fas fa-meat mr-1"></i>Non-Veg
+                    </span>
+                </div>
                 <div class="p-4">
                     <div class="flex justify-between items-start">
                         <div>
@@ -360,7 +380,12 @@
             const menuList = document.querySelector('.grid');
             menuList.innerHTML = items.map(item => `
                 <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-                    <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover">
+                    <div class="relative">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-medium ${item.type === 'veg' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                            ${item.type === 'veg' ? '<i class="fas fa-leaf mr-1"></i>Veg' : '<i class="fas fa-utensils mr-1"></i>Non-Veg'}
+                        </span>
+                    </div>
                     <div class="p-4">
                         <div class="flex justify-between items-start">
                             <div>

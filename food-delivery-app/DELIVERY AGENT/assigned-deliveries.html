@@ -36,119 +36,202 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container mx-auto px-4 pt-20 pb-8">
-        <!-- Status Overview -->
-        <div class="grid grid-cols-2 gap-4 mb-6">
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-                <div class="flex items-center justify-between">
+    <main class="container mx-auto px-4 pt-24 pb-32">
+
+        <!-- Tabs -->
+        <div class="bg-white rounded-xl shadow-sm p-2 mb-6">
+            <div class="flex space-x-2" aria-label="Tabs">
+                <button onclick="switchTab('ready')" class="tab-button flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-lg bg-primary text-white transition-all duration-200" id="ready-tab">
+                    <i class="fas fa-clock text-lg"></i>
+                    <span class="font-medium">Ready Orders</span>
+                    <span class="bg-white/20 text-white px-2 py-0.5 rounded-full text-xs">3</span>
+                </button>
+                <button onclick="switchTab('my')" class="tab-button flex-1 flex items-center justify-center space-x-2 px-4 py-3 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all duration-200" id="my-tab">
+                    <i class="fas fa-motorcycle text-lg"></i>
+                    <span class="font-medium">My Orders</span>
+                    <span class="bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full text-xs">2</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Ready Orders Section -->
+        <div id="ready-orders" class="space-y-4">
+            <!-- Order Card 1 -->
+            <div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow duration-200">
+                <div class="flex justify-between items-start mb-4">
                     <div>
-                        <p class="text-sm text-gray-600">Active Deliveries</p>
-                        <p class="text-2xl font-semibold text-gray-800">3</p>
+                        <h3 class="text-lg font-semibold text-gray-800">Order #1234</h3>
+                        <p class="text-sm text-gray-600">Pizza Palace</p>
                     </div>
-                    <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                        <i class="fas fa-motorcycle text-primary"></i>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Ready</span>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-gray-400"></i>
+                        <span class="text-sm text-gray-600">2.5 km away</span>
+                    </div>
+                    <div class="text-sm text-gray-600">
+                        <i class="far fa-clock mr-1"></i>
+                        15 mins
                     </div>
                 </div>
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-gray-600">
+                        <i class="fas fa-shopping-bag mr-1"></i>
+                        3 items
+                    </div>
+                    <button onclick="acceptOrder('1234')" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors">
+                        Accept Order
+                    </button>
+                </div>
             </div>
-            <div class="bg-white rounded-lg p-4 shadow-sm">
-                <div class="flex items-center justify-between">
+
+            <!-- Order Card 2 -->
+            <div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow duration-200">
+                <div class="flex justify-between items-start mb-4">
                     <div>
-                        <p class="text-sm text-gray-600">Completed Today</p>
-                        <p class="text-2xl font-semibold text-gray-800">12</p>
+                        <h3 class="text-lg font-semibold text-gray-800">Order #1235</h3>
+                        <p class="text-sm text-gray-600">Burger King</p>
                     </div>
-                    <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
-                        <i class="fas fa-check text-green-600"></i>
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">Ready</span>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-gray-400"></i>
+                        <span class="text-sm text-gray-600">1.8 km away</span>
                     </div>
+                    <div class="text-sm text-gray-600">
+                        <i class="far fa-clock mr-1"></i>
+                        10 mins
+                    </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-gray-600">
+                        <i class="fas fa-shopping-bag mr-1"></i>
+                        2 items
+                    </div>
+                    <button onclick="acceptOrder('1235')" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors">
+                        Accept Order
+                    </button>
                 </div>
             </div>
         </div>
 
-        <!-- Delivery List -->
-        <div class="space-y-4">
-            <!-- Delivery Card 1 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                <div class="p-4">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Spice Garden</h3>
-                            <p class="text-sm text-gray-600">Order #ORD123456</p>
-                        </div>
-                        <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">Pickup</span>
+        <!-- My Orders Section -->
+        <div id="my-orders" class="space-y-4 hidden">
+            <!-- Active Order Card -->
+            <div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow duration-200">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Order #1236</h3>
+                        <p class="text-sm text-gray-600">Taco Bell</p>
                     </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
-                        <i class="fas fa-map-marker-alt text-primary"></i>
-                        <span>2.5 km away</span>
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">In Progress</span>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-gray-400"></i>
+                        <span class="text-sm text-gray-600">3.2 km away</span>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-sm font-medium text-gray-900">₹150</span>
-                            <span class="text-xs text-gray-500">• 2 items</span>
-                        </div>
-                        <a href="delivery-detail.html?id=ORD123456" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
-                            View Details
-                        </a>
+                    <div class="text-sm text-gray-600">
+                        <i class="far fa-clock mr-1"></i>
+                        20 mins
                     </div>
+                </div>
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-gray-600">
+                        <i class="fas fa-shopping-bag mr-1"></i>
+                        4 items
+                    </div>
+                    <a href="delivery-detail.html" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-dark transition-colors">
+                        View Details
+                    </a>
                 </div>
             </div>
 
-            <!-- Delivery Card 2 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                <div class="p-4">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Pizza Hut</h3>
-                            <p class="text-sm text-gray-600">Order #ORD123457</p>
-                        </div>
-                        <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">In Transit</span>
+            <!-- Completed Order Card -->
+            <div class="bg-white rounded-xl shadow-sm p-4 hover:shadow-md transition-shadow duration-200">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-800">Order #1237</h3>
+                        <p class="text-sm text-gray-600">Subway</p>
                     </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
-                        <i class="fas fa-map-marker-alt text-primary"></i>
-                        <span>1.8 km away</span>
+                    <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm font-medium">Completed</span>
+                </div>
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-map-marker-alt text-gray-400"></i>
+                        <span class="text-sm text-gray-600">1.5 km away</span>
                     </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-sm font-medium text-gray-900">₹200</span>
-                            <span class="text-xs text-gray-500">• 3 items</span>
-                        </div>
-                        <a href="delivery-detail.html?id=ORD123457" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
-                            View Details
-                        </a>
+                    <div class="text-sm text-gray-600">
+                        <i class="far fa-clock mr-1"></i>
+                        Delivered
                     </div>
                 </div>
-            </div>
-
-            <!-- Delivery Card 3 -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden">
-                <div class="p-4">
-                    <div class="flex justify-between items-start mb-3">
-                        <div>
-                            <h3 class="font-semibold text-gray-800">Burger King</h3>
-                            <p class="text-sm text-gray-600">Order #ORD123458</p>
-                        </div>
-                        <span class="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">Ready</span>
+                <div class="flex justify-between items-center">
+                    <div class="text-sm text-gray-600">
+                        <i class="fas fa-shopping-bag mr-1"></i>
+                        2 items
                     </div>
-                    <div class="flex items-center space-x-2 text-sm text-gray-600 mb-3">
-                        <i class="fas fa-map-marker-alt text-primary"></i>
-                        <span>3.2 km away</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <div class="flex items-center space-x-2">
-                            <span class="text-sm font-medium text-gray-900">₹180</span>
-                            <span class="text-xs text-gray-500">• 4 items</span>
-                        </div>
-                        <a href="delivery-detail.html?id=ORD123458" class="bg-primary text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-opacity-90 transition-colors">
-                            View Details
-                        </a>
-                    </div>
+                    <button class="text-gray-500 hover:text-gray-700 text-sm font-medium">
+                        View Details
+                    </button>
                 </div>
             </div>
         </div>
     </main>
 
+    <!-- Fixed Bottom Menu -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+        <div class="flex justify-around items-center">
+            <a href="assigned-deliveries.html" class="flex flex-col items-center text-primary">
+                <i class="fas fa-list-ul text-xl"></i>
+                <span class="text-xs mt-1">Deliveries</span>
+            </a>
+            <a href="delivery-detail.html" class="flex flex-col items-center text-gray-500 hover:text-primary">
+                <i class="fas fa-map-marker-alt text-xl"></i>
+                <span class="text-xs mt-1">Map</span>
+            </a>
+            <a href="profile.html" class="flex flex-col items-center text-gray-500 hover:text-primary">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">Profile</span>
+            </a>
+        </div>
+    </div>
+
     <script>
         function logout() {
             // Simulate logout
             window.location.href = 'login.html';
+        }
+
+        function acceptOrder(orderId) {
+            // Simulate accepting an order
+            alert(`Order #${orderId} accepted!`);
+            // In a real application, this would update the UI and move the order to "My Orders"
+        }
+
+        function switchTab(tab) {
+            const readyTab = document.getElementById('ready-tab');
+            const myTab = document.getElementById('my-tab');
+            const readyOrders = document.getElementById('ready-orders');
+            const myOrders = document.getElementById('my-orders');
+
+            if (tab === 'ready') {
+                readyTab.classList.remove('bg-gray-100', 'text-gray-600');
+                readyTab.classList.add('bg-primary', 'text-white');
+                myTab.classList.remove('bg-primary', 'text-white');
+                myTab.classList.add('bg-gray-100', 'text-gray-600');
+                readyOrders.classList.remove('hidden');
+                myOrders.classList.add('hidden');
+            } else {
+                myTab.classList.remove('bg-gray-100', 'text-gray-600');
+                myTab.classList.add('bg-primary', 'text-white');
+                readyTab.classList.remove('bg-primary', 'text-white');
+                readyTab.classList.add('bg-gray-100', 'text-gray-600');
+                myOrders.classList.remove('hidden');
+                readyOrders.classList.add('hidden');
+            }
         }
     </script>
 </body>

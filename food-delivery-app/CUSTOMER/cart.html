@@ -102,18 +102,6 @@
                     </select>
                 </div>
 
-                <!-- Meal Type Selection -->
-                <div class="flex space-x-4">
-                    <button class="flex-1 py-3 px-4 border border-primary text-primary rounded-lg hover:bg-primary hover:text-white transition-colors">
-                        <i class="fas fa-sun mr-2"></i>
-                        Breakfast
-                    </button>
-                    <button class="flex-1 py-3 px-4 border border-gray-300 text-gray-600 rounded-lg hover:border-primary hover:text-primary transition-colors">
-                        <i class="fas fa-utensils mr-2"></i>
-                        Lunch
-                    </button>
-                </div>
-
                 <!-- Date Selection -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">Select Date</label>
@@ -125,16 +113,29 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Select Time</label>
                     <select class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
                         <option value="">Select Time</option>
-                        <option value="7:00">7:00 AM</option>
-                        <option value="7:30">7:30 AM</option>
-                        <option value="8:00">8:00 AM</option>
-                        <option value="8:30">8:30 AM</option>
-                        <option value="9:00">9:00 AM</option>
+                        <option value="10:00">10:00 AM</option>
+                        <option value="10:30">10:30 AM</option>
+                        <option value="11:00">11:00 AM</option>
+                        <option value="11:30">11:30 AM</option>
                         <option value="12:00">12:00 PM</option>
                         <option value="12:30">12:30 PM</option>
                         <option value="13:00">1:00 PM</option>
                         <option value="13:30">1:30 PM</option>
                         <option value="14:00">2:00 PM</option>
+                        <option value="14:30">2:30 PM</option>
+                        <option value="15:00">3:00 PM</option>
+                        <option value="15:30">3:30 PM</option>
+                        <option value="16:00">4:00 PM</option>
+                        <option value="16:30">4:30 PM</option>
+                        <option value="17:00">5:00 PM</option>
+                        <option value="17:30">5:30 PM</option>
+                        <option value="18:00">6:00 PM</option>
+                        <option value="18:30">6:30 PM</option>
+                        <option value="19:00">7:00 PM</option>
+                        <option value="19:30">7:30 PM</option>
+                        <option value="20:00">8:00 PM</option>
+                        <option value="20:30">8:30 PM</option>
+                        <option value="21:00">9:00 PM</option>
                     </select>
                 </div>
 
@@ -218,46 +219,6 @@
                 preBookingOptions.classList.remove('hidden');
                 normalDeliveryOptions.classList.add('hidden');
             });
-
-            // Pre-booking functionality
-            const breakfastBtn = preBookingOptions.querySelector('button:first-of-type');
-            const lunchBtn = preBookingOptions.querySelector('button:nth-of-type(2)');
-            const timeSelect = preBookingOptions.querySelector('select');
-
-            breakfastBtn.addEventListener('click', function() {
-                breakfastBtn.classList.add('border-primary', 'text-primary');
-                lunchBtn.classList.remove('border-primary', 'text-primary');
-                updateTimeSlots('breakfast');
-            });
-
-            lunchBtn.addEventListener('click', function() {
-                lunchBtn.classList.add('border-primary', 'text-primary');
-                breakfastBtn.classList.remove('border-primary', 'text-primary');
-                updateTimeSlots('lunch');
-            });
-
-            function updateTimeSlots(mealType) {
-                const breakfastTimes = ['7:00', '7:30', '8:00', '8:30', '9:00'];
-                const lunchTimes = ['12:00', '12:30', '13:00', '13:30', '14:00'];
-                
-                timeSelect.innerHTML = '';
-                const times = mealType === 'breakfast' ? breakfastTimes : lunchTimes;
-                
-                times.forEach(time => {
-                    const option = document.createElement('option');
-                    option.value = time;
-                    option.textContent = formatTime(time);
-                    timeSelect.appendChild(option);
-                });
-            }
-
-            function formatTime(time) {
-                const [hours, minutes] = time.split(':');
-                const hour = parseInt(hours);
-                const ampm = hour >= 12 ? 'PM' : 'AM';
-                const hour12 = hour % 12 || 12;
-                return `${hour12}:${minutes} ${ampm}`;
-            }
 
             // Set default delivery mode
             normalDeliveryBtn.click();
