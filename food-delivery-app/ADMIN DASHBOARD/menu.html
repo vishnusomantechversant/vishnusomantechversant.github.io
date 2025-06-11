@@ -292,32 +292,8 @@
                     </div>
 
                     <!-- Variations Section -->
-                    <div class="space-y-4 pt-4 border-t border-gray-200">
-                        <div class="flex justify-between items-center">
-                            <h4 class="text-lg font-medium text-gray-900">Variations</h4>
-                            <button type="button" onclick="addVariation()" class="text-primary hover:text-primary-dark flex items-center space-x-1">
-                                <i class="fas fa-plus"></i>
-                                <span>Add Variation</span>
-                            </button>
-                        </div>
-                        <div id="variationsList" class="space-y-3">
-                            <!-- Variation items will be added here dynamically -->
-                            </div>
-                        </div>
 
                     <!-- Add-ons Section -->
-                    <div class="space-y-4 pt-4 border-t border-gray-200">
-                        <div class="flex justify-between items-center">
-                            <h4 class="text-lg font-medium text-gray-900">Add-ons</h4>
-                            <button type="button" onclick="addAddon()" class="text-primary hover:text-primary-dark flex items-center space-x-1">
-                                <i class="fas fa-plus"></i>
-                                <span>Add Add-on</span>
-                            </button>
-                        </div>
-                        <div id="addonsList" class="space-y-3">
-                            <!-- Add-on items will be added here dynamically -->
-                        </div>
-                        </div>
 
                     <div class="space-y-2">
                         <label class="block text-sm font-medium text-gray-700">Item Image</label>
@@ -530,43 +506,6 @@
             }
         }
 
-        function addVariation() {
-            const variationsList = document.getElementById('variationsList');
-            const variationId = Date.now(); // Unique ID for the variation
-
-            const variationHtml = `
-                <div id="variation-${variationId}" class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <div class="flex-1 grid grid-cols-3 gap-3">
-                        <div>
-                            <input type="text" 
-                                placeholder="Variation name" 
-                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                                required>
-                        </div>
-                        <div>
-                            <input type="number" 
-                                placeholder="Additional price" 
-                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                                min="0"
-                                step="1"
-                                required>
-                        </div>
-                        <div>
-                            <select class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                                <option value="veg">Vegetarian</option>
-                                <option value="non-veg">Non-Vegetarian</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="button" onclick="removeVariation(${variationId})" class="text-red-600 hover:text-red-800">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-
-            variationsList.insertAdjacentHTML('beforeend', variationHtml);
-        }
-
         function removeVariation(id) {
             const variation = document.getElementById(`variation-${id}`);
             if (variation) {
@@ -574,48 +513,7 @@
             }
         }
 
-        function addAddon() {
-            const addonsList = document.getElementById('addonsList');
-            const addonId = Date.now(); // Unique ID for the addon
-
-            const addonHtml = `
-                <div id="addon-${addonId}" class="flex items-center space-x-3 p-3 bg-gray-50 rounded-lg">
-                    <div class="flex-1 grid grid-cols-4 gap-3">
-                        <div>
-                            <input type="text" 
-                                placeholder="Add-on name" 
-                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                                required>
-                        </div>
-                        <div>
-                            <input type="number" 
-                                placeholder="Price" 
-                                class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                                min="0"
-                                step="1"
-                                required>
-                        </div>
-                        <div>
-                            <select class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                                <option value="veg">Vegetarian</option>
-                                <option value="non-veg">Non-Vegetarian</option>
-                            </select>
-                        </div>
-                        <div>
-                            <select class="w-full px-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
-                                <option value="optional">Optional</option>
-                                <option value="required">Required</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="button" onclick="removeAddon(${addonId})" class="text-red-600 hover:text-red-800">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                </div>
-            `;
-
-            addonsList.insertAdjacentHTML('beforeend', addonHtml);
-        }
+        
 
         function removeAddon(id) {
             const addon = document.getElementById(`addon-${id}`);
@@ -628,12 +526,8 @@
             const modal = document.getElementById('menuItemModal');
             const form = document.getElementById('menuItemForm');
             const modalTitle = document.getElementById('modalTitle');
-            const variationsList = document.getElementById('variationsList');
-            const addonsList = document.getElementById('addonsList');
             
             form.reset();
-            variationsList.innerHTML = ''; // Clear existing variations
-            addonsList.innerHTML = ''; // Clear existing addons
             
             if (itemId) {
                 isEditing = true;
@@ -654,13 +548,6 @@
                 document.querySelector('input[name="mealTiming"][value="lunch"]').checked = true;
                 document.querySelector('input[name="mealTiming"][value="dinner"]').checked = true;
 
-                // Add sample variations
-                addVariation();
-                addVariation();
-
-                // Add sample addons
-                addAddon();
-                addAddon();
             } else {
                 isEditing = false;
                 modalTitle.textContent = 'Add New Menu Item';
@@ -678,29 +565,6 @@
         // Initialize form submission
         document.getElementById('menuItemForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Collect variations
-            const variationsElements = document.querySelectorAll('#variationsList > div');
-            const variations = Array.from(variationsElements).map(element => {
-                const inputs = element.querySelectorAll('input, select');
-                return {
-                    name: inputs[0].value,
-                    price: inputs[1].value,
-                    type: inputs[2].value
-                };
-            });
-
-            // Collect addons
-            const addonsElements = document.querySelectorAll('#addonsList > div');
-            const addons = Array.from(addonsElements).map(element => {
-                const inputs = element.querySelectorAll('input, select');
-                return {
-                    name: inputs[0].value,
-                    price: inputs[1].value,
-                    type: inputs[2].value,
-                    required: inputs[3].value === 'required'
-                };
-            });
 
             // Collect meal timings
             const mealTimings = Array.from(document.querySelectorAll('input[name="mealTiming"]:checked')).map(input => input.value);
@@ -714,8 +578,6 @@
                 price: document.getElementById('itemPrice').value,
                 prepTime: document.getElementById('itemPrepTime').value,
                 description: document.getElementById('itemDescription').value,
-                variations: variations,
-                addons: addons
             };
 
             // Here you would typically make an API call to save the item
