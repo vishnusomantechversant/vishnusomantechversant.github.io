@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - Complete System Documentation</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 15px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.3em;
+        }
+        
+        .header .subtitle {
+            margin: 10px 0 0 0;
+            opacity: 0.7;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2em;
+            font-weight: 400;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 30px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .documentation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .doc-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            border-left: 5px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .doc-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+        
+        .doc-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .doc-card.auth { border-left-color: #007bff; }
+        .doc-card.teachers { border-left-color: #4caf50; }
+        .doc-card.system { border-left-color: #007bff; }
+        .doc-card.professional { border-left-color: #1976d2; }
+        .doc-card.mobile { border-left-color: #ff9800; }
+        .doc-card.home { border-left-color: #9c27b0; }
+        .doc-card.admin { border-left-color: #e91e63; }
+        .doc-card.cms { border-left-color: #00bcd4; }
+        
+        .doc-card h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.4em;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .doc-card .icon {
+            font-size: 2em;
+            margin-right: 10px;
+        }
+        
+        .doc-card p {
+            margin: 0 0 15px 0;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+        
+        .doc-card .features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .doc-card .features li {
+            margin: 8px 0;
+            color: #495057;
+            font-size: 0.95em;
+            position: relative;
+            padding-left: 15px;
+        }
+        
+        .doc-card .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+        }
+        
+        .stats {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .stats h3 {
+            margin: 0 0 20px 0;
+            color: #1565c0;
+            font-size: 1.5em;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .stat-item h4 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+            font-size: 2em;
+        }
+        
+        .stat-item p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        
+        .quick-nav {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .quick-nav h3 {
+            margin: 0 0 20px 0;
+            color: #7b1fa2;
+            font-size: 1.4em;
+            text-align: center;
+        }
+        
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .nav-button {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-button:hover {
+            background: #2c3e50;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+            margin-top: 50px;
+        }
+        
+        .footer p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.95em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .documentation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Spark Family Documentation</h1>
+            <p>Complete System Architecture & User Flow Documentation</p>
+            <p class="subtitle">Comprehensive guides for all platforms and user types</p>
+        </div>
+        
+        <div class="content">
+            <!-- System Overview -->
+            <div class="section">
+                <h2>🌐 System Overview</h2>
+                <p>The Spark Family ecosystem is a comprehensive educational platform serving teachers, administrators, and districts through multiple interconnected applications and services.</p>
+                
+                <div class="mermaid">
+graph TB
+    subgraph Platform["🏗️ Spark Family Platform"]
+        A[🌐 Public Website]
+        B[🏠 Home Portal]
+        C[👩‍🏫 Teacher Portal]
+        D[📱 Mobile App]
+        E[⚙️ Admin Panel]
+    end
+    
+    subgraph Users["👥 User Types"]
+        F[👤 Individual Teachers]
+        G[🏫 District Admins]
+        H[🔧 Super Admins]
+    end
+    
+    subgraph Features["🎯 Core Features"]
+        I[📚 Curriculum Access]
+        J[🎓 Professional Development]
+        K[👥 Student Management]
+        L[📊 Assessment Tools]
+        M[🎫 License Management]
+    end
+    
+    A --> Platform
+    B --> Platform
+    C --> Platform
+    D --> Platform
+    E --> Platform
+    
+    F --> Users
+    G --> Users
+    H --> Users
+    
+    I --> Features
+    J --> Features
+    K --> Features
+    L --> Features
+    M --> Features
+    
+    classDef platform fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef users fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef features fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    class A,B,C,D,E platform
+    class F,G,H users
+    class I,J,K,L,M features
+                </div>
+                
+                <div class="stats">
+                    <h3>📊 Documentation Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <h4>8</h4>
+                            <p>Complete Flowcharts</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>5</h4>
+                            <p>Platform Components</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>3</h4>
+                            <p>User Types</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>100%</h4>
+                            <p>System Coverage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Documentation Navigation -->
+            <div class="section">
+                <h2>📚 Complete Documentation Library</h2>
+                <p>Access detailed flowcharts and system documentation for every component of the Spark Family platform. Each document provides comprehensive insights into user workflows, system architecture, and feature functionality.</p>
+                
+                <div class="documentation-grid">
+                    <a href="User_Authentication_Flow.html" class="doc-card auth">
+                        <h3><span class="icon">🔐</span>User Authentication Flow</h3>
+                        <p>Complete authentication system including login, registration, password recovery, and user type routing across all platforms.</p>
+                        <ul class="features">
+                            <li>Multi-platform login (Home, Teacher, Mobile)</li>
+                            <li>Role-based access control</li>
+                            <li>Password recovery system</li>
+                            <li>Session management</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="Teachers_Portal_Flow.html" class="doc-card teachers">
+                        <h3><span class="icon">👩‍🏫</span>Teachers Portal Flow</h3>
+                        <p>Comprehensive teacher dashboard with student management, attendance tracking, assessments, and calendar functionality.</p>
+                        <ul class="features">
+                            <li>Student management & bulk import</li>
+                            <li>Attendance tracking & reporting</li>
+                            <li>Assessment tools & analytics</li>
+                            <li>Calendar & event management</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="System_Architecture_Overview.html" class="doc-card system">
+                        <h3><span class="icon">🏗️</span>System Architecture</h3>
+                        <p>High-level system architecture showing platform components, user types, data flow, and external integrations.</p>
+                        <ul class="features">
+                            <li>Frontend & backend services</li>
+                            <li>External system integrations</li>
+                            <li>Technology stack overview</li>
+                            <li>Scalability & performance</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="Professional_Development_Flow.html" class="doc-card professional">
+                        <h3><span class="icon">🎓</span>Professional Development</h3>
+                        <p>Complete PD workflow including course types, completion requirements, credit management, and certificate generation.</p>
+                        <ul class="features">
+                            <li>Free & paid course workflows</li>
+                            <li>Quiz & assessment system</li>
+                            <li>Certificate generation</li>
+                            <li>Credit tracking & requirements</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="Mobile_App_Flow.html" class="doc-card mobile">
+                        <h3><span class="icon">📱</span>Mobile App Flow</h3>
+                        <p>Mobile-optimized teacher tools including attendance, curriculum access, profile management, and skill assessments.</p>
+                        <ul class="features">
+                            <li>Mobile attendance management</li>
+                            <li>Curriculum & lesson access</li>
+                            <li>Event & calendar management</li>
+                            <li>Skill assessment tools</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="Home_Portal_Flow.html" class="doc-card home">
+                        <h3><span class="icon">🏠</span>Home Portal Flow</h3>
+                        <p>Main portal dashboard with curriculum access, professional development, account management, and user administration.</p>
+                        <ul class="features">
+                            <li>Dashboard overview & navigation</li>
+                            <li>Curriculum access & PDF viewer</li>
+                            <li>Account & license management</li>
+                            <li>User administration tools</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="Admin_Panel_Flow.html" class="doc-card admin">
+                        <h3><span class="icon">⚙️</span>Admin Panel Flow</h3>
+                        <p>Administrative tools for district and super admins including user management, license operations, and content creation.</p>
+                        <ul class="features">
+                            <li>User & license management</li>
+                            <li>Content & course creation</li>
+                            <li>System analytics & reporting</li>
+                            <li>District administration tools</li>
+                        </ul>
+                    </a>
+                    
+                    <a href="CMS_Public_Website_Flow.html" class="doc-card cms">
+                        <h3><span class="icon">🌐</span>CMS & Public Website</h3>
+                        <p>Content management system and public website including blog system, webinar archive, events, and static pages.</p>
+                        <ul class="features">
+                            <li>Static content management</li>
+                            <li>Blog system & search</li>
+                            <li>Webinar archive & videos</li>
+                            <li>Events management system</li>
+                        </ul>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Navigation -->
+            <div class="section">
+                <div class="quick-nav">
+                    <h3>🚀 Quick Navigation</h3>
+                    <div class="nav-buttons">
+                        <a href="User_Authentication_Flow.html" class="nav-button">🔐 Authentication</a>
+                        <a href="Teachers_Portal_Flow.html" class="nav-button">👩‍🏫 Teachers Portal</a>
+                        <a href="System_Architecture_Overview.html" class="nav-button">🏗️ Architecture</a>
+                        <a href="Professional_Development_Flow.html" class="nav-button">🎓 Professional Development</a>
+                        <a href="Mobile_App_Flow.html" class="nav-button">📱 Mobile App</a>
+                        <a href="Home_Portal_Flow.html" class="nav-button">🏠 Home Portal</a>
+                        <a href="Admin_Panel_Flow.html" class="nav-button">⚙️ Admin Panel</a>
+                        <a href="CMS_Public_Website_Flow.html" class="nav-button">🌐 CMS & Website</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- System Features Summary -->
+            <div class="section">
+                <h2>🎯 Platform Features Summary</h2>
+                <p>A comprehensive overview of all key features and capabilities across the Spark Family ecosystem.</p>
+                
+                <div class="mermaid">
+graph LR
+    subgraph Education["📚 Educational Features"]
+        A[📖 Curriculum Access]
+        B[🎓 Professional Development]
+        C[📊 Assessment Tools]
+        D[🎥 Video Content]
+    end
+    
+    subgraph Management["👥 Management Features"]
+        E[👤 User Management]
+        F[🏫 Student Management]
+        G[📅 Calendar & Events]
+        H[📊 Attendance Tracking]
+    end
+    
+    subgraph Administration["⚙️ Administrative Features"]
+        I[🎫 License Management]
+        J[📈 Analytics & Reporting]
+        K[🔧 System Configuration]
+        L[💳 Payment Processing]
+    end
+    
+    subgraph Technical["🔧 Technical Features"]
+        M[🔐 Security & Authentication]
+        N[📱 Mobile Optimization]
+        O[🔗 External Integrations]
+        P[☁️ Cloud Infrastructure]
+    end
+    
+    classDef education fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef management fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef admin fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef technical fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class A,B,C,D education
+    class E,F,G,H management
+    class I,J,K,L admin
+    class M,N,O,P technical
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2024 Spark Family Documentation | Complete System Architecture & User Flow Documentation</p>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with optimized settings
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#007bff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#dee2e6',
+                lineColor: '#6c757d',
+                sectionBkgColor: '#f8f9fa',
+                altSectionBkgColor: '#e9ecef',
+                gridColor: '#dee2e6',
+                secondaryColor: '#6c757d',
+                tertiaryColor: '#f8f9fa'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 15,
+                nodeSpacing: 50,
+                rankSpacing: 50
+            },
+            securityLevel: 'loose',
+            maxTextSize: 50000
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.init();
+        });
+        
+        // Add smooth scrolling for better user experience
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

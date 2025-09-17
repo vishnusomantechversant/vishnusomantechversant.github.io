@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - CMS & Public Website Flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 400;
+            border-bottom: 3px solid #00bcd4;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #00bcd4;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .feature-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #495057;
+        }
+        
+        .feature-card li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .static-pages {
+            background: #e0f7fa;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #00bcd4;
+        }
+        
+        .static-pages h3 {
+            color: #00695c;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .blog-system {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .blog-system h3 {
+            color: #2e7d32;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .webinar-archive {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #9c27b0;
+        }
+        
+        .webinar-archive h3 {
+            color: #7b1fa2;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .events-system {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #f57c00;
+        }
+        
+        .events-system h3 {
+            color: #e65100;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .cms-features {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #1976d2;
+        }
+        
+        .cms-features h3 {
+            color: #1565c0;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌐 CMS & Public Website Flow</h1>
+            <p>Spark Family Project - Content Management System & Public Website Features</p>
+        </div>
+        
+        <div class="content">
+            <!-- Website Overview -->
+            <div class="section">
+                <h2>🌐 Public Website Overview</h2>
+                <p>The Spark Family public website serves as the main entry point for visitors, providing information, resources, and access to the platform ecosystem.</p>
+                
+                <div class="mermaid">
+flowchart TD
+    A[Public Website] --> B[Static Pages]
+    A --> C[Blog System]
+    A --> D[Webinar Archive]
+    A --> E[Events Listings]
+    A --> F[User Portal Access]
+    
+    B --> G[About Us]
+    B --> H[Contact Us]
+    B --> I[Join Our Team]
+    B --> J[Privacy Policy]
+    
+    C --> K[Blog Categories]
+    C --> L[Search Function]
+    C --> M[Comment System]
+    
+    D --> N[Year-based Archive]
+    D --> O[Video Recordings]
+    
+    E --> P[Event Calendar]
+    E --> Q[External Links]
+    
+    F --> R[Login Portal]
+    F --> S[Registration]
+    
+    classDef website fill:#e0f7fa,stroke:#00bcd4
+    classDef static fill:#e8f5e8,stroke:#4caf50
+    classDef blog fill:#f3e5f5,stroke:#9c27b0
+    classDef webinar fill:#fff3e0,stroke:#f57c00
+    classDef events fill:#e3f2fd,stroke:#1976d2
+    classDef access fill:#ffebee,stroke:#e91e63
+    
+    class A website
+    class B,G,H,I,J static
+    class C,K,L,M blog
+    class D,N,O webinar
+    class E,P,Q events
+    class F,R,S access
+                </div>
+                
+                <div class="flow-grid">
+                    <div class="feature-card">
+                        <h3>🏠 Main Website Features</h3>
+                        <ul>
+                            <li>Professional marketing and information pages</li>
+                            <li>Interactive blog system with user engagement</li>
+                            <li>Comprehensive webinar archive and resources</li>
+                            <li>Event listings and external integrations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🎯 User Journey Integration</h3>
+                        <ul>
+                            <li>Seamless transition from public to private areas</li>
+                            <li>Clear calls-to-action for registration</li>
+                            <li>Educational content to drive engagement</li>
+                            <li>Professional credibility and trust building</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Static Content Pages -->
+            <div class="section">
+                <h2>📄 Static Content Management</h2>
+                <p>Static pages provide essential information about Spark Family, services, and organizational details.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+flowchart TD
+    A[Static Pages] --> B[About Us]
+    A --> C[Join Our Team]
+    A --> D[Contact Us]
+    A --> E[Privacy Policy]
+    
+    B --> F[Organization Info]
+    C --> G[Career Opportunities]
+    D --> H[Contact Form]
+    E --> I[Legal Information]
+    
+    F --> J[Mission & Vision]
+    G --> K[Job Listings]
+    H --> L[Form Submission]
+    I --> M[Terms & Conditions]
+    
+    classDef static fill:#e8f5e8,stroke:#4caf50
+    classDef content fill:#e0f7fa,stroke:#00bcd4
+    classDef forms fill:#fff3e0,stroke:#f57c00
+    
+    class A static
+    class B,C,D,E,F,G,H,I content
+    class J,K,L,M forms
+                    </div>
+                    
+                    <div class="mermaid">
+flowchart TD
+    N[Educational Pages] --> O[International]
+    N --> P[SPARK Partners]
+    N --> Q[Active Schools]
+    N --> R[Teacher of the Year]
+    
+    O --> S[Videos & Content]
+    P --> T[Partner Images]
+    Q --> U[External Links]
+    
+    
+    classDef educational fill:#f3e5f5,stroke:#9c27b0
+    classDef media fill:#e3f2fd,stroke:#1976d2
+    classDef links fill:#ffebee,stroke:#e91e63
+    
+    class N educational
+    class O,P,Q,R,S,T,U,V media
+    class W,X,Y,Z links
+                    </div>
+                </div>
+                
+                <div class="static-pages">
+                    <h3>📄 Static Content Features:</h3>
+                    <ul>
+                        <li><strong>About Us:</strong> Comprehensive organizational information and mission</li>
+                        <li><strong>Join Our Team:</strong> Career opportunities and recruitment information</li>
+                        <li><strong>Contact Us:</strong> Interactive contact forms and organizational details</li>
+                        <li><strong>International:</strong> Global reach with videos, content, and links</li>
+                        <li><strong>SPARK Partners:</strong> Partnership information with images and descriptions</li>
+                        <li><strong>Privacy Policy:</strong> Legal information and terms of service</li>
+                        <li><strong>Active Schools:</strong> School program information with external links</li>
+                        <li><strong>Teacher of the Year:</strong> Content and external links</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Blog System -->
+            <div class="section">
+                <h2>📝 Blog System & Content Management</h2>
+                <p>Comprehensive blog system with categories, search functionality, and interactive user engagement.</p>
+                
+                <div class="mermaid">
+flowchart TD
+    A[Blog System] --> B[Blog Categories]
+    A --> C[Search Field]
+    A --> D[Blog Listings]
+    
+    B --> E[Category Navigation]
+    C --> F[Search Results]
+    D --> G[10 Blogs per Page]
+    
+    E --> H[Filtered Content]
+    F --> I[Relevant Posts]
+    G --> J[Individual Blog]
+    
+    J --> K[Blog Image]
+    J --> L[Blog Content]
+    J --> M[Creation Date]
+    J --> N[Publisher Info]
+    J --> O[Comments Section]
+    
+    O --> P[Comment Form]
+    P --> Q[Submit Comment]
+    Q --> R[Comment Published]
+    
+    classDef blog fill:#e8f5e8,stroke:#4caf50
+    classDef navigation fill:#e0f7fa,stroke:#00bcd4
+    classDef content fill:#f3e5f5,stroke:#9c27b0
+    classDef engagement fill:#fff3e0,stroke:#f57c00
+    classDef success fill:#c8e6c9,stroke:#388e3c
+    
+    class A blog
+    class B,C,E,F navigation
+    class D,G,H,I,J,K,L,M,N content
+    class O,P,Q engagement
+    class R success
+                </div>
+                
+                <div class="blog-system">
+                    <h3>📝 Blog System Features:</h3>
+                    <ul>
+                        <li><strong>Category Organization:</strong> Different blog categories for organized content browsing</li>
+                        <li><strong>Search Functionality:</strong> Real-time search field for finding specific blog posts</li>
+                        <li><strong>Pagination:</strong> 10 blogs per page with navigation controls</li>
+                        <li><strong>Rich Content:</strong> Blog images, content, creation dates, and publisher information</li>
+                        <li><strong>Interactive Comments:</strong> Comment forms and user engagement system</li>
+                        <li><strong>Content Management:</strong> Articles and programs listed with easy navigation</li>
+                        <li><strong>SEO Optimization:</strong> Search engine friendly URLs and meta information</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Webinar Archive -->
+            <div class="section">
+                <h2>🎥 Webinar Archive & Video Management</h2>
+                <p>Comprehensive webinar archive system with year-based organization and access control.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+flowchart TD
+    A[Webinar Archive] --> B[Year-based Listing]
+    A --> C[Recording Links]
+    A --> D[Content Management]
+    
+    B --> E[Archive Navigation]
+    C --> F[Video Access Check]
+    D --> G[Super Admin Control]
+    
+    E --> H[Select Year]
+    F --> I{User Logged In?}
+    G --> J[Add Vimeo Content]
+    
+    H --> K[Webinar List]
+    I -->|No| L[Redirect to Login]
+    I -->|Yes| M[Play Recording]
+    J --> N[Schedule Webinars]
+    
+    classDef webinar fill:#f3e5f5,stroke:#9c27b0
+    classDef archive fill:#e0f7fa,stroke:#00bcd4
+    classDef access fill:#fff3e0,stroke:#f57c00
+    classDef admin fill:#ffebee,stroke:#e91e63
+    classDef success fill:#c8e6c9,stroke:#388e3c
+    
+    class A webinar
+    class B,E,H,K archive
+    class C,F,I,L access
+    class D,G,J,N admin
+    class M success
+                    </div>
+                    
+                    <div class="mermaid">
+flowchart TD
+    O[Webinar Management] --> P[Content Addition]
+    O --> Q[Access Control]
+    O --> R[User Experience]
+    
+    P --> S[Vimeo Integration]
+    Q --> T[Login Requirements]
+    R --> U[Seamless Viewing]
+    
+    S --> V[Video Hosting]
+    T --> W[User Authentication]
+    U --> X[Quality Streaming]
+    
+    V --> Y[Professional Content]
+    W --> Z[Secure Access]
+    X --> AA[Mobile Compatible]
+    
+    classDef management fill:#e8f5e8,stroke:#4caf50
+    classDef integration fill:#e3f2fd,stroke:#1976d2
+    classDef experience fill:#fff3e0,stroke:#f57c00
+    classDef features fill:#f3e5f5,stroke:#9c27b0
+    
+    class O management
+    class P,S,V integration
+    class Q,T,W,Z experience
+    class R,U,X,AA,Y features
+                    </div>
+                </div>
+                
+                <div class="webinar-archive">
+                    <h3>🎥 Webinar Archive Features:</h3>
+                    <ul>
+                        <li><strong>Year-based Organization:</strong> Webinars organized chronologically by year</li>
+                        <li><strong>Vimeo Integration:</strong> Professional video hosting and streaming</li>
+                        <li><strong>Access Control:</strong> Login requirements for premium content access</li>
+                        <li><strong>Super Admin Management:</strong> Content addition and scheduling by administrators</li>
+                        <li><strong>Automatic Redirection:</strong> Non-logged users redirected to login page</li>
+                        <li><strong>Mobile Optimization:</strong> Responsive video player for all devices</li>
+                        <li><strong>Content Descriptions:</strong> Detailed information about each webinar</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Events System -->
+            <div class="section">
+                <h2>📅 Events Management System</h2>
+                <p>Comprehensive events system with external links, PDF resources, and calendar integration.</p>
+                
+                <div class="mermaid">
+flowchart TD
+    A[Events System] --> B[Upcoming Events]
+    A --> C[Event Management]
+    A --> D[Resource Links]
+    
+    B --> E[Events Table]
+    C --> F[Admin Control]
+    D --> G[External Links]
+    D --> H[PDF Downloads]
+    
+    E --> I[Event Details]
+    F --> J[Add Events]
+    G --> K[Partner Sites]
+    H --> L[Event Materials]
+    
+    I --> M[Date & Time]
+    J --> N[Event Creation]
+    K --> O[External Navigation]
+    L --> P[Document Access]
+    
+    classDef events fill:#fff3e0,stroke:#f57c00
+    classDef management fill:#e8f5e8,stroke:#4caf50
+    classDef resources fill:#e3f2fd,stroke:#1976d2
+    classDef details fill:#f3e5f5,stroke:#9c27b0
+    
+    class A,B events
+    class C,F,J,N management
+    class D,G,H,K,L resources
+    class E,I,M,O,P details
+                </div>
+                
+                <div class="events-system">
+                    <h3>📅 Events System Features:</h3>
+                    <ul>
+                        <li><strong>Upcoming Events:</strong> Chronological listing of future events and activities</li>
+                        <li><strong>Events Table:</strong> Organized table view with dates, descriptions, and links</li>
+                        <li><strong>External Integration:</strong> Links to partner websites and external resources</li>
+                        <li><strong>PDF Resources:</strong> Downloadable event materials and documentation</li>
+                        <li><strong>Admin Management:</strong> Easy event creation and modification by administrators</li>
+                        <li><strong>Calendar Integration:</strong> Events sync with calendar systems</li>
+                        <li><strong>Mobile Responsive:</strong> Optimized viewing on all devices</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- CMS Administration -->
+            <div class="section">
+                <h2>⚙️ CMS Administration & Management</h2>
+                <p>Backend content management system for administrators to manage all website content and functionality.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+flowchart TD
+    A[CMS Admin Panel] --> B[Content Management]
+    A --> C[User Management]
+    A --> D[Media Management]
+    
+    B --> E[Page Editor]
+    C --> F[User Roles]
+    D --> G[File Upload]
+    
+    E --> H[WYSIWYG Editor]
+    F --> I[Permission Control]
+    G --> J[Media Library]
+    
+    H --> K[Publish Content]
+    I --> L[Access Control]
+    J --> M[Asset Management]
+    
+    classDef cms fill:#e3f2fd,stroke:#1976d2
+    classDef content fill:#e8f5e8,stroke:#4caf50
+    classDef users fill:#fff3e0,stroke:#f57c00
+    classDef media fill:#f3e5f5,stroke:#9c27b0
+    classDef success fill:#c8e6c9,stroke:#388e3c
+    
+    class A cms
+    class B,E,H content
+    class C,F,I,L users
+    class D,G,J,M media
+    class K success
+                    </div>
+                    
+                    
+                </div>
+                
+                
+            </div>
+            
+
+            
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with safe configuration for v11.11.0
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

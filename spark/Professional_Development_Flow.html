@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - Professional Development Flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 400;
+            border-bottom: 3px solid #1976d2;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #1976d2;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #495057;
+        }
+        
+        .feature-card li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .free-courses {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .free-courses h3 {
+            color: #2e7d32;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .paid-courses {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #f57c00;
+        }
+        
+        .paid-courses h3 {
+            color: #e65100;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .webinars {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #9c27b0;
+        }
+        
+        .webinars h3 {
+            color: #7b1fa2;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .certificates {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #1976d2;
+        }
+        
+        .certificates h3 {
+            color: #1565c0;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .admin-features {
+            background: #ffebee;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #e91e63;
+        }
+        
+        .admin-features h3 {
+            color: #c2185b;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 Professional Development Flow</h1>
+            <p>Spark Family Project - Complete PD Course Workflows & Credit Management</p>
+        </div>
+        
+        <div class="content">
+            <!-- Main PD Overview -->
+            <div class="section">
+                <h2>🎯 Professional Development Overview</h2>
+                <p>The Spark Family system offers comprehensive professional development opportunities through multiple course types and delivery methods.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[🎓 Professional Development] --> B{Course Access Method}
+    
+    B -->|Platform Courses| C[💻 Online Courses]
+    B -->|External Training| D[🎟️ Course Code Entry]
+    B -->|Live Events| E[🌐 Free Webinars]
+    
+    C --> F{Course Type}
+    F -->|Free| G[🆓 Free Course]
+    F -->|Paid| H[💰 Paid Course]
+    
+    G --> I[▶️ Watch Video]
+    H --> J[💳 Purchase Required]
+    J --> K[💰 Payment Complete]
+    K --> L[🎥 Access All Content]
+    
+    I --> M[📚 Course Components]
+    L --> M
+    
+    D --> N[📝 Manual Entry]
+    E --> O[📺 Live Participation]
+    
+    N --> P[📊 Credit Added]
+    O --> P
+    M --> P
+    
+    classDef pd fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef free fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef paid fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef external fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef credits fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    
+    class A,C,M pd
+    class G,I free
+    class H,J,K,L paid
+    class D,E,N,O external
+    class P credits
+                </div>
+                
+                <div class="flow-grid">
+                    <div class="feature-card">
+                        <h3>💻 Online Courses</h3>
+                        <ul>
+                            <li>Self-paced video content</li>
+                            <li>Interactive quizzes and assessments</li>
+                            <li>Automatic progress tracking</li>
+                            <li>Certificate generation upon completion</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🎟️ External Training</h3>
+                        <ul>
+                            <li>Manual course code entry</li>
+                            <li>Date and details submission</li>
+                            <li>Credit validation and recording</li>
+                            <li>Integration with PD dashboard</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🌐 Live Webinars</h3>
+                        <ul>
+                            <li>Free access for all users</li>
+                            <li>Vimeo-hosted content</li>
+                            <li>Participation tracking</li>
+                            <li>Credit assignment</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Course Completion Workflow -->
+            <div class="section">
+                <h2>📚 Course Completion Workflow</h2>
+                <p>Detailed workflow showing the four-component structure of paid professional development courses.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[📚 Course Access] --> B[🎥 Component 1: Watch Video]
+    A --> C[📝 Component 2: Take Quiz]
+    A --> D[⚠️ Component 3: Action Component]
+    A --> E[📊 Component 4: Exit Assessment]
+    
+    B --> F[✅ Video Complete]
+    C --> G{Quiz Score ≥ 80%?}
+    D --> H[⚠️ Not Required/Working]
+    E --> I[✅ Assessment Complete]
+    
+    G -->|✅ Yes| J[✅ Quiz Passed]
+    G -->|❌ No| K[🔄 Retake Quiz]
+    K --> C
+    
+    F --> L{All Components Done?}
+    J --> L
+    H --> L
+    I --> L
+    
+    L -->|❌ No| M[📋 Continue Course]
+    L -->|✅ Yes| N[🏆 Generate Certificate]
+    
+    M --> A
+    N --> O[📊 Update Dashboard]
+    O --> P[📜 View Certificate]
+    
+    classDef component fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef complete fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    classDef retry fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
+    classDef certificate fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef dashboard fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class A,B,C,D,E component
+    class F,I,J,N complete
+    class K,M retry
+    class O,P certificate
+    class L dashboard
+                </div>
+                
+                <div class="paid-courses">
+                    <h3>💰 Paid Course Components:</h3>
+                    <ul>
+                        <li><strong>Video Content:</strong> Comprehensive training videos with progress tracking</li>
+                        <li><strong>Quiz Assessment:</strong> 80% minimum score required, unlimited retake attempts</li>
+                        <li><strong>Action Component:</strong> Currently not functional, marked as optional</li>
+                        <li><strong>Exit Assessment:</strong> Final evaluation to demonstrate learning outcomes</li>
+                        <li><strong>Certificate Generation:</strong> Automatic upon successful completion of all components</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Free vs Paid Courses -->
+            <div class="section">
+                <h2>🆓 Free vs 💰 Paid Course Comparison</h2>
+                <p>Understanding the differences between free and paid professional development offerings.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+graph TD
+    A[🆓 Free Course] --> B[▶️ Watch Video]
+    B --> C[📋 Basic Content]
+    C --> D[🏆 Simple Certificate]
+    D --> E[📊 Dashboard Update]
+    
+    classDef free fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    class A,B,C,D,E free
+                    </div>
+                    
+                    <div class="mermaid">
+graph TD
+    F[💰 Paid Course] --> G[💳 Purchase]
+    G --> H[🎥 Full Video Library]
+    H --> I[📝 Interactive Quizzes]
+    I --> J[📊 Comprehensive Assessment]
+    J --> K[🏆 Professional Certificate]
+    K --> L[📊 Detailed Analytics]
+    
+    classDef paid fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    class F,G,H,I,J,K,L paid
+                    </div>
+                </div>
+                
+                <div class="flow-grid">
+                    <div class="free-courses">
+                        <h3>🆓 Free Course Features:</h3>
+                        <ul>
+                            <li>Basic video content access</li>
+                            <li>Simple completion certificates</li>
+                            <li>Limited interaction and assessment</li>
+                            <li>Standard credit hours</li>
+                            <li>Basic progress tracking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="paid-courses">
+                        <h3>💰 Paid Course Features:</h3>
+                        <ul>
+                            <li>Comprehensive video libraries</li>
+                            <li>Interactive quizzes with scoring</li>
+                            <li>Multi-component assessments</li>
+                            <li>Professional-grade certificates</li>
+                            <li>Detailed progress analytics</li>
+                            <li>Higher credit value</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Alternative PD Entry Methods -->
+            <div class="section">
+                <h2>🎟️ Alternative PD Entry Methods</h2>
+                <p>Multiple ways to add professional development credits from external sources and live events.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[🎯 Alternative PD Entry] --> B[🎟️ Course Code Entry]
+    A --> C[🌐 Free Webinars]
+    A --> D[🏢 Conference Attendance]
+    
+    B --> E[📝 Enter Course Code]
+    E --> F[📅 Enter Date]
+    F --> G[📋 Submit Details]
+    G --> H[✅ Credit Added]
+    
+    C --> I[📺 Join Webinar]
+    I --> J[⏰ Attend Session]
+    J --> K[🎓 Automatic Credit]
+    
+    D --> L[🎪 Attend Conference]
+    L --> M[🎟️ Get Completion Code]
+    M --> E
+    
+    H --> N[📊 Dashboard Update]
+    K --> N
+    
+    classDef entry fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef webinar fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef conference fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef credit fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    
+    class A,B,E,F,G entry
+    class C,I,J webinar
+    class D,L,M conference
+    class H,K,N credit
+                </div>
+                
+                <div class="webinars">
+                    <h3>🌐 Webinar & External Training:</h3>
+                    <ul>
+                        <li><strong>Free Webinars:</strong> Vimeo-hosted sessions with attendance tracking</li>
+                        <li><strong>Conference Training:</strong> In-person or virtual conference participation</li>
+                        <li><strong>Manual Entry:</strong> Course code and date submission for external training</li>
+                        <li><strong>Verification:</strong> Admin validation of external training completion</li>
+                        <li><strong>Credit Integration:</strong> All credits appear in unified PD dashboard</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Credit Management & Requirements -->
+            <div class="section">
+                <h2>📊 Credit Management & Requirements</h2>
+                <p>Professional development credit tracking, requirements, and different credit types available.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[👩‍🏫 Teacher Requirements] --> B[⏰ 20 Hours Per Year]
+    B --> C{Credit Type}
+    
+    C -->|Academic| D[🎓 College Credits]
+    C -->|Professional| E[📜 State Credits]
+    
+    D --> F[🏫 University Courses]
+    E --> G[🏛️ State-Approved Training]
+    
+    F --> H[📊 Credit Dashboard]
+    G --> H
+    
+    H --> I[📈 Progress Tracking]
+    I --> J{Requirements Met?}
+    
+    J -->|✅ Yes| K[✅ Compliance Complete]
+    J -->|❌ No| L[⚠️ Additional Training Needed]
+    
+    L --> M[🎯 Recommended Courses]
+    M --> N[📚 Enroll in Training]
+    
+    classDef requirement fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef credit fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef tracking fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef compliance fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    classDef needed fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    class A,B requirement
+    class C,D,E,F,G credit
+    class H,I tracking
+    class J,K compliance
+    class L,M,N needed
+                </div>
+                
+                <div class="certificates">
+                    <h3>📜 Credit Types & Management:</h3>
+                    <ul>
+                        <li><strong>Annual Requirement:</strong> Teachers need 20 hours of professional development per year</li>
+                        <li><strong>College Credits:</strong> University-level courses for advanced professional development</li>
+                        <li><strong>State Credits:</strong> State-approved training programs for certification maintenance</li>
+                        <li><strong>Tracking:</strong> All completed courses update credit totals</li>
+                        <li><strong>Progress Monitoring:</strong> Dashboard showing completion status</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Admin & District Management -->
+            <div class="section">
+                <h2>🏫 Admin & District Management Features</h2>
+                <p>How district administrators manage professional development for their teachers and organizations.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[🏫 District Admin] --> B[🛒 Bulk PD Purchase]
+    A --> C[👥 Teacher Management]
+    A --> D[📊 District Reports]
+    
+    B --> E[💰 Purchase Credits]
+    E --> F[📦 Credit Pool]
+    F --> G[📤 Distribute to Teachers]
+    
+    C --> H[➕ Add Teachers]
+    C --> I[🎯 Assign Courses]
+    C --> J[📈 Track Progress]
+    
+    G --> N[📧 Notification to Teachers]
+    I --> O[🎓 Course Access Granted]
+    
+    classDef admin fill:#ffebee,stroke:#e91e63,stroke-width:2px
+    classDef purchase fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef management fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef reports fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef notification fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class A admin
+    class B,E,F,G purchase
+    class C,H,I,J management
+    class D,K,L,M reports
+    class N,O notification
+                </div>
+                
+            </div>
+            
+            
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with optimized settings
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#007bff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#dee2e6',
+                lineColor: '#6c757d',
+                sectionBkgColor: '#f8f9fa',
+                altSectionBkgColor: '#e9ecef',
+                gridColor: '#dee2e6',
+                secondaryColor: '#6c757d',
+                tertiaryColor: '#f8f9fa'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 15,
+                nodeSpacing: 50,
+                rankSpacing: 50
+            },
+            securityLevel: 'loose',
+            maxTextSize: 50000
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.init();
+        });
+    </script>
+</body>
+</html>

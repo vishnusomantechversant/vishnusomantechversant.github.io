@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - User Authentication Flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            font-weight: 400;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .flow-description {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #007bff;
+        }
+        
+        .flow-description h3 {
+            color: #1565c0;
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+        
+        .flow-description ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #424242;
+        }
+        
+        .flow-description li {
+            margin: 5px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .feature-card h4 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .feature-card p {
+            margin: 0;
+            color: #6c757d;
+            font-size: 0.95em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 User Authentication Flow</h1>
+            <p>Spark Family Project - Login & Registration Process</p>
+        </div>
+        
+        <div class="content">
+            <!-- Main Authentication Flow -->
+            <div class="section">
+                <h2>🚪 Main Authentication Process</h2>
+                <p>This diagram shows how users access different parts of the Spark Family system through various login portals.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[🌐 Landing Page] --> B{Choose Portal}
+    
+    B -->|Home Portal| C[🏠 Home Login]
+    B -->|Teacher Portal| D[👩‍🏫 Teacher Login]
+    B -->|Mobile App| E[📱 App Login]
+    
+    C --> F[📧 Email + Password]
+    D --> G[📧 Email + Password + Remember Me]
+    E --> H[📧 Email + Password]
+    
+    F --> I{Valid Credentials?}
+    G --> J{Valid Credentials?}
+    H --> K{Valid Credentials?}
+    
+    I -->|✅ Yes| L[🏠 Home Dashboard]
+    I -->|❌ No| M[❌ Login Error]
+    
+    J -->|✅ Yes| N[📊 Teacher Dashboard]
+    J -->|❌ No| O[❌ Login Error]
+    
+    K -->|✅ Yes| P[📱 App Home]
+    K -->|❌ No| Q[❌ Login Error]
+    
+    M --> F
+    O --> G
+    Q --> H
+    
+    classDef portal fill:#e3f2fd,stroke:#1976d2
+    classDef success fill:#c8e6c9,stroke:#388e3c
+    classDef error fill:#ffcdd2,stroke:#d32f2f
+    classDef decision fill:#fff3e0,stroke:#f57c00
+    
+    class A,C,D,E portal
+    class L,N,P success
+    class M,O,Q error
+    class B,I,J,K decision
+                </div>
+                
+                <div class="flow-description">
+                    <h3>🔍 Flow Explanation:</h3>
+                    <ul>
+                        <li><strong>Landing Page:</strong> Users start at the main entry point</li>
+                        <li><strong>Portal Selection:</strong> Choose between Home Portal, Teacher Portal, or Mobile App</li>
+                        <li><strong>Credential Entry:</strong> Enter email and password (Teacher Portal includes "Remember Me")</li>
+                        <li><strong>Validation:</strong> System checks credentials against database</li>
+                        <li><strong>Success:</strong> Redirect to appropriate dashboard</li>
+                        <li><strong>Failure:</strong> Show error message and allow retry</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Account Creation & Recovery -->
+            <div class="section">
+                <h2>🆕 Account Creation & Password Recovery</h2>
+                <p>Additional authentication features for new users and password recovery.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[🔐 Login Page] --> B[🆕 Create Account]
+    A --> C[❓ Forgot Password]
+    
+    B --> D[📝 Registration Form]
+    D --> E[✅ Account Created]
+    E --> F[📧 Welcome Email]
+    
+    C --> G[📧 Enter Email]
+    G --> H[📤 Send Reset Link]
+    H --> I[📧 Reset Email]
+    I --> J[🔑 New Password]
+    J --> K[✅ Password Updated]
+    
+    F --> L[🔐 Login with New Account]
+    K --> L
+    
+    classDef create fill:#e8f5e8,stroke:#4caf50
+    classDef recovery fill:#fff3e0,stroke:#ff9800
+    classDef email fill:#f3e5f5,stroke:#9c27b0
+    classDef complete fill:#c8e6c9,stroke:#388e3c
+    
+    class B,D,E create
+    class C,G,H,J recovery
+    class F,I email
+    class K,L complete
+                </div>
+                
+                <div class="flow-description">
+                    <h3>🔍 Account Management Features:</h3>
+                    <ul>
+                        <li><strong>New Account:</strong> Users can create accounts with email verification</li>
+                        <li><strong>Password Recovery:</strong> Email-based password reset system</li>
+                        <li><strong>Welcome Process:</strong> New users receive welcome emails with setup instructions</li>
+                        <li><strong>Security:</strong> All password resets require email verification</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- User Type Routing -->
+            <div class="section">
+                <h2>👥 User Type & Access Control</h2>
+                <p>How different user types are routed to appropriate system areas after login.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[✅ Successful Login] --> B{User Type?}
+    
+    B -->|Individual Teacher| C[👤 Teacher Access]
+    B -->|District Admin| D[🏫 Admin Access]
+    B -->|Super Admin| E[🔧 Super Access]
+    
+    C --> F[📚 Curriculum Access]
+    C --> G[👥 Student Management]
+    C --> H[📱 Mobile App Access]
+    
+    D --> I[👥 User Management]
+    D --> J[🎫 License Management]
+    D --> K[📊 District Reports]
+    
+    E --> L[🌐 System Management]
+    E --> M[📚 Content Creation]
+    E --> N[🎓 Course Management]
+    
+    classDef teacher fill:#e8f5e8,stroke:#4caf50
+    classDef admin fill:#fff3e0,stroke:#ff9800
+    classDef super fill:#ffebee,stroke:#f44336
+    classDef access fill:#e3f2fd,stroke:#2196f3
+    
+    class C,F,G,H teacher
+    class D,I,J,K admin
+    class E,L,M,N super
+    class A,B access
+                </div>
+                
+                <div class="flow-description">
+                    <h3>🔍 User Access Levels:</h3>
+                    <ul>
+                        <li><strong>Teachers:</strong> Access curriculum, manage students, use mobile app</li>
+                        <li><strong>District Admins:</strong> Manage users, licenses, and view district reports</li>
+                        <li><strong>Super Admins:</strong> Full system access, content creation, course management</li>
+                        <li><strong>Role-Based:</strong> Features are shown/hidden based on user permissions</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Authentication Features -->
+            <div class="section">
+                <h2>🔧 Authentication Features</h2>
+                <p>Key features and security measures in the authentication system.</p>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4>🔒 Security Features</h4>
+                        <p>Secure password hashing, session management, and email verification for all account operations.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>📱 Multi-Platform</h4>
+                        <p>Consistent login experience across web portals and mobile application with synchronized sessions.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>👤 User Management</h4>
+                        <p>Role-based access control with different permission levels for teachers, admins, and super users.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🔄 Session Handling</h4>
+                        <p>Automatic session timeout, remember me functionality, and secure logout across all devices.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>📧 Email Integration</h4>
+                        <p>Automated welcome emails, password reset notifications, and account verification messages.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h4>🎫 License Validation</h4>
+                        <p>Integration with license management system to control access to premium features and content.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with optimized settings
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#007bff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#dee2e6',
+                lineColor: '#6c757d',
+                sectionBkgColor: '#f8f9fa',
+                altSectionBkgColor: '#e9ecef',
+                gridColor: '#dee2e6',
+                secondaryColor: '#6c757d',
+                tertiaryColor: '#f8f9fa'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 15,
+                nodeSpacing: 50,
+                rankSpacing: 50
+            },
+            securityLevel: 'loose',
+            maxTextSize: 50000
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.init();
+        });
+    </script>
+</body>
+</html>

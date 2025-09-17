@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - Admin Panel Flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 400;
+            border-bottom: 3px solid #e91e63;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #e91e63;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .feature-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #495057;
+        }
+        
+        .feature-card li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .info-box {
+            background: #ffebee;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #e91e63;
+        }
+        
+        .info-box h3 {
+            color: #c2185b;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚙️ Admin Panel Flow</h1>
+            <p>Spark Family Project - Complete Administrative Management & System Control</p>
+        </div>
+        
+        <div class="content">
+            <!-- Admin Panel Overview -->
+            <div class="section">
+                <h2>⚙️ Admin Panel Overview</h2>
+                <p>The Admin Panel provides comprehensive system management tools with different access levels for District Admins and Super Admins.</p>
+                
+                <div class="mermaid">
+flowchart TD
+    A[Admin Login] --> B{Admin Type?}
+    
+    B -->|District Admin| C[District Dashboard]
+    B -->|Super Admin| D[Super Dashboard]
+    
+    C --> E[User Management]
+    C --> F[License Management]
+    C --> G[PD Management]
+    
+    D --> H[System Management]
+    D --> I[Content Creation]
+    D --> J[Global Analytics]
+    
+    classDef admin fill:#ffebee,stroke:#e91e63
+    classDef district fill:#e8f5e8,stroke:#4caf50
+    classDef super fill:#f3e5f5,stroke:#9c27b0
+    
+    class A,B admin
+    class C,E,F,G district
+    class D,H,I,J super
+                </div>
+                
+                <div class="flow-grid">
+                    <div class="feature-card">
+                        <h3>🏫 District Admin Access</h3>
+                        <ul>
+                            <li>Manage teachers and staff within district</li>
+                            <li>Handle license allocation and tracking</li>
+                            <li>Manage course assignments to teachers</li>
+                            <li>Generate district-level reports</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🔧 Super Admin Access</h3>
+                        <ul>
+                            <li>Full system configuration and settings</li>
+                            <li>Create and manage educational content</li>
+                            <li>Configure professional development courses</li>
+                            <li>Manage all districts and accounts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- User Management -->
+            <div class="section">
+                <h2>👥 User Management System</h2>
+                <p>Comprehensive user management including individual and bulk operations for teachers and administrative staff.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+flowchart TD
+    A[User Management] --> B[Add Individual User]
+    A --> C[Bulk User Import]
+    A --> D[Find Users]
+    
+    B --> E[User Details Form]
+    C --> F[CSV File Upload]
+    D --> G[Search Results]
+    
+    E --> H[Save User]
+    F --> I[Process Upload]
+    G --> J[Edit User]
+    
+    classDef management fill:#e8f5e8,stroke:#4caf50
+    classDef operations fill:#e3f2fd,stroke:#1976d2
+    
+    class A,B,C,D management
+    class E,F,G,H,I,J operations
+                    </div>
+                    
+                   
+                </div>
+                
+                <div class="info-box">
+                    <h3>👥 User Management Features:</h3>
+                    <ul>
+                        <li><strong>Individual Management:</strong> Add, edit, and remove users with detailed forms</li>
+                        <li><strong>Bulk Operations:</strong> Import multiple users via CSV </li>
+                        <li><strong>Advanced Search:</strong> Find users by any field with comprehensive filtering</li>
+                        <li><strong>License Integration:</strong> License assignment and reassignment</li>
+                        <li><strong>Program Access Control:</strong> Granular permissions for curriculum access</li>
+                        <li><strong>School Organization:</strong> Group users by schools with usage analytics</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- License Management -->
+            <div class="section">
+                <h2>🎫 License Management & Operations</h2>
+                <p>Complete license lifecycle management including purchase, allocation, tracking, and renewal operations.</p>
+                
+                <div class="mermaid">
+flowchart TD
+    A[License Management] --> B[Find License]
+    A --> C[Find User]
+    A --> D[License Operations]
+    
+    B --> E[Order Number Search]
+    C --> F[User Profile]
+    D --> G[Rebuy License]
+    D --> H[Return License]
+    D --> I[Change License]
+    
+    E --> J[License Details]
+    F --> K[Edit User]
+    F --> L[Delete Account]
+    
+    L --> M[Reassign License]
+    
+    classDef license fill:#e3f2fd,stroke:#1976d2
+    classDef operations fill:#fff3e0,stroke:#f57c00
+    classDef reassign fill:#c8e6c9,stroke:#388e3c
+    
+    class A,B,E,J license
+    class C,D,F,G,H,I,K operations
+    class L,M reassign
+                </div>
+                
+                <div class="info-box">
+                    <h3>🎫 License Management Capabilities:</h3>
+                    <ul>
+                        <li><strong>License Search:</strong> Find licenses by order number with detailed information</li>
+                        <li><strong>User Operations:</strong> Search, edit, delete users with license reassignment</li>
+                        <li><strong>Account Management:</strong> District-level license and user management</li>
+                        <li><strong>License Operations:</strong> Rebuy, return, or change licenses as needed</li>
+                        <li><strong>Bulk License Handling:</strong> Manage multiple licenses under district accounts</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Content Management -->
+            <div class="section">
+                <h2>📚 Content & Course Management</h2>
+                <p>Super Admin tools for creating, managing, and configuring educational content and professional development courses.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+flowchart TD
+    A[Content Management] --> B[Create Module]
+    A --> C[Edit Module]
+    A --> D[Add Documents]
+    
+    B --> E[Module Details]
+    C --> F[Update Content]
+    D --> G[File Upload]
+    
+    E --> H[Module Created]
+    F --> I[Module Updated]
+    G --> J[Documents Added]
+    
+    classDef content fill:#fff3e0,stroke:#f57c00
+    classDef success fill:#c8e6c9,stroke:#388e3c
+    
+    class A,B,C,D,E,F,G content
+    class H,I,J success
+                    </div>
+                    
+                    <div class="mermaid">
+flowchart TD
+    K[Course Management] --> L[Create PD Courses]
+    K --> M[Course Tokens]
+    K --> N[Schedule Webinars]
+    
+    L --> O[Course Content]
+    M --> P[Generate Tokens]
+    N --> Q[Add Vimeo Content]
+    
+    O --> R[Video Content]
+    P --> S[Set Date Range]
+    Q --> T[Set Schedule]
+    
+    classDef courses fill:#f3e5f5,stroke:#9c27b0
+    classDef tokens fill:#ffebee,stroke:#e91e63
+    
+    class K,L,O,R courses
+    class M,P,S tokens
+    class N,Q,T courses
+                    </div>
+                </div>
+                
+                <div class="info-box">
+                    <h3>📚 Content & Course Features:</h3>
+                    <ul>
+                        <li><strong>Module Creation:</strong> Build educational modules with content and documents</li>
+                        <li><strong>Course Development:</strong> Create comprehensive PD courses with videos and assessments</li>
+                        <li><strong>Token Management:</strong> Generate course access tokens with date and user limits</li>
+                        <li><strong>Credit Management:</strong> Add professional development credits to users upon completion of online/offline courses.</li>
+                        <li><strong>Webinar Integration:</strong> Schedule and manage Vimeo-hosted webinars</li>
+                        <li><strong>Content Library:</strong> Centralized document and media management</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- System Analytics -->
+            <div class="section">
+                <h2>📊 System Analytics & Reporting</h2>
+                <p>Comprehensive analytics and reporting tools for system monitoring, usage tracking, and performance analysis.</p>
+                
+                <div class="mermaid">
+flowchart LR
+    A[Admin Dashboard] --> B[System Metrics]
+    A --> C[User Analytics]
+    A --> D[License Analytics]
+    
+    B --> E[Performance Data]
+    C --> F[User Engagement]
+    D --> G[Revenue Analytics]
+    
+    E --> H[System Reports]
+    F --> I[User Reports]
+    G --> J[Financial Reports]
+    
+    classDef dashboard fill:#ffebee,stroke:#e91e63
+    classDef analytics fill:#e8f5e8,stroke:#4caf50
+    classDef reports fill:#e3f2fd,stroke:#1976d2
+    
+    class A dashboard
+    class B,C,D,E,F,G analytics
+    class H,I,J reports
+                </div>
+                
+                <div class="info-box">
+                    <h3>📊 Analytics & Reporting Features:</h3>
+                    <ul>
+                        <li><strong>User Analytics:</strong> Detailed insights into user behavior and engagement</li>
+                        <li><strong>License Tracking:</strong> Comprehensive license usage and revenue analytics</li>
+                        <li><strong>PD Monitoring:</strong> Professional development completion and compliance tracking</li>
+                        <li><strong>Data Export:</strong> Export analytics data in multiple formats for external analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with safe configuration for v11.11.0
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

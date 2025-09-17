@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - Home Portal Flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 400;
+            border-bottom: 3px solid #f3e5f5;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #f3e5f5;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #495057;
+        }
+        
+        .feature-card li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .flow-description {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #9c27b0;
+        }
+        
+        .flow-description h3 {
+            color: #7b1fa2;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .flow-description ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #424242;
+        }
+        
+        .flow-description li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .curriculum-access {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .curriculum-access h3 {
+            color: #2e7d32;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .professional-dev {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #1976d2;
+        }
+        
+        .professional-dev h3 {
+            color: #1565c0;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .account-management {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #f57c00;
+        }
+        
+        .account-management h3 {
+            color: #e65100;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏠 Home Portal Flow</h1>
+            <p>Spark Family Project - Main Portal Functionality & User Journeys</p>
+        </div>
+        
+        <div class="content">
+            <!-- Main Dashboard Overview -->
+            <div class="section">
+                <h2>📊 Main Dashboard Overview</h2>
+                <p>The Home Portal dashboard provides centralized access to all major features and user account information.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[🏠 Home Dashboard] --> B[🏢 Header Section]
+    A --> C[📚 Main Content Area]
+    A --> D[👤 Account Section]
+    
+    B --> E[🎯 Site Logo]
+    B --> F[👤 User Info]
+    B --> G[📅 License Status]
+    B --> H[🔄 Renew Button]
+    
+    C --> I[🎯 3 Content Blocks]
+    C --> J[📚 Curriculum Access]
+    C --> K[🎓 Professional Development]
+    
+    D --> L[👤 My Account]
+    D --> M[🚪 Logout]
+    
+    classDef dashboard fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef header fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef content fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef account fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    class A dashboard
+    class B,E,F,G,H header
+    class C,I,J,K content
+    class D,L,M account
+                </div>
+                
+                <div class="flow-description">
+                    <h3>🎯 Dashboard Components:</h3>
+                    <ul>
+                        <li><strong>Header Section:</strong> Site branding, user information, and license status</li>
+                        <li><strong>Main Content:</strong> Featured content blocks and curriculum access</li>
+                        <li><strong>Account Section:</strong> User account management and logout options</li>
+                        <li><strong>Navigation:</strong> Easy access to all portal features and sections</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Curriculum Access Flow -->
+            <div class="section">
+                <h2>📚 Curriculum Access & Content Flow</h2>
+                <p>How users access and interact with educational content based on their license permissions.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[📚 Curriculum Section] --> B{License Valid?}
+    
+    B -->|✅ Yes| C[📖 Show Available Courses]
+    B -->|❌ No| D[🚫 Show Restricted Message]
+    
+    C --> E[📑 Course Categories]
+    E --> F[📋 Units & Lessons]
+    F --> G[🔍 Search Functionality]
+    F --> H[📄 PDF Viewer]
+    
+    H --> I[🔍 Zoom Controls]
+    H --> J[📖 Navigation Tools]
+    H --> K[📥 Download Options]
+    
+    G --> L[💡 Search Suggestions]
+    L --> M[📋 Filtered Results]
+    
+    classDef access fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef restricted fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
+    classDef content fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef tools fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    class A,C,E,F access
+    class D restricted
+    class G,L,M content
+    class H,I,J,K tools
+                </div>
+                
+                <div class="curriculum-access">
+                    <h3>📖 Curriculum Features:</h3>
+                    <ul>
+                        <li><strong>License-Based Access:</strong> Content availability determined by active licenses</li>
+                        <li><strong>Interactive PDF Viewer:</strong> Zoom, navigate, and download educational materials</li>
+                        <li><strong>Smart Search:</strong> Find specific lessons with auto-suggestions</li>
+                        <li><strong>Organized Content:</strong> Structured by categories, units, and individual lessons</li>
+                        <li><strong>Restricted Content Messaging:</strong> Clear indication when content requires additional licenses</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Professional Development Flow -->
+            <div class="section">
+                <h2>🎓 Professional Development Workflow</h2>
+                <p>Complete workflow for accessing and completing professional development courses.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+graph TD
+    A[🎓 PD Section] --> B{Course Type}
+    B -->|Free| C[▶️ Watch Video]
+    B -->|Paid| D[💳 Purchase Course]
+    
+    D --> E[💰 Payment Complete]
+    E --> F[🎥 Access Content]
+    C --> F
+    
+    classDef pd fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef free fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef paid fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    class A,F pd
+    class C free
+    class D,E paid
+                    </div>
+                    
+                    <div class="mermaid">
+graph TD
+    G[📚 Course Content] --> H[1️⃣ Watch Videos]
+    G --> I[2️⃣ Take Quiz]
+    G --> J[3️⃣ Complete Assessment]
+    
+    I --> K{Score ≥ 80%?}
+    K -->|Yes| L[✅ Quiz Passed]
+    K -->|No| M[🔄 Retake Quiz]
+    M --> I
+    
+    L --> N[🏆 Generate Certificate]
+    J --> N
+    H --> N
+    
+    classDef course fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef success fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    classDef retry fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
+    
+    class G,H,I,J course
+    class L,N success
+    class M retry
+                    </div>
+                </div>
+                
+                <div class="professional-dev">
+                    <h3>🎯 Professional Development Features:</h3>
+                    <ul>
+                        <li><strong>Free Courses:</strong> Access to basic professional development content</li>
+                        <li><strong>Paid Courses:</strong> Premium content with comprehensive training modules</li>
+                        <li><strong>Quiz System:</strong> 80% passing score requirement with unlimited retakes</li>
+                        <li><strong>Certificate Generation:</strong> Automatic certificates upon course completion</li>
+                        <li><strong>Progress Tracking:</strong> Dashboard shows completion status and earned credits</li>
+                        <li><strong>Alternative Entry:</strong> Manual course code entry for external training</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Account Management Flow -->
+            <div class="section">
+                <h2>👤 Account Management & User Administration</h2>
+                <p>Comprehensive account management features including profile updates, license management, and user administration.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[👤 My Account] --> B[📝 Profile Management]
+    A --> C[🎫 License Management]
+    A --> D[👥 User Management]
+    A --> E[📊 Bulk Operations]
+    
+    B --> F[✏️ Update Profile Info]
+    B --> G[🔑 Change Password]
+    B --> H[📧 Update Email]
+    
+    C --> I[➕ Add New License]
+    C --> J[📋 View License List]
+    C --> K[📅 Check Expiration Dates]
+    
+    D --> L[🏫 Manage Schools]
+    D --> M[➕ Add New Users]
+    D --> N[📊 View User Statistics]
+    
+    E --> O[📁 Bulk User Upload]
+    E --> P[📄 Download Templates]
+    
+    classDef account fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef profile fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef license fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef users fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef bulk fill:#ffebee,stroke:#e91e63,stroke-width:2px
+    
+    class A account
+    class B,F,G,H profile
+    class C,I,J,K license
+    class D,L,M,N users
+    class E,O,P bulk
+                </div>
+                
+                <div class="account-management">
+                    <h3>⚙️ Account Management Capabilities:</h3>
+                    <ul>
+                        <li><strong>Profile Updates:</strong> Modify personal information, email, and password</li>
+                        <li><strong>License Administration:</strong> Add, view, and track license expiration dates</li>
+                        <li><strong>User Management:</strong> Add individual users or bulk import via CSV files</li>
+                        <li><strong>School Management:</strong> Organize users by schools and manage access permissions</li>
+                        <li><strong>Bulk Operations:</strong> Efficient management of multiple users with template downloads</li>
+                        <li><strong>Access Control:</strong> Assign curriculum access based on available license quantities</li>
+                    </ul>
+                </div>
+            </div>
+            
+        
+            
+            
+            <!-- User Journey Summary -->
+            <div class="section">
+                <h2>🔄 Complete User Journey</h2>
+                <p>End-to-end user experience from login to content consumption and account management.</p>
+                
+                <div class="mermaid">
+graph LR
+    A[🔐 Login] --> B[🏠 Dashboard]
+    B --> C{User Goal?}
+    
+    C -->|Learn| D[📚 Access Curriculum]
+    C -->|Develop| E[🎓 Take PD Course]
+    C -->|Manage| F[👤 Account Settings]
+    
+    D --> G[📖 Study Content]
+    E --> H[🏆 Earn Certificate]
+    F --> I[⚙️ Update Settings]
+    
+    G --> J[📈 Track Progress]
+    H --> J
+    I --> J
+    
+    classDef journey fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef goals fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef outcomes fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    
+    class A,B,J journey
+    class C,D,E,F goals
+    class G,H,I outcomes
+                </div>
+                
+                <div class="flow-grid">
+                    <div class="feature-card">
+                        <h3>🎯 Learning Path</h3>
+                        <ul>
+                            <li>Browse available curriculum</li>
+                            <li>Search for specific content</li>
+                            <li>Access interactive PDF materials</li>
+                            <li>Track learning progress</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🎓 Development Path</h3>
+                        <ul>
+                            <li>Explore professional development courses</li>
+                            <li>Complete video content and assessments</li>
+                            <li>Earn certificates and credits</li>
+                            <li>View achievement dashboard</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>⚙️ Management Path</h3>
+                        <ul>
+                            <li>Update profile and preferences</li>
+                            <li>Manage licenses and renewals</li>
+                            <li>Add and organize users</li>
+                            <li>Monitor usage and statistics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with optimized settings
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#007bff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#dee2e6',
+                lineColor: '#6c757d',
+                sectionBkgColor: '#f8f9fa',
+                altSectionBkgColor: '#e9ecef',
+                gridColor: '#dee2e6',
+                secondaryColor: '#6c757d',
+                tertiaryColor: '#f8f9fa'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 15,
+                nodeSpacing: 50,
+                rankSpacing: 50
+            },
+            securityLevel: 'loose',
+            maxTextSize: 50000
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.init();
+        });
+    </script>
+</body>
+</html>

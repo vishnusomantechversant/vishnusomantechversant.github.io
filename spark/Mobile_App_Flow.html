@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - Mobile App Flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 400;
+            border-bottom: 3px solid #ff9800;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #ff9800;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #495057;
+        }
+        
+        .feature-card li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .mobile-home {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #ff9800;
+        }
+        
+        .mobile-home h3 {
+            color: #e65100;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .attendance-mobile {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #9c27b0;
+        }
+        
+        .attendance-mobile h3 {
+            color: #7b1fa2;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .curriculum-mobile {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .curriculum-mobile h3 {
+            color: #2e7d32;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .profile-mobile {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #1976d2;
+        }
+        
+        .profile-mobile h3 {
+            color: #1565c0;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .assessment-mobile {
+            background: #ffebee;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #e91e63;
+        }
+        
+        .assessment-mobile h3 {
+            color: #c2185b;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .future-features {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #9c27b0;
+            border-style: dashed;
+        }
+        
+        .future-features h3 {
+            color: #7b1fa2;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📱 Mobile App Flow</h1>
+            <p>Spark Family Project - On-the-Go Teaching Tools & Classroom Management</p>
+        </div>
+        
+        <div class="content">
+            <!-- Mobile App Overview -->
+            <div class="section">
+                <h2>📱 Mobile App Overview</h2>
+                <p>The Spark Family mobile app provides teachers with essential classroom management tools optimized for mobile devices and on-the-go usage.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[📱 App Login] --> B[🏠 App Home Screen]
+    
+    B --> C[📊 Top Navigation Bar]
+    B --> D[👤 User Info Section]
+    B --> E[📅 Upcoming Events]
+    B --> F[📊 Class Statistics]
+    B --> G[🚀 Quick Actions]
+    
+    C --> H[📝 Log Icon]
+    C --> I[📅 Calendar Icon]
+    C --> J[👤 Profile Icon]
+    C --> K[🚪 Logout Icon]
+    
+    D --> L[👤 Username Display]
+    D --> M[📅 Current Date]
+    
+    E --> N[✏️ Edit Events]
+    E --> O[👁️ See All Events]
+    
+    F --> P[📊 Today's Classes]
+    F --> Q[📊 Monthly Classes]
+    F --> R[👥 Total Students]
+    F --> S[✅ Present Count]
+    F --> T[❌ Absent Count]
+    
+    G --> U[➕ Add Attendance]
+    
+    classDef mobile fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef navigation fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef info fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef stats fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef actions fill:#ffebee,stroke:#e91e63,stroke-width:2px
+    
+    class A,B mobile
+    class C,H,I,J,K navigation
+    class D,L,M info
+    class E,F,N,O,P,Q,R,S,T stats
+    class G,U actions
+                </div>
+                
+                <div class="mobile-home">
+                    <h3>🏠 Mobile Home Features:</h3>
+                    <ul>
+                        <li><strong>Quick Navigation:</strong> Easy access to log, calendar, profile, and logout</li>
+                        <li><strong>Real-time Stats:</strong> Current class counts, student totals, attendance summaries</li>
+                        <li><strong>Event Management:</strong> View and edit upcoming events with quick access</li>
+                        <li><strong>One-Touch Actions:</strong> Quick attendance marking and common tasks</li>
+                        <li><strong>Mobile Optimized:</strong> Touch-friendly interface designed for smartphones</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Attendance Management -->
+            <div class="section">
+                <h2>✅ Mobile Attendance Management</h2>
+                <p>Streamlined attendance taking optimized for mobile devices with quick marking and instant synchronization.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+graph TD
+    A[➕ Add Attendance] --> B[🏢 Building Dropdown]
+    A --> C[🏫 Class Dropdown]
+    
+    B --> D[📋 Building Selection]
+    C --> E[📋 Class Selection]
+    
+    D --> F[👥 Load Student List]
+    E --> F
+    
+    F --> G[📱 Mobile Student Cards]
+    G --> H[☑️ Present Checkbox]
+    G --> I[❌ Absent Checkbox]
+    
+    classDef attendance fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef selection fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef students fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    
+    class A attendance
+    class B,C,D,E selection
+    class F,G,H,I students
+                    </div>
+                    
+                   
+                </div>
+                
+                
+            </div>
+            
+            <!-- Curriculum Access -->
+            <div class="section">
+                <h2>📚 Mobile Curriculum & Lesson Access</h2>
+                <p>Full curriculum access optimized for mobile viewing with lesson plans, media content, and favorite management.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[📚 Curriculum Section] --> B[📖 Lesson Plans]
+    B --> C[📝 Content Overview]
+    B --> D[📋 Lesson Categories]
+    B --> E[🎯 Skill Cards]
+    B --> F[📋 Task Cards]
+    
+    D --> G[📂 Sub Categories]
+    G --> H[📄 PDF Content]
+    G --> I[🖼️ Images]
+    G --> J[🎥 Videos]
+    G --> K[🎵 Music Files]
+    
+    H --> L[📱 Mobile PDF Viewer]
+    J --> M[📱 Video Player]
+    K --> N[🎵 Audio Player]
+    
+    G --> O[⭐ Favorite Lessons]
+    O --> P[⚡ Quick Access Menu]
+    
+    L --> Q[📥 Download for Offline]
+
+    
+    classDef curriculum fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef content fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef media fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef favorites fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef offline fill:#ffebee,stroke:#e91e63,stroke-width:2px
+    
+    class A,B,C,D,E,F curriculum
+    class G,H,I,J,K content
+    class L,M,N media
+    class O,P favorites
+    class Q,R,S offline
+                </div>
+                
+                <div class="curriculum-mobile">
+                    <h3>📚 Mobile Curriculum Features:</h3>
+                    <ul>
+                        <li><strong>Full Content Access:</strong> Complete lesson plans, PDFs, images, videos, and audio</li>
+                        <li><strong>Mobile-Optimized Viewer:</strong> Touch-friendly PDF and media viewers</li>
+                        <li><strong>Favorite System:</strong> Star lessons for quick access and organization</li>
+                        <li><strong>Offline Support:</strong> Download content for use without internet connection</li>
+                        <li><strong>Media Integration:</strong> Embedded Vimeo/Wistia videos with mobile controls</li>
+                        <li><strong>Search Functionality:</strong> Find specific lessons and content quickly</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Profile Management -->
+            <div class="section">
+                <h2>👤 Mobile Profile Management</h2>
+                <p>Simple and efficient profile management optimized for mobile input and quick updates.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[👤 Profile Icon] --> B[📝 Profile Form]
+    B --> C[👤 First Name Field]
+    B --> D[👤 Last Name Field]
+    B --> E[📱 Mobile Number Field]
+    B --> F[📧 Email Field]
+    
+    C --> G[✏️ Edit First Name]
+    D --> H[✏️ Edit Last Name]
+    E --> I[📱 Update Phone]
+    F --> J[📧 Update Email]
+    
+    G --> K[💾 Save Changes]
+    H --> K
+    I --> K
+    J --> K
+    
+    K --> L[✅ Profile Updated]
+    L --> M[📊 Sync with Portal]
+    L --> N[🔄 Update App Data]
+    
+    B --> O[🔑 Change Password]
+    O --> P[🔒 Password Form]
+    P --> Q[💾 Update Password]
+    Q --> R[✅ Security Updated]
+    
+    classDef profile fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef fields fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef actions fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef security fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class A,B profile
+    class C,D,E,F,G,H,I,J fields
+    class K,L,M,N actions
+    class O,P,Q,R security
+                </div>
+                
+                <div class="profile-mobile">
+                    <h3>👤 Mobile Profile Features:</h3>
+                    <ul>
+                        <li><strong>Quick Edit Forms:</strong> Mobile-optimized input fields with validation</li>
+                        <li><strong>Auto-Save:</strong> Automatic saving of changes to prevent data loss</li>
+                        <li><strong>Sync Integration:</strong> Real-time synchronization with web portal</li>
+                        <li><strong>Security Management:</strong> Password changes with mobile-friendly interface</li>
+                        <li><strong>Input Validation:</strong> Real-time validation of email and phone formats</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Event Management -->
+            <div class="section">
+                <h2>📅 Mobile Event & Calendar Management</h2>
+                <p>Calendar integration and event management designed for mobile scheduling and quick updates.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+graph TD
+    A[📅 Calendar Icon] --> B[📅 Mobile Calendar]
+    B --> C[📆 Month View]
+    B --> D[📋 List View]
+    B --> E[📊 Timeline View]
+    
+    C --> F[📅 Select Date]
+    F --> G[📋 Day Events]
+    G --> H[✏️ Edit Event]
+    G --> I[🗑️ Delete Event]
+    
+    classDef calendar fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef views fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef events fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    
+    class A,B calendar
+    class C,D,E,F views
+    class G,H,I events
+                    </div>
+                    
+                    <div class="mermaid">
+graph TD
+    J[➕ Add Event] --> K[📝 Mobile Event Form]
+    K --> L[📅 Date Picker]
+    K --> M[⏰ Time Picker]
+    K --> N[📋 Event Title]
+    K --> O[📝 Description]
+    
+    L --> P[💾 Save Event]
+    M --> P
+    N --> P
+    O --> P
+    
+    P --> Q[✅ Event Created]
+    Q --> R[📅 Update Calendar]
+    Q --> S[🔔 Set Reminders]
+    
+    classDef form fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef inputs fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef save fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    
+    class J,K form
+    class L,M,N,O inputs
+    class P,Q,R,S save
+                    </div>
+                </div>
+                
+                <div class="mobile-home">
+                    <h3>📅 Mobile Calendar Features:</h3>
+                    <ul>
+                        <li><strong>Touch Calendar:</strong> Swipe navigation and touch-friendly date selection</li>
+                        <li><strong>Multiple Views:</strong> Month, list, and timeline views for different needs</li>
+                        <li><strong>Quick Event Creation:</strong> Streamlined forms with mobile input optimization</li>
+                        <li><strong>Reminder System:</strong> Push notifications for upcoming events and lessons</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Skill Assessment -->
+            <div class="section">
+                <h2>📊 Mobile Skill Assessment Tools</h2>
+                <p>On-the-go skill assessment with pre-built rubrics and instant progress tracking for Physical Education.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[📊 Skill Assessment] --> B[📋 Pre-built Rubrics]
+    B --> C[👥 Select Students]
+    C --> D[🎯 Choose Skill Category]
+    
+    D --> E[📱 Mobile Assessment Form]
+    E --> G[📝 Evaluation]
+    
+    G --> I[💾 Save Assessment]
+    
+    I --> J[✅ Assessment Recorded]
+    J --> K[📊 Update Progress]
+    J --> L[📈 Generate Reports]
+    
+    K --> M[👤 Student Progress View]
+    L --> N[📊 Class Overview]
+    L --> O[🔗 Link to Teacher Portal]
+    
+    classDef assessment fill:#ffebee,stroke:#e91e63,stroke-width:2px
+    classDef rubrics fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef form fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef results fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    
+    class A,B assessment
+    class C,D rubrics
+    class E,F,G,H,I form
+    class J,K,L,M,N,O results
+                </div>
+                
+                <div class="assessment-mobile">
+                    <h3>📊 Mobile Assessment Features:</h3>
+                    <ul>
+                        <li><strong>Pre-built Rubrics:</strong> Standard Physical Education skill assessment templates</li>
+                        <li><strong>Quick Rating:</strong> Touch-friendly rating scales and note-taking</li>
+                        <li><strong>Progress Tracking:</strong> Visual progress indicators for individual students</li>
+                        <li><strong>Report Generation:</strong> Create and share assessment reports</li>
+                        <li><strong>Portal Integration:</strong> Seamless sync with Teacher Portal for detailed analysis</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Future Enhancements -->
+            <div class="section">
+                <h2>🚀 Future Mobile Enhancements</h2>
+                <p>Planned improvements and new features for the mobile app to enhance teacher productivity and user experience.</p>
+                
+                <div class="flow-grid">
+                    <div class="feature-card">
+                        <h3>📄 Enhanced Content Features</h3>
+                        <ul>
+                            <li>PDF content updates and annotations</li>
+                            <li>Interactive lesson plan editing</li>
+                            <li>Advanced search with content filtering</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🎨 Visual Improvements</h3>
+                        <ul>
+                            <li>Images and icons for lesson navigation</li>
+                            <li>Visual lesson previews</li>
+                            <li>Enhanced mobile UI/UX design</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🔍 Advanced Search</h3>
+                        <ul>
+                            <li>Content-based search functionality</li>
+                            <li>Smart suggestions (e.g., fitness → related lessons)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="future-features">
+                    <h3>🔮 Planned Features:</h3>
+                    <ul>
+                        <li><strong>Enhanced PDF Tools:</strong> Annotation, highlighting, and note-taking capabilities</li>
+                        <li><strong>Smart Search:</strong> AI-powered content discovery and lesson recommendations</li>
+                        <li><strong>Visual Navigation:</strong> Icon-based lesson browsing instead of text-heavy lists</li>
+                        <li><strong>Personalization:</strong> Customizable dashboard and workflow preferences</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Complete Mobile Workflow -->
+            <div class="section">
+                <h2>🔄 Complete Mobile Teaching Workflow</h2>
+                <p>End-to-end mobile workflow showing how teachers use the app throughout their teaching day.</p>
+                
+                <div class="mermaid">
+graph LR
+    A[📱 Open App] --> B[📊 Check Dashboard]
+    B --> C[📅 Review Events]
+    C --> D[✅ Take Attendance]
+    
+    D --> E{Teaching Activity}
+    E -->|Lesson| F[📚 Access Curriculum]
+    E -->|Assessment| G[📊 Skill Assessment]
+    E -->|Planning| H[📅 Schedule Events]
+    
+    F --> I[📖 Deliver Content]
+    G --> J[📋 Record Scores]
+    H --> K[⏰ Set Reminders]
+    
+    I --> L[⭐ Favorite Content]
+    J --> M[📊 Track Progress]
+    K --> N[📅 Update Calendar]
+    
+    L --> O[🔄 Sync Data]
+    M --> O
+    N --> O
+    
+    O --> P[📱 End Session]
+    
+    classDef workflow fill:#fff3e0,stroke:#ff9800,stroke-width:2px
+    classDef activities fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef outcomes fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef sync fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class A,B,C,D,P workflow
+    class E,F,G,H,I,J,K activities
+    class L,M,N outcomes
+    class O sync
+                </div>
+                
+                <div class="flow-grid">
+                    <div class="feature-card">
+                        <h3>🌅 Session Start</h3>
+                        <ul>
+                            <li>Quick dashboard overview</li>
+                            <li>Review scheduled events</li>
+                            <li>Take attendance efficiently</li>
+                            <li>Check student statistics</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>📚 Teaching Activities</h3>
+                        <ul>
+                            <li>Access lesson content on-the-go</li>
+                            <li>Conduct skill assessments</li>
+                            <li>Schedule upcoming activities</li>
+                            <li>Document student progress</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🔄 Session End</h3>
+                        <ul>
+                            <li>Save favorite content for future use</li>
+                            <li>Sync all data with web portal</li>
+                            <li>Update progress tracking</li>
+                            <li>Prepare for next session</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with optimized settings
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#007bff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#dee2e6',
+                lineColor: '#6c757d',
+                sectionBkgColor: '#f8f9fa',
+                altSectionBkgColor: '#e9ecef',
+                gridColor: '#dee2e6',
+                secondaryColor: '#6c757d',
+                tertiaryColor: '#f8f9fa'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 15,
+                nodeSpacing: 50,
+                rankSpacing: 50
+            },
+            securityLevel: 'loose',
+            maxTextSize: 50000
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.init();
+        });
+    </script>
+</body>
+</html>

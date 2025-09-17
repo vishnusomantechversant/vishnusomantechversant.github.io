@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - System Architecture Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 400;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .component-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #007bff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .component-card h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .component-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #495057;
+        }
+        
+        .component-card li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .tech-stack {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #1976d2;
+        }
+        
+        .tech-stack h3 {
+            color: #1565c0;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .tech-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        
+        .integration-flow {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #f57c00;
+        }
+        
+        .integration-flow h3 {
+            color: #e65100;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .data-flow {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #7b1fa2;
+        }
+        
+        .data-flow h3 {
+            color: #6a1b9a;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ System Architecture Overview</h1>
+            <p>Spark Family Project - Complete System Structure & Components</p>
+        </div>
+        
+        <div class="content">
+            <!-- High-Level Architecture -->
+            <div class="section">
+                <h2>🌐 High-Level System Architecture</h2>
+                <p>The Spark Family ecosystem consists of multiple interconnected platforms serving different user types and use cases.</p>
+                
+                <div class="mermaid">
+graph TB
+    subgraph Frontend["🎨 Frontend Applications"]
+        A[🌐 Public Website]
+        B[🏠 Home Portal]
+        C[👩‍🏫 Teacher Portal]
+        D[📱 Mobile App]
+    end
+    
+    subgraph Backend["⚙️ Backend Services"]
+        E[🔐 Authentication Service]
+        F[📚 Content Management]
+        G[👥 User Management]
+        H[🎫 License Management]
+    end
+    
+    subgraph External["🔗 External Systems"]
+        I[💰 Gopher Website]
+        J[📺 Vimeo/Wistia]
+        K[📧 Email Service]
+    end
+    
+    A --> E
+    B --> E
+    C --> E
+    D --> E
+    
+    E --> G
+    E --> H
+    F --> J
+    G --> K
+    H --> I
+    
+    classDef frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef backend fill:#e8f5e8,stroke:#388e3c,stroke-width:2px
+    classDef external fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    class A,B,C,D frontend
+    class E,F,G,H backend
+    class I,J,K external
+                </div>
+                
+                <div class="architecture-grid">
+                    <div class="component-card">
+                        <h3>🎨 Frontend Layer</h3>
+                        <ul>
+                            <li>Public marketing website</li>
+                            <li>Home portal for curriculum access</li>
+                            <li>Teacher portal for classroom management</li>
+                            <li>Mobile app for on-the-go access</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h3>⚙️ Backend Services</h3>
+                        <ul>
+                            <li>Authentication & authorization</li>
+                            <li>Content management system</li>
+                            <li>User & role management</li>
+                            <li>License validation & tracking</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h3>🔗 External Integrations</h3>
+                        <ul>
+                            <li>Gopher website for license purchases</li>
+                            <li>Video platforms (Vimeo/Wistia)</li>
+                            <li>Email service for notifications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Platform Components -->
+            <div class="section">
+                <h2>🏢 Platform Components</h2>
+                <p>Each platform serves specific user needs with dedicated functionality and features.</p>
+                
+                <div class="mermaid">
+graph TD
+    subgraph Public["🌐 Public Website"]
+        A1[📄 Static Pages]
+        A2[📝 Blog System]
+        A3[🎥 Webinar Archive]
+        A4[📅 Event Listings]
+    end
+    
+    subgraph Home["🏠 Home Portal"]
+        B1[📚 Curriculum Access]
+        B2[🎓 Professional Development]
+        B3[🎫 License Management]
+        B4[👥 User Management]
+    end
+    
+    subgraph Teacher["👩‍🏫 Teacher Portal"]
+        C1[👥 Student Management]
+        C2[📊 Attendance Tracking]
+        C3[📋 Assessment Tools]
+        C4[📅 Calendar Management]
+    end
+    
+    subgraph Mobile["📱 Mobile App"]
+        D1[⚡ Quick Attendance]
+        D2[📖 Lesson Access]
+        D3[🎯 Skill Assessment]
+        D4[⭐ Favorites]
+    end
+    
+    classDef public fill:#e1f5fe,stroke:#0277bd
+    classDef home fill:#f3e5f5,stroke:#7b1fa2
+    classDef teacher fill:#e8f5e8,stroke:#388e3c
+    classDef mobile fill:#fff3e0,stroke:#f57c00
+    
+    class A1,A2,A3,A4 public
+    class B1,B2,B3,B4 home
+    class C1,C2,C3,C4 teacher
+    class D1,D2,D3,D4 mobile
+                </div>
+            </div>
+            
+            <!-- User Types & Access -->
+            <div class="section">
+                <h2>👥 User Types & System Access</h2>
+                <p>Different user roles have access to specific platforms and features based on their needs and permissions.</p>
+                
+                <div class="mermaid">
+graph TD
+    subgraph Users["👥 User Types"]
+        A[👤 Individual Teacher]
+        B[🏫 District Admin]
+        C[🔧 Super Admin]
+    end
+    
+    subgraph Access["🎯 Platform Access"]
+        D[🏠 Home Portal]
+        E[👩‍🏫 Teacher Portal]
+        F[📱 Mobile App]
+        G[⚙️ Admin Panel]
+    end
+    
+    A --> D
+    A --> E
+    A --> F
+    
+    B --> D
+    B --> G
+    
+    C --> G
+    
+    classDef user fill:#e8f5e8,stroke:#4caf50
+    classDef access fill:#fff3e0,stroke:#ff9800
+    
+    class A,B,C user
+    class D,E,F,G access
+                </div>
+                
+                <div class="architecture-grid">
+                    <div class="component-card">
+                        <h3>👤 Individual Teacher</h3>
+                        <ul>
+                            <li>Access curriculum content</li>
+                            <li>Manage their students</li>
+                            <li>Take professional development courses</li>
+                            <li>Use mobile app for classroom activities</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h3>🏫 District Admin</h3>
+                        <ul>
+                            <li>Manage district users and licenses</li>
+                            <li>Purchase bulk professional development</li>
+                            <li>View district-wide reports</li>
+                            <li>Assign curriculum access to teachers</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h3>🔧 Super Admin</h3>
+                        <ul>
+                            <li>Full system administration</li>
+                            <li>Create and manage content</li>
+                            <li>Configure professional development courses</li>
+                            <li>System monitoring and maintenance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Data Flow Architecture -->
+            <div class="section">
+                <h2>📊 Data Flow & Integration</h2>
+                <p>How data flows between different system components and external services.</p>
+                
+                <div class="mermaid">
+graph LR
+    A[👤 User Action] --> B[🎯 Frontend]
+    B --> C[🔐 Authentication]
+    C --> D[⚙️ Backend API]
+    D --> E[💾 Database]
+    D --> F[🔗 External APIs]
+    F --> G[📧 Notifications]
+    
+    classDef flow fill:#e3f2fd,stroke:#1976d2
+    class A,B,C,D,E,F,G flow
+                </div>
+                
+                <div class="data-flow">
+                    <h3>📈 Data Flow Patterns</h3>
+                    <ul>
+                        <li><strong>User Interactions:</strong> Frontend captures user actions and sends to backend</li>
+                        <li><strong>Authentication:</strong> All requests validated through authentication service</li>
+                        <li><strong>API Processing:</strong> Backend APIs handle business logic and data operations</li>
+                        <li><strong>Database Operations:</strong> Persistent storage for user data, content, and licenses</li>
+                        <li><strong>External Integration:</strong> Real-time communication with third-party services</li>
+                        <li><strong>Notifications:</strong> Automated emails and alerts triggered by system events</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Technology Stack -->
+            <div class="section">
+                <h2>💻 Technology Stack</h2>
+                <p>Core technologies and frameworks used across the Spark Family system.</p>
+                
+                <div class="tech-stack">
+                    <h3>🔧 Technology Components</h3>
+                    <div class="tech-grid">
+                        <div class="tech-item">🌐 Frontend Frameworks</div>
+                        <div class="tech-item">⚙️ Backend Services</div>
+                        <div class="tech-item">💾 Database Systems</div>
+                        <div class="tech-item">☁️ Cloud Infrastructure</div>
+                        <div class="tech-item">🔐 Security Layer</div>
+                        <div class="tech-item">📱 Mobile Platform</div>
+                        <div class="tech-item">🎥 Media Processing</div>
+                        <div class="tech-item">📧 Communication</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Integration Points -->
+            <div class="section">
+                <h2>🔗 External System Integration</h2>
+                <p>Key integration points with external services and their purposes.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[🏗️ Spark Family System] --> B[💰 Gopher Website]
+    A --> C[📺 Vimeo Platform]
+    A --> D[📺 Wistia Platform]
+    A --> E[📧 Email Service]
+    A --> F[💳 Payment Gateway]
+    
+    B --> G[🎫 License Purchase]
+    C --> H[🎥 Video Hosting]
+    D --> I[🎥 Video Streaming]
+    E --> J[📨 Notifications]
+    F --> K[💰 Payment Processing]
+    
+    classDef system fill:#e8f5e8,stroke:#4caf50
+    classDef external fill:#fff3e0,stroke:#ff9800
+    classDef function fill:#f3e5f5,stroke:#9c27b0
+    
+    class A system
+    class B,C,D,E,F external
+    class G,H,I,J,K function
+                </div>
+                
+                <div class="integration-flow">
+                    <h3>🔄 Integration Details</h3>
+                    <ul>
+                        <li><strong>Gopher Website:</strong> Handles license purchases and sends activation keys via email</li>
+                        <li><strong>Video Platforms:</strong> Vimeo and Wistia provide video hosting for educational content</li>
+                        <li><strong>Email Service:</strong> Automated notifications for account actions and system updates</li>
+                        <li><strong>Payment Gateway:</strong> Secure processing of professional development course purchases</li>
+                        <li><strong>API Communication:</strong> RESTful APIs for real-time data synchronization</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- System Scalability -->
+            <div class="section">
+                <h2>📈 Scalability & Performance</h2>
+                <p>Architecture considerations for handling growth and ensuring optimal performance.</p>
+                
+                <div class="architecture-grid">
+                    <div class="component-card">
+                        <h3>⚡ Performance Optimization</h3>
+                        <ul>
+                            <li>Content delivery networks (CDN)</li>
+                            <li>Database query optimization</li>
+                            <li>Caching strategies for frequent data</li>
+                            <li>Lazy loading for large content</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h3>📊 Scalability Features</h3>
+                        <ul>
+                            <li>Horizontal scaling for increased load</li>
+                            <li>Microservices architecture</li>
+                            <li>Load balancing across servers</li>
+                            <li>Auto-scaling based on demand</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="component-card">
+                        <h3>🔒 Security & Reliability</h3>
+                        <ul>
+                            <li>Multi-layer security protocols</li>
+                            <li>Regular automated backups</li>
+                            <li>Disaster recovery procedures</li>
+                            <li>24/7 system monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with optimized settings
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#007bff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#dee2e6',
+                lineColor: '#6c757d',
+                sectionBkgColor: '#f8f9fa',
+                altSectionBkgColor: '#e9ecef',
+                gridColor: '#dee2e6',
+                secondaryColor: '#6c757d',
+                tertiaryColor: '#f8f9fa'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 15,
+                nodeSpacing: 50,
+                rankSpacing: 50
+            },
+            securityLevel: 'loose',
+            maxTextSize: 50000
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.init();
+        });
+    </script>
+</body>
+</html>

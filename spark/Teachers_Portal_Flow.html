@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Family - Teachers Portal Flow</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11.11.0/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            font-weight: 400;
+            border-bottom: 3px solid #4caf50;
+            padding-bottom: 10px;
+        }
+        
+        .section p {
+            color: #6c757d;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        
+        .mermaid {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 25px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        
+        .flow-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid #4caf50;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-card ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #495057;
+        }
+        
+        .feature-card li {
+            margin: 8px 0;
+            line-height: 1.4;
+        }
+        
+        .students-section {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #4caf50;
+        }
+        
+        .students-section h3 {
+            color: #2e7d32;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .assessments-section {
+            background: #e3f2fd;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #1976d2;
+        }
+        
+        .assessments-section h3 {
+            color: #1565c0;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .calendar-section {
+            background: #fff3e0;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #f57c00;
+        }
+        
+        .calendar-section h3 {
+            color: #e65100;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .attendance-section {
+            background: #f3e5f5;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #9c27b0;
+        }
+        
+        .attendance-section h3 {
+            color: #7b1fa2;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+        
+        .profile-section {
+            background: #ffebee;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #e91e63;
+        }
+        
+        .profile-section h3 {
+            color: #c2185b;
+            margin: 0 0 15px 0;
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>👩‍🏫 Teachers Portal Flow</h1>
+            <p>Spark Family Project - Complete Teacher Dashboard & Classroom Management</p>
+        </div>
+        
+        <div class="content">
+            <!-- Teacher Dashboard Overview -->
+            <div class="section">
+                <h2>📊 Teacher Dashboard Overview</h2>
+                <p>The Teachers Portal provides comprehensive classroom management tools with an intuitive dashboard interface.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[👩‍🏫 Teacher Login] --> B[📊 Dashboard]
+    
+    B --> C[📱 Main Navigation]
+    B --> D[📈 Quick Stats]
+    B --> E[🔗 Quick Actions]
+    
+    C --> F[📊 Dashboard]
+    C --> G[📋 Reports]
+    C --> H[👤 Profile]
+    
+    D --> I[👥 Student Count]
+    D --> J[📊 Assessment Data]
+    D --> K[📅 Calendar Events]
+    
+    E --> L[➕ Add Student]
+    E --> M[📊 Take Attendance]
+    E --> N[📅 Schedule Event]
+    
+    F --> O[👥 Students Section]
+    F --> P[📋 Assessments Section]
+    F --> Q[📅 Calendar Section]
+    
+    classDef dashboard fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef navigation fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef stats fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef sections fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class A,B dashboard
+    class C,F,G,H navigation
+    class D,I,J,K,E,L,M,N stats
+    class O,P,Q sections
+                </div>
+                
+                <div class="flow-grid">
+                    <div class="feature-card">
+                        <h3>📊 Dashboard Features</h3>
+                        <ul>
+                            <li>Student and assessment overview</li>
+                            <li>Quick access to frequently used functions</li>
+                            <li>Visual calendar with upcoming events</li>
+                            <li>Sidebar navigation for all portal sections</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>🚀 Quick Actions</h3>
+                        <ul>
+                            <li>Add new students directly from dashboard</li>
+                            <li>Quick attendance marking</li>
+                            <li>Instant event scheduling</li>
+                            <li>One-click access to reports</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Student Management Flow -->
+            <div class="section">
+                <h2>👥 Student Management System</h2>
+                <p>Comprehensive student management including individual and bulk student operations.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[👥 Students Section] --> B[📋 Student List View]
+    A --> C[🔍 Search Students]
+    A --> D[➕ Add New Student]
+    A --> E[📊 Attendance Reports]
+    
+    B --> F[👤 Individual Student Cards]
+    F --> G[✏️ Edit Student]
+    F --> H[🗑️ Remove Student]
+    
+    D --> I[📝 Student Details Form]
+    I --> J[💾 Save Student]
+    I --> K[❌ Cancel]
+    
+    D --> L[📁 Bulk Import Option]
+    L --> M[📊 Upload Class Roster]
+    M --> N[📄 CSV Template]
+    M --> O[✅ Process Upload]
+    
+    C --> P[🔍 Search Results]
+    P --> Q[📋 Filtered Student List]
+    
+    classDef students fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef actions fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef forms fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef bulk fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class A,B,F students
+    class C,D,E,G,H actions
+    class I,J,K forms
+    class L,M,N,O bulk
+                </div>
+                
+                <div class="students-section">
+                    <h3>👥 Student Management Features:</h3>
+                    <ul>
+                        <li><strong>Individual Management:</strong> Add, edit, and remove students with detailed forms</li>
+                        <li><strong>Bulk Import:</strong> Upload entire class rosters via CSV files with templates</li>
+                        <li><strong>Search Functionality:</strong> Quickly find students with real-time search</li>
+                        <li><strong>Student Profiles:</strong> Comprehensive student information and history</li>
+                        <li><strong>Class Organization:</strong> Group students by classes, buildings, or custom criteria</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Attendance Management -->
+            <div class="section">
+                <h2>📊 Attendance Tracking & Reporting</h2>
+                <p>Comprehensive attendance management with visual reports and analytics.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+graph TD
+    A[📊 Attendance Reports] --> B[🏢 Select Building]
+    B --> C[🏫 Select Class]
+    C --> D[📅 Select Date Range]
+    
+    D --> E[📊 Generate Report]
+    E --> F[📈 Visual Charts]
+    E --> G[📋 Data Tables]
+    
+    F --> H[📊 Attendance Trends]
+    G --> I[👥 Student List with Status]
+    
+    classDef attendance fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef filters fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef reports fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    
+    class A attendance
+    class B,C,D filters
+    class E,F,G,H,I reports
+                    </div>
+                    
+                    <div class="mermaid">
+graph TD
+    J[📝 Take Attendance] --> K[🏢 Select Building]
+    K --> L[🏫 Select Class]
+    L --> M[👥 Student List]
+    
+    M --> N[☑️ Mark Present]
+    M --> O[❌ Mark Absent]
+    
+    N --> P[💾 Save Attendance]
+    O --> P
+    
+    P --> Q[✅ Attendance Recorded]
+    Q --> R[📊 Update Reports]
+    
+    classDef taking fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef marking fill:#c8e6c9,stroke:#388e3c,stroke-width:2px
+    classDef saving fill:#ffcdd2,stroke:#d32f2f,stroke-width:2px
+    
+    class J,K,L,M taking
+    class N,O marking
+    class P,Q,R saving
+                    </div>
+                </div>
+                
+                <div class="attendance-section">
+                    <h3>📊 Attendance Features:</h3>
+                    <ul>
+                        <li><strong>Multi-Level Filtering:</strong> Filter by building, class, and date ranges</li>
+                        <li><strong>Visual Analytics:</strong> Charts and graphs showing attendance trends</li>
+                        <li><strong>Quick Marking:</strong> Efficient present/absent marking for entire classes</li>
+                        <li><strong>Historical Data:</strong> Access to past attendance records and patterns</li>
+                        <li><strong>Export Options:</strong> Download attendance reports</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Assessment Tools -->
+            <div class="section">
+                <h2>📋 Assessment Tools & Analytics</h2>
+                <p>Comprehensive assessment management with curriculum-based evaluations and progress tracking.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[📋 Assessments Section] --> B[📚 Curriculum Dropdown]
+    B --> C[📋 Available Assessments]
+    
+    C --> D[📊 Assessment Chart]
+    C --> E[📋 Assessment Table]
+    C --> F[🔍 Search Assessments]
+    
+    E --> G[📄 Individual Assessment]
+    G --> H[📝 Assessment Details]
+    G --> I[👥 Student Results]
+    G --> J[📊 Performance Analytics]
+    
+    F --> K[🔍 Search Results]
+    K --> L[📋 Filtered Assessments]
+    
+    D --> M[📈 Visual Progress Data]
+    I --> N[📊 Student Performance Charts]
+    
+    E --> O[📄 Pagination Controls]
+    O --> P[📋 Next Page]
+    O --> Q[📋 Previous Page]
+    
+    classDef assessments fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef curriculum fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef analytics fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef search fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    
+    class A,C,E,G assessments
+    class B curriculum
+    class D,H,I,J,M,N analytics
+    class F,K,L,O,P,Q search
+                </div>
+                
+                <div class="assessments-section">
+                    <h3>📊 Assessment Capabilities:</h3>
+                    <ul>
+                        <li><strong>Curriculum Integration:</strong> Assessments organized by curriculum categories</li>
+                        <li><strong>Visual Analytics:</strong> Charts and graphs showing student progress</li>
+                        <li><strong>Individual Tracking:</strong> Detailed performance data for each student</li>
+                        <li><strong>Search & Filter:</strong> Find specific assessments with pagination</li>
+                        <li><strong>Progress Monitoring:</strong> Track student improvement over time</li>
+                        <li><strong>Data Export:</strong> Export assessment data for external analysis</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Calendar Management -->
+            <div class="section">
+                <h2>📅 Calendar & Event Management</h2>
+                <p>Comprehensive calendar system for scheduling events, lessons, and assessments.</p>
+                
+                <div class="flow-grid">
+                    <div class="mermaid">
+graph TD
+    A[📅 Calendar Section] --> B[📅 Calendar View]
+    A --> C[⏰ Timeline Events]
+    A --> D[➕ Add/Edit Event]
+    
+    B --> E[📆 Monthly View]
+    B --> F[📋 Event List]
+    B --> G[🔍 Event Search]
+    
+    C --> H[📊 Scheduled Events]
+    C --> I[⏰ Event Timeline]
+    
+    classDef calendar fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    classDef views fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef timeline fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    
+    class A,D calendar
+    class B,E,F,G views
+    class C,H,I timeline
+                    </div>
+                    
+                    <div class="mermaid">
+graph TD
+    J[➕ Add Event] --> K[📝 Event Form]
+    K --> L[📅 Date Selection]
+    K --> M[⏰ Time Selection]
+    K --> N[📋 Event Details]
+    K --> O[🏢 Building/Class Dropdown]
+    
+    L --> P[💾 Save Event]
+    M --> P
+    N --> P
+    O --> P
+    
+    P --> Q[✅ Event Created]
+    Q --> R[📅 Update Calendar]
+    
+    K --> S[🗑️ Clear Form]
+    K --> T[❌ Cancel]
+    
+    classDef form fill:#f3e5f5,stroke:#9c27b0,stroke-width:2px
+    classDef fields fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef actions fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    class J,K form
+    class L,M,N,O fields
+    class P,Q,R,S,T actions
+                    </div>
+                </div>
+                
+                <div class="calendar-section">
+                    <h3>📅 Calendar Features:</h3>
+                    <ul>
+                        <li><strong>Multiple Views:</strong> Monthly calendar, timeline, and list views</li>
+                        <li><strong>Event Creation:</strong> Detailed event forms with date, time, and location</li>
+                        <li><strong>Event Management:</strong> Edit, delete, and duplicate events</li>
+                        <li><strong>Class Integration:</strong> Link events to specific classes or buildings</li>
+                        <li><strong>Event Search:</strong> Find events by name, date, or type</li>
+                        <li><strong>Recurring Events:</strong> Set up repeating lessons or assessments</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Profile Management -->
+            <div class="section">
+                <h2>👤 Teacher Profile Management</h2>
+                <p>Personal profile management for teachers including contact information and preferences.</p>
+                
+                <div class="mermaid">
+graph TD
+    A[👤 Profile Section] --> B[📝 Profile Information]
+    B --> C[👤 Name Fields]
+    B --> D[📱 Mobile Number]
+    B --> E[📧 Email Address]
+    
+    C --> F[✏️ Edit Name]
+    D --> G[✏️ Edit Phone]
+    E --> H[✏️ Edit Email]
+    
+    F --> I[💾 Save Changes]
+    G --> I
+    H --> I
+    
+    I --> J[✅ Profile Updated]
+    J --> K[📊 Update Dashboard]
+    
+    B --> L[🔑 Change Password]
+    L --> M[🔒 Password Form]
+    M --> N[💾 Update Password]
+    N --> O[✅ Password Changed]
+    
+    classDef profile fill:#ffebee,stroke:#e91e63,stroke-width:2px
+    classDef fields fill:#e8f5e8,stroke:#4caf50,stroke-width:2px
+    classDef actions fill:#e3f2fd,stroke:#1976d2,stroke-width:2px
+    classDef security fill:#fff3e0,stroke:#f57c00,stroke-width:2px
+    
+    class A,B profile
+    class C,D,E,F,G,H fields
+    class I,J,K actions
+    class L,M,N,O security
+                </div>
+                
+                <div class="profile-section">
+                    <h3>👤 Profile Features:</h3>
+                    <ul>
+                        <li><strong>Personal Information:</strong> Update name, phone, and email details</li>
+                        <li><strong>Security Management:</strong> Change password and security settings</li>
+                        <li><strong>Preferences:</strong> Customize dashboard and notification settings</li>
+                        <li><strong>Account Integration:</strong> Profile changes reflect across all portal sections</li>
+                        <li><strong>Data Validation:</strong> Ensure accurate contact information</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Mermaid with optimized settings
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#007bff',
+                primaryTextColor: '#2c3e50',
+                primaryBorderColor: '#dee2e6',
+                lineColor: '#6c757d',
+                sectionBkgColor: '#f8f9fa',
+                altSectionBkgColor: '#e9ecef',
+                gridColor: '#dee2e6',
+                secondaryColor: '#6c757d',
+                tertiaryColor: '#f8f9fa'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                padding: 15,
+                nodeSpacing: 50,
+                rankSpacing: 50
+            },
+            securityLevel: 'loose',
+            maxTextSize: 50000
+        });
+        
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            mermaid.init();
+        });
+    </script>
+</body>
+</html>
